@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "@ddoni-ds/tokens/tokens.css";
+@import "@ddoni-ds/tailwind/theme.css";
+@import "@ddoni-ds/ui/styles.css";
+
+:root {
+  --dds-color-brand-600: #7c3aed;
+  --dds-color-brand-700: #6d28d9;
+  --dds-control-radius: 12px;
+}
+
+html {
+  background: var(--dds-color-bg-canvas);
+}
+
+body {
+  min-inline-size: 320px;
+  margin: 0;
+  font-family: var(--dds-font-family-sans);
+}

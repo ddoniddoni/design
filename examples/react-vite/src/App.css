@@ -1,0 +1,178 @@
+.app {
+  min-block-size: 100%;
+  padding: 48px 24px;
+  background: var(--dds-color-bg-canvas);
+  color: var(--dds-color-text-primary);
+  font-family: var(--dds-font-family-sans);
+}
+
+.container {
+  max-inline-size: 1120px;
+  margin-inline: auto;
+}
+
+.hero,
+.sectionHeading,
+.buttonRow,
+.checkboxRow,
+.overrideTheme,
+.themeControl {
+  display: flex;
+  align-items: center;
+}
+
+.hero {
+  justify-content: space-between;
+  gap: 24px;
+  padding-block-end: 32px;
+  border-block-end: 1px solid var(--dds-color-border-default);
+}
+
+.heroCopy {
+  display: grid;
+  gap: 12px;
+}
+
+.hero h1,
+.section h2,
+.contentGrid h2,
+.overrideTheme h2 {
+  margin: 0;
+  color: var(--dds-color-text-primary);
+}
+
+.hero h1 {
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.hero p,
+.contentGrid p,
+.overrideTheme p {
+  margin: 0;
+  color: var(--dds-color-text-secondary);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.themeControl {
+  flex-shrink: 0;
+  gap: 8px;
+  color: var(--dds-color-text-secondary);
+  font-size: 14px;
+  font-weight: var(--dds-font-weight-medium);
+}
+
+.themeControl select {
+  min-block-size: 40px;
+  padding-inline: 12px;
+  border: 1px solid var(--dds-color-border-default);
+  border-radius: var(--dds-control-radius);
+  background: var(--dds-color-bg-surface);
+  color: var(--dds-color-text-primary);
+}
+
+.section {
+  padding-block: 32px;
+}
+
+.sectionHeading {
+  justify-content: space-between;
+  gap: 16px;
+  margin-block-end: 16px;
+}
+
+.sectionHeading h2,
+.contentGrid h2,
+.overrideTheme h2 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--dds-color-text-tertiary);
+  font-size: 12px;
+  font-weight: var(--dds-font-weight-semibold);
+  letter-spacing: var(--dds-letter-spacing-wide);
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.buttonRow {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.form,
+.field,
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.field {
+  color: var(--dds-color-text-primary);
+  font-size: 14px;
+  font-weight: var(--dds-font-weight-medium);
+  line-height: 20px;
+}
+
+.checkboxRow {
+  gap: 8px;
+  color: var(--dds-color-text-secondary);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.checkboxRow label {
+  cursor: pointer;
+}
+
+.statusMessage {
+  min-block-size: 24px;
+}
+
+.overrideTheme {
+  justify-content: space-between;
+  gap: 24px;
+  margin-block-start: 32px;
+  padding: 24px;
+  border: 1px solid var(--dds-color-border-default);
+  border-radius: 12px;
+  background: var(--dds-color-bg-surface);
+  --dds-color-brand-600: #7c3aed;
+  --dds-color-brand-700: #6d28d9;
+  --dds-control-radius: 12px;
+}
+
+.overrideTheme code {
+  color: var(--dds-color-text-primary);
+  font-family: var(--dds-font-family-mono);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .hero,
+  .overrideTheme {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .themeControl {
+    inline-size: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .contentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

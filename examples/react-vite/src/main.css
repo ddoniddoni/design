@@ -1,0 +1,15 @@
+html {
+  background: var(--dds-color-bg-canvas);
+}
+
+body {
+  min-inline-size: 320px;
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

@@ -1,7 +1,7 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-10
-- 현재 Phase: Phase 5 완료
+- 현재 Phase: Phase 6 완료
 - 전체 상태: 진행 중
 
 ## Phase 0
@@ -73,6 +73,13 @@
 - [x] TW-001~004 선택형 Tailwind v4 adapter
 - [x] Tailwind package README와 실제 utility CSS smoke test
 
+## Phase 6
+
+- [x] ARCH-030 일반 React Vite example
+- [x] ARCH-031 Tailwind CSS v4 Vite example
+- [x] ARCH-032 workspace package import와 CSS subpath export contract 검증
+- [x] CSS variable brand color와 control radius override 예시
+
 ## 스타일 정책
 
 - 디자인 토큰과 고정 크기 값은 px 단위를 사용한다.
@@ -80,23 +87,24 @@
 
 ## 검증 결과
 
-| 명령                                                | 결과 | 비고                                          |
-| --------------------------------------------------- | ---- | --------------------------------------------- |
-| `npm install`                                       | PASS | 487 packages audited, 취약점 0건              |
-| `npm run format:check`                              | PASS | 모든 대상 파일이 Prettier 형식 준수           |
-| `npm run lint`                                      | PASS | ESLint warning/error 0건                      |
-| `npm run stylelint`                                 | PASS | SCSS/CSS 선언 순서와 논리 속성 규칙 준수      |
-| `npm run typecheck`                                 | PASS | 루트 설정 및 UI workspace strict 검사 통과    |
-| `npm run test`                                      | PASS | 11개 파일, 31개 component test 통과           |
-| `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과       |
-| `npm run build-storybook`                           | PASS | Phase 2~5 component/foundation story 포함     |
-| `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                        |
-| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰과 theme selector 확인               |
-| `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함     |
-| `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성               |
-| `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함 |
-| `npx react-doctor@latest --verbose --scope changed` | PASS | 100/100, issue 없음                           |
+| 명령                                                | 결과 | 비고                                           |
+| --------------------------------------------------- | ---- | ---------------------------------------------- |
+| `npm install`                                       | PASS | 487 packages audited, 취약점 0건               |
+| `npm run format:check`                              | PASS | 모든 대상 파일이 Prettier 형식 준수            |
+| `npm run lint`                                      | PASS | ESLint warning/error 0건                       |
+| `npm run stylelint`                                 | PASS | SCSS/CSS 선언 순서와 논리 속성 규칙 준수       |
+| `npm run typecheck`                                 | PASS | 루트 설정 및 UI workspace strict 검사 통과     |
+| `npm run test`                                      | PASS | 11개 파일, 31개 component test 통과            |
+| `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과        |
+| `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
+| `npm run build-storybook`                           | PASS | Phase 2~5 component/foundation story 포함      |
+| `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
+| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰과 theme selector 확인                |
+| `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |
+| `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성                |
+| `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함  |
+| `npx react-doctor@latest --verbose --scope changed` | PASS | 100/100, issue 없음                            |
 
 ## 알려진 이슈
 
-- Phase 6~7은 아직 구현하지 않았습니다.
+- Phase 7은 아직 구현하지 않았습니다.
