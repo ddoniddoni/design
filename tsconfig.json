@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": [
+    ".storybook/**/*.ts",
+    "eslint.config.mjs",
+    "prettier.config.mjs",
+    "vitest.config.ts",
+    "vitest.setup.ts"
+  ]
+}
