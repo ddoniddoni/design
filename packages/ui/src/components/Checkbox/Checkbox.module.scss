@@ -1,0 +1,67 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    cursor: pointer;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    block-size: var(--dds-space-5);
+    inline-size: var(--dds-space-5);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-inverse);
+    border: var(--dds-control-border-width) solid var(--dds-input-border);
+    border-radius: var(--dds-radius-sm);
+    background-color: var(--dds-input-bg);
+
+    @include styles.control-transition;
+
+    &:focus-visible {
+      border-color: var(--dds-input-border-focus);
+
+      @include styles.focus-ring;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      background-color: var(--dds-input-disabled-bg);
+    }
+  }
+
+  .root[data-state="checked"],
+  .root[data-state="indeterminate"] {
+    border-color: var(--dds-button-primary-bg);
+    background-color: var(--dds-button-primary-bg);
+  }
+
+  .indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    block-size: 100%;
+    inline-size: 100%;
+  }
+
+  .icon {
+    block-size: var(--dds-space-3);
+    inline-size: var(--dds-space-3);
+  }
+
+  .indeterminate-icon {
+    display: none;
+    block-size: var(--dds-space-3);
+    inline-size: var(--dds-space-3);
+  }
+
+  .indicator[data-state="indeterminate"] .icon {
+    display: none;
+  }
+
+  .indicator[data-state="indeterminate"] .indeterminate-icon {
+    display: block;
+  }
+}

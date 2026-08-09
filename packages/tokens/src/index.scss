@@ -10,22 +10,26 @@
 
 [data-dds-theme="light"] {
   @include tools.emit-css-vars(tokens.$semantic-light);
+
   color-scheme: light;
 }
 
 [data-dds-theme="dark"] {
   @include tools.emit-css-vars(tokens.$semantic-dark);
+
   color-scheme: dark;
 }
 
 [data-dds-theme="system"] {
   @include tools.emit-css-vars(tokens.$semantic-light);
+
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-dds-theme="system"] {
     @include tools.emit-css-vars(tokens.$semantic-dark);
+
     color-scheme: dark;
   }
 }

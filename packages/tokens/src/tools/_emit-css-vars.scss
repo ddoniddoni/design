@@ -27,7 +27,7 @@ $-supported-value-types: "number", "string", "color", "list", "calculation";
     $character: string.slice($value, $index, $index);
     $uppercase-index: string.index($-uppercase, $character);
 
-    @if $uppercase-index != null {
+    @if $uppercase-index {
       @if $index > 1 {
         $result: "#{$result}-";
       }
@@ -44,7 +44,7 @@ $-supported-value-types: "number", "string", "color", "list", "calculation";
 @mixin -assert-supported-value($value, $path) {
   $value-type: meta.type-of($value);
 
-  @if list.index($-supported-value-types, $value-type) == null {
+  @if not list.index($-supported-value-types, $value-type) {
     @error "Unsupported value type #{$value-type} for #{$path}.";
   }
 
@@ -76,6 +76,7 @@ $-supported-value-types: "number", "string", "color", "list", "calculation";
       }
 
       $-emitted-properties: map.set($-emitted-properties, $next-path, true) !global;
+
       #{$next-path}: #{$value};
     }
   }

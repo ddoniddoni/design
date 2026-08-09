@@ -1,0 +1,23 @@
+export const componentDocs = {
+  badge:
+    '목적: 짧은 상태나 분류를 표시합니다.\n\n사용: 상태가 한눈에 구분되어야 하는 목록과 카드에 사용합니다.\n\n사용하지 않음: 색상만으로 의미를 전달해야 하는 경우에는 텍스트를 함께 제공합니다.\n\n기본 사용: `<Badge tone="success">완료</Badge>`\n\n주요 props: `variant`, `tone`, `size`, `dot`.\n\n접근성: dot은 장식이므로 보조기술에 노출되지 않습니다.\n\n커스터마이징: `--dds-color-status-*`, `--dds-radius-full` 토큰을 override합니다.',
+  button:
+    "목적: 사용자의 명시적 action을 실행합니다.\n\n사용: 저장, 삭제, 확인처럼 현재 화면의 동작을 실행할 때 사용합니다.\n\n사용하지 않음: 페이지 이동만 하는 경우에는 링크 semantics를 사용합니다.\n\n기본 사용: `<Button>저장</Button>`\n\n주요 props: `variant`, `tone`, `size`, `loading`, `fullWidth`.\n\n접근성: loading 중에는 native disabled와 `aria-busy`가 적용됩니다. 아이콘은 장식 처리됩니다.\n\n커스터마이징: `--dds-button-*`, `--dds-control-*` 토큰을 override합니다.",
+  card: "목적: 관련된 정보를 표면 위에 그룹화합니다.\n\n사용: 제목, 설명, 본문, action 영역이 있는 독립된 정보 묶음에 사용합니다.\n\n사용하지 않음: product-specific layout이나 클릭 가능한 card를 전용 prop으로 만들지 않습니다.\n\n기본 사용: `<Card.Root><Card.Content>내용</Card.Content></Card.Root>`\n\n주요 API: `Root`, `Header`, `Title`, `Description`, `Content`, `Footer`.\n\n접근성: heading hierarchy가 필요하면 `Card.Title asChild`로 실제 heading을 전달합니다.\n\n커스터마이징: `--dds-color-bg-surface`, `--dds-color-border-default`, `--dds-shadow-sm` 토큰을 override합니다.",
+  checkbox:
+    '목적: 독립적인 true/false 또는 indeterminate 선택을 제공합니다.\n\n사용: 약관 동의, 설정 선택처럼 여러 값을 독립적으로 선택할 때 사용합니다.\n\n사용하지 않음: 여러 항목 중 하나만 선택하는 경우에는 RadioGroup을 사용합니다.\n\n기본 사용: `<Checkbox aria-label="알림 받기" />`\n\n주요 props: `checked`, `defaultChecked`, `onCheckedChange`, `name`, `value`.\n\n접근성: 외부 `<label htmlFor>` 또는 `aria-label`을 제공합니다. Space 키로 토글됩니다.\n\n커스터마이징: `--dds-input-*`, `--dds-focus-ring-*` 토큰을 override합니다.',
+  dialog:
+    "목적: 현재 작업을 중단하고 확인이나 추가 입력이 필요한 modal dialog를 제공합니다.\n\n사용: 삭제 확인처럼 즉시 주의가 필요한 흐름에 사용합니다.\n\n사용하지 않음: 단순한 보조 설명에는 Tooltip을 사용합니다.\n\n기본 사용: `<Dialog.Root><Dialog.Trigger>열기</Dialog.Trigger><Dialog.Content>...</Dialog.Content></Dialog.Root>`\n\n주요 API: `Root`, `Trigger`, `Portal`, `Content`, `Close`.\n\n접근성: Title과 Description을 제공하고 Escape, focus trap, trigger focus 복귀를 유지합니다.\n\n커스터마이징: `--dds-dialog-*`, `--dds-z-index-modal` 토큰을 override합니다.",
+  dropdownMenu:
+    "목적: trigger에 연결된 action menu를 제공합니다.\n\n사용: 관련된 여러 action을 compact하게 묶을 때 사용합니다.\n\n사용하지 않음: form value를 직접 선택하는 Select 용도로 사용하지 않습니다.\n\n기본 사용: `<DropdownMenu.Root><DropdownMenu.Trigger>메뉴</DropdownMenu.Trigger><DropdownMenu.Content>...</DropdownMenu.Content></DropdownMenu.Root>`\n\n주요 API: `Item`, `CheckboxItem`, `RadioGroup`, `Sub`, `SubTrigger`.\n\n접근성: keyboard navigation, Escape, disabled item, focus restore를 Radix 계약으로 제공합니다.\n\n커스터마이징: `--dds-z-index-dropdown`, `--dds-color-bg-surface-elevated` 토큰을 override합니다.",
+  iconButton:
+    '목적: 아이콘만으로 표현되는 compact action을 제공합니다.\n\n사용: 툴바처럼 공간이 제한되고 action이 명확한 곳에 사용합니다.\n\n사용하지 않음: 텍스트가 필요한 action에는 Button을 사용합니다.\n\n기본 사용: `<IconButton aria-label="닫기" icon={<CloseIcon />} />`\n\n주요 props: `aria-label`, `icon`, `variant`, `tone`, `size`, `loading`.\n\n접근성: `aria-label`은 필수이며 icon은 장식으로 처리됩니다.\n\n커스터마이징: `--dds-button-*`, `--dds-control-height-*` 토큰을 override합니다.',
+  input:
+    '목적: 한 줄의 native text input을 제공합니다.\n\n사용: 이름, 이메일, 검색어처럼 짧은 값을 입력할 때 사용합니다.\n\n사용하지 않음: 여러 줄 설명에는 Textarea를 사용합니다.\n\n기본 사용: `<Input id="email" />`\n\n주요 props: `size`, `invalid`와 모든 native input props.\n\n접근성: `<label htmlFor>` 또는 `aria-label`을 제공합니다. invalid 상태에는 `aria-invalid`가 적용됩니다.\n\n커스터마이징: `--dds-input-*`, `--dds-control-height-*` 토큰을 override합니다.',
+  spinner:
+    '목적: 처리 중인 상태를 짧게 알립니다.\n\n사용: button loading이나 독립적인 비동기 처리 진행 상태에 사용합니다.\n\n사용하지 않음: 페이지의 구조가 아직 준비되지 않은 상태에는 Skeleton을 고려합니다.\n\n기본 사용: `<Spinner label="불러오는 중" />`\n\n주요 props: `size`, `label`, `decorative`.\n\n접근성: standalone은 status role과 label을 제공하고, 장식 용도에서는 `decorative`를 사용합니다.\n\n커스터마이징: `--dds-duration-slow`, `--dds-radius-full` 토큰을 override합니다.',
+  textarea:
+    '목적: 여러 줄의 native text input을 제공합니다.\n\n사용: 설명, 의견, 메시지처럼 긴 값을 입력할 때 사용합니다.\n\n사용하지 않음: 짧은 한 줄 값에는 Input을 사용합니다.\n\n기본 사용: `<Textarea id="description" />`\n\n주요 props: `size`, `invalid`, `resize`와 모든 native textarea props.\n\n접근성: `<label htmlFor>` 또는 `aria-label`을 제공하고 invalid 상태를 명시합니다.\n\n커스터마이징: `--dds-input-*`, `--dds-space-*` 토큰을 override합니다.',
+  tooltip:
+    "목적: hover 또는 keyboard focus로 보조 설명을 제공합니다.\n\n사용: 아이콘 의미나 짧은 추가 맥락을 제공할 때 사용합니다.\n\n사용하지 않음: 필수 정보나 오류 메시지의 유일한 전달 수단으로 사용하지 않습니다.\n\n기본 사용: `<Tooltip.Root><Tooltip.Trigger>도움말</Tooltip.Trigger><Tooltip.Content>설명</Tooltip.Content></Tooltip.Root>`\n\n주요 API: `Provider`, `Root`, `Trigger`, `Content`, `Arrow`.\n\n접근성: trigger와 tooltip role의 관계가 연결되며 focus와 hover 모두 지원합니다.\n\n커스터마이징: `--dds-tooltip-*`, `--dds-z-index-tooltip` 토큰을 override합니다.",
+} as const;

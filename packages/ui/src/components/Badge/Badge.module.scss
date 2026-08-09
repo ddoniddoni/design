@@ -2,126 +2,127 @@
 
 @layer components {
   .root {
-    align-items: center;
-    border: var(--dds-control-border-width) solid transparent;
-    border-radius: var(--dds-radius-full);
-    box-sizing: border-box;
     display: inline-flex;
-    font: inherit;
-    font-weight: var(--dds-font-weight-medium);
+    box-sizing: border-box;
+    align-items: center;
     gap: var(--dds-space-1);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-weight: var(--dds-font-weight-medium);
     line-height: var(--dds-line-height-normal);
     white-space: nowrap;
+    border: var(--dds-control-border-width) solid transparent;
+    border-radius: var(--dds-radius-full);
 
     @include styles.control-transition;
   }
 
   .root[data-size="sm"] {
-    font-size: var(--dds-font-size-xs);
-    min-block-size: var(--dds-space-5);
     padding-inline: var(--dds-space-2);
+    min-block-size: var(--dds-space-5);
+    font-size: var(--dds-font-size-xs);
   }
 
   .root[data-size="md"] {
-    font-size: var(--dds-font-size-sm);
-    min-block-size: var(--dds-space-6);
     padding-inline: var(--dds-space-3);
+    min-block-size: var(--dds-space-6);
+    font-size: var(--dds-font-size-sm);
   }
 
   .dot {
-    background-color: currentcolor;
     block-size: var(--dds-space-1);
-    border-radius: var(--dds-radius-full);
     inline-size: var(--dds-space-1);
+    border-radius: var(--dds-radius-full);
+    background-color: currentcolor;
   }
 
   .root[data-variant="solid"][data-tone="neutral"] {
-    background-color: var(--dds-button-neutral-bg);
     color: var(--dds-button-neutral-text);
+    background-color: var(--dds-button-neutral-bg);
   }
 
   .root[data-variant="solid"][data-tone="primary"] {
-    background-color: var(--dds-button-primary-bg);
     color: var(--dds-button-primary-text);
+    background-color: var(--dds-button-primary-bg);
   }
 
   .root[data-variant="solid"][data-tone="success"] {
-    background-color: var(--dds-color-status-success-text);
     color: var(--dds-color-text-inverse);
+    background-color: var(--dds-color-status-success-text);
   }
 
   .root[data-variant="solid"][data-tone="warning"] {
-    background-color: var(--dds-color-status-warning-text);
     color: var(--dds-color-text-inverse);
+    background-color: var(--dds-color-status-warning-text);
   }
 
   .root[data-variant="solid"][data-tone="danger"] {
-    background-color: var(--dds-button-danger-bg);
     color: var(--dds-button-danger-text);
+    background-color: var(--dds-button-danger-bg);
   }
 
   .root[data-variant="solid"][data-tone="info"] {
-    background-color: var(--dds-color-status-info-text);
     color: var(--dds-color-text-inverse);
+    background-color: var(--dds-color-status-info-text);
   }
 
   .root[data-variant="soft"][data-tone="neutral"] {
-    background-color: var(--dds-button-neutral-bg);
     color: var(--dds-button-neutral-text);
+    background-color: var(--dds-button-neutral-bg);
   }
 
   .root[data-variant="soft"][data-tone="primary"] {
-    background-color: var(--dds-color-bg-surface-subtle);
     color: var(--dds-button-primary-bg);
+    background-color: var(--dds-color-bg-surface-subtle);
   }
 
   .root[data-variant="soft"][data-tone="success"] {
-    background-color: var(--dds-color-status-success-bg);
     color: var(--dds-color-status-success-text);
+    background-color: var(--dds-color-status-success-bg);
   }
 
   .root[data-variant="soft"][data-tone="warning"] {
-    background-color: var(--dds-color-status-warning-bg);
     color: var(--dds-color-status-warning-text);
+    background-color: var(--dds-color-status-warning-bg);
   }
 
   .root[data-variant="soft"][data-tone="danger"] {
-    background-color: var(--dds-color-status-danger-bg);
     color: var(--dds-color-status-danger-text);
+    background-color: var(--dds-color-status-danger-bg);
   }
 
   .root[data-variant="soft"][data-tone="info"] {
-    background-color: var(--dds-color-status-info-bg);
     color: var(--dds-color-status-info-text);
+    background-color: var(--dds-color-status-info-bg);
   }
 
   .root[data-variant="outline"][data-tone="neutral"] {
-    border-color: var(--dds-color-border-strong);
     color: var(--dds-button-neutral-text);
+    border-color: var(--dds-color-border-strong);
   }
 
   .root[data-variant="outline"][data-tone="primary"] {
-    border-color: var(--dds-button-primary-bg);
     color: var(--dds-button-primary-bg);
+    border-color: var(--dds-button-primary-bg);
   }
 
   .root[data-variant="outline"][data-tone="success"] {
-    border-color: var(--dds-color-status-success-border);
     color: var(--dds-color-status-success-text);
+    border-color: var(--dds-color-status-success-border);
   }
 
   .root[data-variant="outline"][data-tone="warning"] {
-    border-color: var(--dds-color-status-warning-border);
     color: var(--dds-color-status-warning-text);
+    border-color: var(--dds-color-status-warning-border);
   }
 
   .root[data-variant="outline"][data-tone="danger"] {
-    border-color: var(--dds-color-status-danger-border);
     color: var(--dds-color-status-danger-text);
+    border-color: var(--dds-color-status-danger-border);
   }
 
   .root[data-variant="outline"][data-tone="info"] {
-    border-color: var(--dds-color-status-info-border);
     color: var(--dds-color-status-info-text);
+    border-color: var(--dds-color-status-info-border);
   }
 }

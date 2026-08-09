@@ -1,0 +1,40 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .content {
+    z-index: var(--dds-z-index-tooltip);
+    box-sizing: border-box;
+    padding-block: var(--dds-space-2);
+    padding-inline: var(--dds-space-3);
+    max-inline-size: 320px;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    color: var(--dds-tooltip-text);
+    line-height: var(--dds-line-height-normal);
+    border-radius: var(--dds-tooltip-radius);
+    background-color: var(--dds-tooltip-bg);
+    box-shadow: var(--dds-shadow-sm);
+    animation: fade-in var(--dds-duration-fast) var(--dds-ease-standard);
+  }
+
+  .arrow {
+    fill: var(--dds-tooltip-bg);
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @include styles.reduced-motion {
+    .content {
+      animation: none;
+    }
+  }
+}

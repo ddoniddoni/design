@@ -445,47 +445,47 @@ Codex는 접근 가능한 기본 대비가 나오도록 널리 쓰이는 안정�
 
 ```text
 0=0
-1=0.25rem
-2=0.5rem
-3=0.75rem
-4=1rem
-5=1.25rem
-6=1.5rem
-8=2rem
-10=2.5rem
-12=3rem
-16=4rem
-20=5rem
-24=6rem
+1=4px
+2=8px
+3=12px
+4=16px
+5=20px
+6=24px
+8=32px
+10=40px
+12=48px
+16=64px
+20=80px
+24=96px
 ```
 
 CSS 변수 예시:
 
 ```css
---dds-space-4: 1rem;
+--dds-space-4: 16px;
 ```
 
 ### Radius
 
 ```text
 none=0
-xs=0.125rem
-sm=0.25rem
-md=0.5rem
-lg=0.75rem
-xl=1rem
+xs=2px
+sm=4px
+md=8px
+lg=12px
+xl=16px
 full=9999px
 ```
 
 ### Typography
 
-- font family: sans, mono
+- font family: sans, mono (`sans`는 Pretendard 우선, platform fallback 포함)
 - font size: xs, sm, md, lg, xl, 2xl, 3xl
 - font weight: regular, medium, semibold, bold
 - line height: tight, normal, relaxed
 - letter spacing: tight, normal, wide
 
-기본 본문은 `font-size-md = 1rem`, `line-height-normal = 1.5`다.
+기본 본문은 `font-size-md = 16px`, `line-height-normal = 24px`다.
 
 ### Shadow
 
@@ -740,7 +740,7 @@ $tokens: (
 :root {
   --dds-color-brand-600: #7c3aed;
   --dds-color-brand-700: #6d28d9;
-  --dds-control-radius: 0.75rem;
+  --dds-control-radius: 12px;
 }
 ```
 
@@ -1482,7 +1482,7 @@ Tailwind Vite consumer의 main CSS:
 :root {
   --dds-color-brand-600: #7c3aed;
   --dds-color-brand-700: #6d28d9;
-  --dds-control-radius: 0.75rem;
+  --dds-control-radius: 12px;
 }
 ```
 
@@ -1863,7 +1863,7 @@ npm install @ddoni-ds/ui @ddoni-ds/tokens @ddoni-ds/tailwind
 [data-dds-brand="violet"] {
   --dds-color-brand-600: #7c3aed;
   --dds-color-brand-700: #6d28d9;
-  --dds-control-radius: 0.75rem;
+  --dds-control-radius: 12px;
 }
 ```
 
@@ -2344,4 +2344,3 @@ Codex는 API가 변경되었을 가능성이 있을 때 아래 공식 문서의 
 
 - ...
 ```
-

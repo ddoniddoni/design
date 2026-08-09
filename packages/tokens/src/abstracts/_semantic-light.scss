@@ -1,10 +1,10 @@
 $semantic-light: (
   "shadow": (
-    "xs": 0 1px 2px rgba(15, 23, 42, 0.05),
-    "sm": 0 1px 3px rgba(15, 23, 42, 0.1),
-    "md": 0 4px 8px rgba(15, 23, 42, 0.12),
-    "lg": 0 12px 24px rgba(15, 23, 42, 0.14),
-    "overlay": 0 24px 48px rgba(15, 23, 42, 0.2),
+    "xs": 0 1px 2px rgb(15, 23, 42, 5%),
+    "sm": 0 1px 3px rgb(15, 23, 42, 10%),
+    "md": 0 4px 8px rgb(15, 23, 42, 12%),
+    "lg": 0 12px 24px rgb(15, 23, 42, 14%),
+    "overlay": 0 24px 48px rgb(15, 23, 42, 20%),
   ),
   "color": (
     "bg": (
@@ -13,7 +13,7 @@ $semantic-light: (
       "surface-subtle": var(--dds-color-neutral-100),
       "surface-elevated": var(--dds-color-neutral-0),
       "inverse": var(--dds-color-neutral-900),
-      "overlay": rgba(2, 6, 23, 0.45),
+      "overlay": rgb(2, 6, 23, 45%),
     ),
     "text": (
       "primary": var(--dds-color-neutral-900),

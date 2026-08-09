@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import { Button } from "./Button";
 
 const meta = {
   title: "Components/Actions/Button",
   component: Button,
+  parameters: { docs: { description: { component: componentDocs.button } } },
   args: {
     children: "저장",
     onClick: fn(),

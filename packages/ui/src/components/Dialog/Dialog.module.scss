@@ -1,0 +1,103 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--dds-z-index-overlay);
+    background-color: var(--dds-dialog-overlay);
+    animation: fade-in var(--dds-duration-fast) var(--dds-ease-standard);
+  }
+
+  .content {
+    overflow-y: auto;
+    position: fixed;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    z-index: var(--dds-z-index-modal);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: var(--dds-space-4);
+    padding: var(--dds-space-4);
+    max-block-size: calc(100% - var(--dds-space-8));
+    inline-size: calc(100% - var(--dds-space-8));
+    max-inline-size: 640px;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-primary);
+    border: var(--dds-control-border-width) solid var(--dds-color-border-default);
+    border-radius: var(--dds-dialog-radius);
+    background-color: var(--dds-dialog-bg);
+    box-shadow: var(--dds-dialog-shadow);
+    transform: translate(-50%, -50%);
+    animation: dialog-enter var(--dds-duration-normal) var(--dds-ease-standard);
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: var(--dds-space-1);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+  }
+
+  .title {
+    margin: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-xl);
+    font-weight: var(--dds-font-weight-semibold);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-tight);
+  }
+
+  .description {
+    margin: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    color: var(--dds-color-text-secondary);
+    line-height: var(--dds-line-height-normal);
+  }
+
+  .footer {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--dds-space-2);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes dialog-enter {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @include styles.reduced-motion {
+    .overlay,
+    .content {
+      animation: none;
+    }
+  }
+}

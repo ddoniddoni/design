@@ -1,0 +1,69 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    display: block;
+    box-sizing: border-box;
+    padding-block: var(--dds-space-2);
+    padding-inline: var(--dds-space-3);
+    min-block-size: var(--dds-space-20);
+    inline-size: 100%;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-md);
+    color: var(--dds-input-text);
+    line-height: var(--dds-line-height-normal);
+    border: var(--dds-control-border-width) solid var(--dds-input-border);
+    border-radius: var(--dds-control-radius);
+    background-color: var(--dds-input-bg);
+
+    @include styles.control-transition;
+
+    &:focus-visible {
+      border-color: var(--dds-input-border-focus);
+
+      @include styles.focus-ring;
+    }
+
+    &::placeholder {
+      opacity: 1;
+      color: var(--dds-input-placeholder);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--dds-input-disabled-text);
+      background-color: var(--dds-input-disabled-bg);
+    }
+
+    &[data-invalid="true"] {
+      border-color: var(--dds-input-border-invalid);
+    }
+  }
+
+  .root[data-size="sm"] {
+    min-block-size: var(--dds-space-16);
+    font-size: var(--dds-font-size-sm);
+  }
+
+  .root[data-size="lg"] {
+    min-block-size: var(--dds-space-24);
+    font-size: var(--dds-font-size-lg);
+  }
+
+  .root[data-resize="none"] {
+    resize: none;
+  }
+
+  .root[data-resize="vertical"] {
+    resize: vertical;
+  }
+
+  .root[data-resize="horizontal"] {
+    resize: horizontal;
+  }
+
+  .root[data-resize="both"] {
+    resize: both;
+  }
+}

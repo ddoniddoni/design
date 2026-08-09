@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { componentDocs } from "../../stories/internal/componentDocs";
 import { Badge } from "./Badge";
 
 const meta = {
   title: "Components/Data Display/Badge",
   component: Badge,
+  parameters: { docs: { description: { component: componentDocs.badge } } },
   args: {
     children: "배지",
   },

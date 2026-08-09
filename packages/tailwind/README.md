@@ -1,3 +1,24 @@
 # @ddoni-ds/tailwind
 
-Tailwind CSS v4와 `--dds-*` 변수를 연결하는 선택형 어댑터입니다. 실제 `theme.css`는 Phase 5에서 추가합니다.
+Tailwind CSS v4에서 DDoni Design System token을 utility로 연결하는 선택형 adapter입니다. `@ddoni-ds/ui`는 Tailwind에 의존하지 않습니다.
+
+```bash
+npm install @ddoni-ds/ui @ddoni-ds/tokens @ddoni-ds/tailwind tailwindcss
+```
+
+소비자 앱의 CSS에 아래 순서로 import합니다.
+
+```css
+@import "tailwindcss";
+@import "@ddoni-ds/tokens/tokens.css";
+@import "@ddoni-ds/tailwind/theme.css";
+@import "@ddoni-ds/ui/styles.css";
+```
+
+```tsx
+<div className="bg-dds-canvas p-dds-4 text-dds-text">
+  <Button className="w-full">저장</Button>
+</div>
+```
+
+브랜드나 control radius는 `--dds-*` CSS Custom Property를 override해 변경합니다.

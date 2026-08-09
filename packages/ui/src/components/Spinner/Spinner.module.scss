@@ -2,19 +2,19 @@
 
 @layer components {
   .root {
-    align-items: center;
-    box-sizing: border-box;
     display: inline-flex;
-    font: inherit;
+    box-sizing: border-box;
+    align-items: center;
     justify-content: center;
+    font: inherit;
   }
 
   .indicator {
-    animation: spin var(--dds-duration-slow) linear infinite;
-    border: 2px solid currentcolor;
-    border-inline-end-color: transparent;
-    border-radius: var(--dds-radius-full);
     box-sizing: border-box;
+    border: 2px solid currentcolor;
+    border-radius: var(--dds-radius-full);
+    animation: spin var(--dds-duration-slow) linear infinite;
+    border-inline-end-color: transparent;
   }
 
   .root[data-size="sm"] .indicator {

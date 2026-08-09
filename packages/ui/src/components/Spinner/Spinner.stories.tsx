@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { componentDocs } from "../../stories/internal/componentDocs";
 import { Spinner } from "./Spinner";
 
 const meta = {
   title: "Components/Feedback/Spinner",
   component: Spinner,
+  parameters: { docs: { description: { component: componentDocs.spinner } } },
   args: {
     label: "로딩 중",
   },

@@ -1,0 +1,55 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    display: block;
+    box-sizing: border-box;
+    padding-block: 0;
+    padding-inline: var(--dds-space-3);
+    min-block-size: var(--dds-control-height-md);
+    inline-size: 100%;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-md);
+    color: var(--dds-input-text);
+    line-height: var(--dds-line-height-normal);
+    border: var(--dds-control-border-width) solid var(--dds-input-border);
+    border-radius: var(--dds-control-radius);
+    background-color: var(--dds-input-bg);
+
+    @include styles.control-transition;
+
+    &:focus-visible {
+      border-color: var(--dds-input-border-focus);
+
+      @include styles.focus-ring;
+    }
+
+    &::placeholder {
+      opacity: 1;
+      color: var(--dds-input-placeholder);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--dds-input-disabled-text);
+      background-color: var(--dds-input-disabled-bg);
+    }
+
+    &[data-invalid="true"] {
+      border-color: var(--dds-input-border-invalid);
+    }
+  }
+
+  .root[data-size="sm"] {
+    padding-inline: var(--dds-space-2);
+    min-block-size: var(--dds-control-height-sm);
+    font-size: var(--dds-font-size-sm);
+  }
+
+  .root[data-size="lg"] {
+    padding-inline: var(--dds-space-4);
+    min-block-size: var(--dds-control-height-lg);
+    font-size: var(--dds-font-size-lg);
+  }
+}

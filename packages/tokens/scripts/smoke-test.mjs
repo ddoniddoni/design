@@ -7,12 +7,17 @@ const requiredTokens = [
   "--dds-color-brand-600",
   "--dds-color-text-primary",
   "--dds-control-radius",
+  "--dds-font-family-sans",
 ];
 
 for (const token of requiredTokens) {
   if (!tokensCss.includes(token)) {
     throw new Error(`Missing required token output: ${token}`);
   }
+}
+
+if (!tokensCss.includes("Pretendard")) {
+  throw new Error("The sans-serif token must prefer Pretendard.");
 }
 
 for (const theme of ["dark", "system"]) {

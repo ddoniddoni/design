@@ -2,17 +2,18 @@
 
 @layer components {
   .root {
-    align-items: center;
-    background-color: transparent;
-    border: var(--dds-control-border-width) solid transparent;
-    border-radius: var(--dds-control-radius);
-    box-sizing: border-box;
     cursor: pointer;
+    position: relative;
     display: inline-flex;
-    font: inherit;
+    box-sizing: border-box;
+    align-items: center;
     justify-content: center;
     padding: 0;
-    position: relative;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    border: var(--dds-control-border-width) solid transparent;
+    border-radius: var(--dds-control-radius);
+    background-color: transparent;
 
     @include styles.control-transition;
 
@@ -42,8 +43,8 @@
   }
 
   .icon {
-    align-items: center;
     display: inline-flex;
+    align-items: center;
   }
 
   .root[aria-busy="true"] .icon {
@@ -51,16 +52,16 @@
   }
 
   .spinner {
-    color: currentcolor;
-    left: 50%;
     position: absolute;
-    top: 50%;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    color: currentcolor;
     transform: translate(-50%, -50%);
   }
 
   .root[data-variant="solid"][data-tone="primary"] {
-    background-color: var(--dds-button-primary-bg);
     color: var(--dds-button-primary-text);
+    background-color: var(--dds-button-primary-bg);
 
     &:hover:not(:disabled) {
       background-color: var(--dds-button-primary-hover);
@@ -72,8 +73,8 @@
   }
 
   .root[data-variant="solid"][data-tone="neutral"] {
-    background-color: var(--dds-button-neutral-bg);
     color: var(--dds-button-neutral-text);
+    background-color: var(--dds-button-neutral-bg);
 
     &:hover:not(:disabled) {
       background-color: var(--dds-button-neutral-hover);
@@ -85,8 +86,8 @@
   }
 
   .root[data-variant="solid"][data-tone="danger"] {
-    background-color: var(--dds-button-danger-bg);
     color: var(--dds-button-danger-text);
+    background-color: var(--dds-button-danger-bg);
 
     &:hover:not(:disabled) {
       background-color: var(--dds-button-danger-hover);
@@ -98,28 +99,28 @@
   }
 
   .root[data-variant="outline"][data-tone="primary"] {
-    border-color: var(--dds-button-primary-bg);
     color: var(--dds-button-primary-bg);
+    border-color: var(--dds-button-primary-bg);
 
     &:hover:not(:disabled) {
-      background-color: var(--dds-color-bg-surface-subtle);
-      border-color: var(--dds-button-primary-hover);
       color: var(--dds-button-primary-hover);
+      border-color: var(--dds-button-primary-hover);
+      background-color: var(--dds-color-bg-surface-subtle);
     }
 
     &:active:not(:disabled) {
-      border-color: var(--dds-button-primary-active);
       color: var(--dds-button-primary-active);
+      border-color: var(--dds-button-primary-active);
     }
   }
 
   .root[data-variant="outline"][data-tone="neutral"] {
-    border-color: var(--dds-color-border-strong);
     color: var(--dds-button-neutral-text);
+    border-color: var(--dds-color-border-strong);
 
     &:hover:not(:disabled) {
-      background-color: var(--dds-button-neutral-bg);
       border-color: var(--dds-button-neutral-hover);
+      background-color: var(--dds-button-neutral-bg);
     }
 
     &:active:not(:disabled) {
@@ -128,18 +129,18 @@
   }
 
   .root[data-variant="outline"][data-tone="danger"] {
-    border-color: var(--dds-button-danger-bg);
     color: var(--dds-button-danger-bg);
+    border-color: var(--dds-button-danger-bg);
 
     &:hover:not(:disabled) {
-      background-color: var(--dds-color-status-danger-bg);
-      border-color: var(--dds-button-danger-hover);
       color: var(--dds-button-danger-hover);
+      border-color: var(--dds-button-danger-hover);
+      background-color: var(--dds-color-status-danger-bg);
     }
 
     &:active:not(:disabled) {
-      border-color: var(--dds-button-danger-active);
       color: var(--dds-button-danger-active);
+      border-color: var(--dds-button-danger-active);
     }
   }
 
@@ -147,13 +148,13 @@
     color: var(--dds-button-primary-bg);
 
     &:hover:not(:disabled) {
-      background-color: var(--dds-color-bg-surface-subtle);
       color: var(--dds-button-primary-hover);
+      background-color: var(--dds-color-bg-surface-subtle);
     }
 
     &:active:not(:disabled) {
-      background-color: var(--dds-color-bg-surface-subtle);
       color: var(--dds-button-primary-active);
+      background-color: var(--dds-color-bg-surface-subtle);
     }
   }
 
@@ -173,13 +174,13 @@
     color: var(--dds-button-danger-bg);
 
     &:hover:not(:disabled) {
-      background-color: var(--dds-color-status-danger-bg);
       color: var(--dds-button-danger-hover);
+      background-color: var(--dds-color-status-danger-bg);
     }
 
     &:active:not(:disabled) {
-      background-color: var(--dds-color-status-danger-bg);
       color: var(--dds-button-danger-active);
+      background-color: var(--dds-color-status-danger-bg);
     }
   }
 }
