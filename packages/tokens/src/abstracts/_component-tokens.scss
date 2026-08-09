@@ -1,0 +1,57 @@
+$component-tokens: (
+  "control": (
+    "height": (
+      "sm": 2rem,
+      "md": 2.5rem,
+      "lg": 3rem,
+    ),
+    "radius": var(--dds-radius-md),
+    "border-width": 1px,
+  ),
+  "focus": (
+    "ring-width": 2px,
+    "ring-offset": 2px,
+  ),
+  "button": (
+    "primary": (
+      "bg": var(--dds-color-action-primary-bg),
+      "hover": var(--dds-color-action-primary-hover),
+      "active": var(--dds-color-action-primary-active),
+      "text": var(--dds-color-action-primary-text),
+    ),
+    "neutral": (
+      "bg": var(--dds-color-action-neutral-bg),
+      "hover": var(--dds-color-action-neutral-hover),
+      "active": var(--dds-color-action-neutral-active),
+      "text": var(--dds-color-action-neutral-text),
+    ),
+    "danger": (
+      "bg": var(--dds-color-action-danger-bg),
+      "hover": var(--dds-color-action-danger-hover),
+      "active": var(--dds-color-action-danger-active),
+      "text": var(--dds-color-action-danger-text),
+    ),
+  ),
+  "input": (
+    "bg": var(--dds-color-bg-surface),
+    "text": var(--dds-color-text-primary),
+    "placeholder": var(--dds-color-text-tertiary),
+    "border": var(--dds-color-border-default),
+    "border-hover": var(--dds-color-border-strong),
+    "border-focus": var(--dds-color-border-focus),
+    "border-invalid": var(--dds-color-border-danger),
+    "disabled-bg": var(--dds-color-bg-surface-subtle),
+    "disabled-text": var(--dds-color-text-disabled),
+  ),
+  "dialog": (
+    "bg": var(--dds-color-bg-surface-elevated),
+    "radius": var(--dds-radius-xl),
+    "shadow": var(--dds-shadow-overlay),
+    "overlay": var(--dds-color-bg-overlay),
+  ),
+  "tooltip": (
+    "bg": var(--dds-color-bg-inverse),
+    "text": var(--dds-color-text-inverse),
+    "radius": var(--dds-radius-sm),
+  ),
+);

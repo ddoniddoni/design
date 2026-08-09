@@ -1,0 +1,75 @@
+$semantic-light: (
+  "shadow": (
+    "xs": 0 1px 2px rgba(15, 23, 42, 0.05),
+    "sm": 0 1px 3px rgba(15, 23, 42, 0.1),
+    "md": 0 4px 8px rgba(15, 23, 42, 0.12),
+    "lg": 0 12px 24px rgba(15, 23, 42, 0.14),
+    "overlay": 0 24px 48px rgba(15, 23, 42, 0.2),
+  ),
+  "color": (
+    "bg": (
+      "canvas": var(--dds-color-neutral-50),
+      "surface": var(--dds-color-neutral-0),
+      "surface-subtle": var(--dds-color-neutral-100),
+      "surface-elevated": var(--dds-color-neutral-0),
+      "inverse": var(--dds-color-neutral-900),
+      "overlay": rgba(2, 6, 23, 0.45),
+    ),
+    "text": (
+      "primary": var(--dds-color-neutral-900),
+      "secondary": var(--dds-color-neutral-600),
+      "tertiary": var(--dds-color-neutral-500),
+      "disabled": var(--dds-color-neutral-400),
+      "inverse": var(--dds-color-neutral-0),
+      "link": var(--dds-color-brand-700),
+    ),
+    "border": (
+      "default": var(--dds-color-neutral-200),
+      "strong": var(--dds-color-neutral-300),
+      "focus": var(--dds-color-brand-500),
+      "danger": var(--dds-color-danger-600),
+    ),
+    "action": (
+      "primary": (
+        "bg": var(--dds-color-brand-600),
+        "hover": var(--dds-color-brand-700),
+        "active": var(--dds-color-brand-800),
+        "text": var(--dds-color-neutral-0),
+      ),
+      "neutral": (
+        "bg": var(--dds-color-neutral-100),
+        "hover": var(--dds-color-neutral-200),
+        "active": var(--dds-color-neutral-300),
+        "text": var(--dds-color-neutral-900),
+      ),
+      "danger": (
+        "bg": var(--dds-color-danger-600),
+        "hover": var(--dds-color-danger-700),
+        "active": var(--dds-color-danger-900),
+        "text": var(--dds-color-neutral-0),
+      ),
+    ),
+    "status": (
+      "success": (
+        "bg": var(--dds-color-success-50),
+        "text": var(--dds-color-success-700),
+        "border": var(--dds-color-success-400),
+      ),
+      "warning": (
+        "bg": var(--dds-color-warning-50),
+        "text": var(--dds-color-warning-700),
+        "border": var(--dds-color-warning-400),
+      ),
+      "danger": (
+        "bg": var(--dds-color-danger-50),
+        "text": var(--dds-color-danger-700),
+        "border": var(--dds-color-danger-400),
+      ),
+      "info": (
+        "bg": var(--dds-color-info-50),
+        "text": var(--dds-color-info-700),
+        "border": var(--dds-color-info-400),
+      ),
+    ),
+  ),
+);

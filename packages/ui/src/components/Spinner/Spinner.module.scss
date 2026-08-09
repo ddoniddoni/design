@@ -1,0 +1,46 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    align-items: center;
+    box-sizing: border-box;
+    display: inline-flex;
+    font: inherit;
+    justify-content: center;
+  }
+
+  .indicator {
+    animation: spin var(--dds-duration-slow) linear infinite;
+    border: 2px solid currentcolor;
+    border-inline-end-color: transparent;
+    border-radius: var(--dds-radius-full);
+    box-sizing: border-box;
+  }
+
+  .root[data-size="sm"] .indicator {
+    block-size: var(--dds-space-4);
+    inline-size: var(--dds-space-4);
+  }
+
+  .root[data-size="md"] .indicator {
+    block-size: var(--dds-space-5);
+    inline-size: var(--dds-space-5);
+  }
+
+  .root[data-size="lg"] .indicator {
+    block-size: var(--dds-space-6);
+    inline-size: var(--dds-space-6);
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @include styles.reduced-motion {
+    .indicator {
+      animation: none;
+    }
+  }
+}

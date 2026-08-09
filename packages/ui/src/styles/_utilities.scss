@@ -1,0 +1,7 @@
+@mixin control-transition {
+  transition:
+    background-color var(--dds-duration-fast) var(--dds-ease-standard),
+    border-color var(--dds-duration-fast) var(--dds-ease-standard),
+    color var(--dds-duration-fast) var(--dds-ease-standard),
+    box-shadow var(--dds-duration-fast) var(--dds-ease-standard);
+}

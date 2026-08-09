@@ -1,0 +1,10 @@
+@mixin focus-ring {
+  outline: var(--dds-focus-ring-width) solid var(--dds-color-border-focus);
+  outline-offset: var(--dds-focus-ring-offset);
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

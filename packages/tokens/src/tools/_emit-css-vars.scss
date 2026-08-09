@@ -1,0 +1,95 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+$-emitted-properties: () !default;
+$-uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+$-lowercase: "abcdefghijklmnopqrstuvwxyz";
+$-supported-value-types: "number", "string", "color", "list", "calculation";
+
+@function -to-kebab-case($key) {
+  $key-type: meta.type-of($key);
+
+  @if $key-type != "string" and $key-type != "number" {
+    @error "CSS variable keys must be strings or numbers; received #{$key-type}.";
+  }
+
+  $value: "#{$key}";
+
+  @if string.length($value) == 0 {
+    @error "CSS variable keys cannot be empty.";
+  }
+
+  $result: "";
+
+  @for $index from 1 through string.length($value) {
+    $character: string.slice($value, $index, $index);
+    $uppercase-index: string.index($-uppercase, $character);
+
+    @if $uppercase-index != null {
+      @if $index > 1 {
+        $result: "#{$result}-";
+      }
+
+      $character: string.slice($-lowercase, $uppercase-index, $uppercase-index);
+    }
+
+    $result: "#{$result}#{$character}";
+  }
+
+  @return $result;
+}
+
+@mixin -assert-supported-value($value, $path) {
+  $value-type: meta.type-of($value);
+
+  @if list.index($-supported-value-types, $value-type) == null {
+    @error "Unsupported value type #{$value-type} for #{$path}.";
+  }
+
+  @if $value-type == "list" and list.length($value) == 0 {
+    @error "CSS variable values cannot be empty lists (#{$path}).";
+  }
+}
+
+@mixin -emit-map($tokens, $path) {
+  @if meta.type-of($tokens) != "map" {
+    @error "Expected a Sass map at #{$path}.";
+  }
+
+  @if list.length($tokens) == 0 {
+    @error "Token maps cannot be empty (#{$path}).";
+  }
+
+  @each $raw-key, $value in $tokens {
+    $key: -to-kebab-case($raw-key);
+    $next-path: "#{$path}-#{$key}";
+
+    @if meta.type-of($value) == "map" {
+      @include -emit-map($value, $next-path);
+    } @else {
+      @include -assert-supported-value($value, $next-path);
+
+      @if map.has-key($-emitted-properties, $next-path) {
+        @error "Duplicate CSS variable path #{$next-path}.";
+      }
+
+      $-emitted-properties: map.set($-emitted-properties, $next-path, true) !global;
+      #{$next-path}: #{$value};
+    }
+  }
+}
+
+@mixin emit-css-vars($tokens, $prefix: "dds") {
+  @if meta.type-of($prefix) != "string" {
+    @error "CSS variable prefixes must be strings.";
+  }
+
+  $normalized-prefix: -to-kebab-case($prefix);
+  $-emitted-properties: () !global;
+
+  @include -emit-map($tokens, "--#{$normalized-prefix}");
+
+  $-emitted-properties: () !global;
+}
