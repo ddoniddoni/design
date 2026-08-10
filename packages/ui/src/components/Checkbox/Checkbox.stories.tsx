@@ -1,9 +1,22 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { CSSProperties } from "react";
 import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import type { CheckboxCheckedState } from "./Checkbox";
 import { Checkbox } from "./Checkbox";
+
+const checkboxLabelLayout: CSSProperties = {
+  alignItems: "center",
+  color: "var(--dds-color-text-primary)",
+  display: "inline-flex",
+  fontFamily: "var(--dds-font-family-sans)",
+  fontSize: "var(--dds-font-size-sm)",
+  gap: "var(--dds-space-2)",
+  lineHeight: "var(--dds-line-height-normal)",
+};
+
+const checkboxLabelStyle: CSSProperties = { cursor: "pointer" };
 
 function ControlledExample() {
   const [checked, setChecked] = useState<CheckboxCheckedState>(false);
@@ -54,10 +67,12 @@ export const Disabled: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <>
+    <div style={checkboxLabelLayout}>
       <Checkbox id="checkbox-label" />
-      <label htmlFor="checkbox-label">뉴스레터 수신에 동의합니다</label>
-    </>
+      <label htmlFor="checkbox-label" style={checkboxLabelStyle}>
+        뉴스레터 수신에 동의합니다
+      </label>
+    </div>
   ),
 };
 
@@ -75,7 +90,12 @@ export const DarkTheme: Story = {
       data-dds-theme="dark"
       style={{ backgroundColor: "var(--dds-color-bg-canvas)", padding: "var(--dds-space-4)" }}
     >
-      <Checkbox aria-label="다크 테마 동의" defaultChecked />
+      <div style={checkboxLabelLayout}>
+        <Checkbox defaultChecked id="dark-checkbox-label" />
+        <label htmlFor="dark-checkbox-label" style={checkboxLabelStyle}>
+          다크 테마 동의
+        </label>
+      </div>
     </div>
   ),
 };

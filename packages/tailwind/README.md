@@ -24,15 +24,19 @@ npm install @ddoni-ds/ui @ddoni-ds/tokens @ddoni-ds/tailwind tailwindcss
 브랜드나 control radius는 `--dds-*` CSS Custom Property를 override해 변경합니다.
 
 ```css
-[data-dds-brand="violet"] {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+[data-dds-brand="teal"] {
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 ```
 
 ```tsx
-<section className="bg-dds-canvas p-dds-6 text-dds-text" data-dds-brand="violet">
+<section className="bg-dds-canvas p-dds-6 text-dds-text" data-dds-brand="teal">
   <Button className="w-full md:w-auto">저장</Button>
 </section>
 ```

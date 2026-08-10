@@ -1,7 +1,7 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-11
-- 현재 Phase: Phase 10 완료
+- 현재 Phase: Phase 11 RadioGroup 완료
 - 전체 상태: v0.2 개발 진행 중
 
 ## Phase 0
@@ -117,6 +117,27 @@
 - [x] 일반 React와 Tailwind 예제 앱의 중복 page header 교체
 - [x] public named export, declaration, package tarball 검증
 
+## Phase 11
+
+- [x] CMP-015 Radix 기반 RadioGroup
+- [x] role, accessible name, pointer/Arrow key, controlled/uncontrolled, disabled item 테스트
+- [x] form name/required/value, Root와 Item native props/ref/className 전달 테스트
+- [x] RadioGroup Storybook states, interaction, docs, dark theme
+- [x] 일반 React와 Tailwind 예제 앱의 단일 선택 form 사례 통합
+- [x] `@radix-ui/react-radio-group` stable runtime dependency 선언
+- [x] public named export, declaration, package tarball 검증
+
+## 브랜드 및 dark theme 품질 개선
+
+- [x] TOK-003 기본 signature palette를 indigo에서 cobalt blue로 변경
+- [x] TOK-006 dark primary action의 배경/foreground AA 대비 개선
+- [x] TOK-007 `--dds-checkbox-indicator`, `--dds-switch-thumb-bg` component token 추가
+- [x] CMP-007 checked/indeterminate indicator를 light/dark 모두 흰색으로 통일
+- [x] CMP-007 label 조합을 center alignment와 `--dds-space-2` gap으로 통일
+- [x] CMP-013 Switch thumb를 light/dark 모두 흰색으로 통일
+- [x] 기존 brand override 예제를 AA 대비를 충족하는 teal palette로 교체
+- [x] token smoke test에 brand 값과 foreground/control/focus contrast gate 추가
+
 ## 스타일 정책
 
 - 디자인 토큰과 고정 크기 값은 px 단위를 사용한다.
@@ -136,7 +157,7 @@
 | `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
 | `npm run build-storybook`                           | PASS | Phase 2~10 component/foundation story 포함     |
 | `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
-| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰과 theme selector 확인                |
+| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰, theme selector, brand 대비 확인     |
 | `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |
 | `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성                |
 | `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함  |

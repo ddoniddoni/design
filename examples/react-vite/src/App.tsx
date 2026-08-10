@@ -11,6 +11,7 @@ import {
   IconButton,
   Input,
   PageHeader,
+  RadioGroup,
   Switch,
   Textarea,
   Tooltip,
@@ -26,6 +27,7 @@ export function App() {
   const [projectName, setProjectName] = useState("디자인 시스템 예제");
   const [description, setDescription] = useState("CSS 변수만 바꿔 브랜드를 적용합니다.");
   const [receivesDigest, setReceivesDigest] = useState(true);
+  const [projectVisibility, setProjectVisibility] = useState("team");
   const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
@@ -144,7 +146,7 @@ export function App() {
                   <h2>프로젝트 설정</h2>
                 </Card.Title>
                 <Card.Description>
-                  native form 흐름을 유지하는 Input, Textarea, Checkbox 예시입니다.
+                  native form 흐름을 유지하는 Input, Textarea, Checkbox, RadioGroup 예시입니다.
                 </Card.Description>
               </Card.Header>
               <Card.Content>
@@ -175,6 +177,28 @@ export function App() {
                     <Checkbox defaultChecked id="confirm-settings" name="confirmSettings" />
                     <label htmlFor="confirm-settings">설정 변경사항 확인</label>
                   </div>
+                  <Field.Root>
+                    <Field.Label id="project-visibility-label">프로젝트 공개 범위</Field.Label>
+                    <RadioGroup.Root
+                      aria-describedby="project-visibility-description"
+                      aria-labelledby="project-visibility-label"
+                      name="projectVisibility"
+                      value={projectVisibility}
+                      onValueChange={setProjectVisibility}
+                    >
+                      <div className="radioRow">
+                        <RadioGroup.Item id="project-visibility-team" value="team" />
+                        <label htmlFor="project-visibility-team">팀 전용</label>
+                      </div>
+                      <div className="radioRow">
+                        <RadioGroup.Item id="project-visibility-public" value="public" />
+                        <label htmlFor="project-visibility-public">공개</label>
+                      </div>
+                    </RadioGroup.Root>
+                    <Field.Description id="project-visibility-description">
+                      공개로 설정하면 링크를 아는 누구나 프로젝트를 볼 수 있습니다.
+                    </Field.Description>
+                  </Field.Root>
                   <div className="switchRow">
                     <Switch
                       checked={receivesDigest}
@@ -241,11 +265,11 @@ export function App() {
               <p className="eyebrow">Theme override</p>
               <h2 id="override-title">CSS 변수로 브랜드 교체</h2>
               <p>
-                이 영역은 <code>--dds-color-brand-600</code>, <code>--dds-color-brand-700</code>,
-                <code>--dds-control-radius</code>만 재정의합니다.
+                이 영역은 <code>--dds-color-brand-300~800</code>과<code>--dds-control-radius</code>
+                를 teal palette로 재정의합니다.
               </p>
             </div>
-            <Button>Violet primary</Button>
+            <Button>Teal primary</Button>
           </section>
         </div>
       </main>

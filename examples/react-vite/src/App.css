@@ -14,6 +14,7 @@
 .sectionHeading,
 .buttonRow,
 .checkboxRow,
+.radioRow,
 .switchRow,
 .overrideTheme,
 .themeControl {
@@ -103,14 +104,16 @@
 }
 
 .checkboxRow,
+.radioRow,
 .switchRow {
-  gap: 8px;
+  gap: var(--dds-space-2);
   color: var(--dds-color-text-secondary);
   font-size: 14px;
   line-height: 20px;
 }
 
 .checkboxRow label,
+.radioRow label,
 .switchRow label {
   cursor: pointer;
 }
@@ -127,8 +130,12 @@
   border: 1px solid var(--dds-color-border-default);
   border-radius: 12px;
   background: var(--dds-color-bg-surface);
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 

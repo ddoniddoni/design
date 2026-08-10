@@ -33,17 +33,55 @@ export function ProfileForm() {
 
 - Button, IconButton
 - Spinner, Badge
-- Field, Input, Textarea, Checkbox, Switch
+- Field, Input, Textarea, Checkbox, RadioGroup, Switch
 - Card, PageHeader
 - Dialog, Tooltip, DropdownMenu
 
-컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, DropdownMenu, Checkbox, Switch의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
+컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, DropdownMenu, Checkbox, RadioGroup, Switch의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
+
+Dark theme에서도 선택 표시가 선명하도록 Checkbox indicator와 Switch thumb는 기본적으로 흰색 component token을 사용합니다.
+
+Checkbox와 label은 control 자체에 margin을 넣지 않고, 소비자 layout에서 중앙 정렬과 token gap을 함께 적용합니다.
+
+```tsx
+<div className="checkboxField">
+  <Checkbox id="terms" />
+  <label htmlFor="terms">이용약관에 동의합니다</label>
+</div>
+```
+
+```css
+.checkboxField {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dds-space-2);
+}
+```
 
 Switch는 변경 즉시 적용되는 boolean 설정에 사용하고, form 제출 시 확정되는 선택이나 약관 동의에는 Checkbox를 사용합니다.
 
 ```tsx
 <Switch id="project-notifications" defaultChecked />
 <label htmlFor="project-notifications">새 프로젝트 알림 받기</label>
+```
+
+RadioGroup은 여러 항목 중 하나를 선택하는 form 값에 사용합니다. 각 Item은 외부 label과 `--dds-space-2` gap으로 조합합니다.
+
+```tsx
+<RadioGroup.Root aria-label="프로젝트 공개 범위" defaultValue="team" name="visibility">
+  <div className="radioOption">
+    <RadioGroup.Item id="visibility-team" value="team" />
+    <label htmlFor="visibility-team">팀 전용</label>
+  </div>
+</RadioGroup.Root>
+```
+
+```css
+.radioOption {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dds-space-2);
+}
 ```
 
 PageHeader는 페이지의 주 제목과 설명, 대표 action을 semantic header로 묶습니다.
@@ -65,9 +103,13 @@ PageHeader는 페이지의 주 제목과 설명, 대표 action을 semantic heade
 브랜드 변경에는 component class override보다 `--dds-*` token override를 우선합니다.
 
 ```css
-[data-dds-brand="violet"] {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+[data-dds-brand="teal"] {
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 ```

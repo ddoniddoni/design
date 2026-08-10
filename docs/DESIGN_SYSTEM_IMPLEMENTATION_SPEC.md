@@ -410,21 +410,23 @@ Component Token
 | `color-neutral-900` | `#0f172a` |
 | `color-neutral-950` | `#020617` |
 
-### Brand
+### Brand — Cobalt blue
+
+기본 signature color는 dark surface에서도 control 경계와 흰 foreground 대비를 확보하는 cobalt blue 계열이다.
 
 | Token suffix | Value |
 |---|---|
-| `color-brand-50` | `#eef2ff` |
-| `color-brand-100` | `#e0e7ff` |
-| `color-brand-200` | `#c7d2fe` |
-| `color-brand-300` | `#a5b4fc` |
-| `color-brand-400` | `#818cf8` |
-| `color-brand-500` | `#6366f1` |
-| `color-brand-600` | `#4f46e5` |
-| `color-brand-700` | `#4338ca` |
-| `color-brand-800` | `#3730a3` |
-| `color-brand-900` | `#312e81` |
-| `color-brand-950` | `#1e1b4b` |
+| `color-brand-50` | `#eff6ff` |
+| `color-brand-100` | `#dbeafe` |
+| `color-brand-200` | `#bfdbfe` |
+| `color-brand-300` | `#93c5fd` |
+| `color-brand-400` | `#60a5fa` |
+| `color-brand-500` | `#2f6fed` |
+| `color-brand-600` | `#2563eb` |
+| `color-brand-700` | `#1d4ed8` |
+| `color-brand-800` | `#1e40af` |
+| `color-brand-900` | `#1e3a8a` |
+| `color-brand-950` | `#172554` |
 
 ### Status
 
@@ -599,7 +601,7 @@ Dark theme에서는 primitive scale을 새로 만들지 않고 semantic mapping�
 - secondary text → neutral-300
 - default border → neutral-700
 - focus → brand-400
-- primary action → brand-500 중심
+- primary action → brand-600/500/700, foreground → neutral-0
 - overlay → light theme보다 높은 불투명도
 
 Dark theme에서도 텍스트와 주요 control의 WCAG AA 대비를 목표로 한다.
@@ -639,6 +641,9 @@ Dark theme에서도 텍스트와 주요 control의 WCAG AA 대비를 목표로 �
 --dds-input-border-invalid
 --dds-input-disabled-bg
 --dds-input-disabled-text
+
+--dds-checkbox-indicator
+--dds-switch-thumb-bg
 
 --dds-dialog-bg
 --dds-dialog-radius
@@ -681,7 +686,7 @@ Component token은 semantic token을 참조한다. consumer는 필요할 때 com
 $tokens: (
   "color": (
     "brand": (
-      "600": #4f46e5,
+      "600": #2563eb,
     ),
   ),
 );
@@ -695,7 +700,7 @@ $tokens: (
 
 ```css
 :root {
-  --dds-color-brand-600: #4f46e5;
+  --dds-color-brand-600: #2563eb;
 }
 ```
 
@@ -737,9 +742,13 @@ $tokens: (
 ## STYLE-004 — 공개 커스터마이징 예시
 
 ```css
-:root {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+[data-dds-brand="teal"] {
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 ```
@@ -768,7 +777,7 @@ $tokens: (
 ## STYLE-006 — 금지 사항
 
 - component SCSS에서 primitive color 직접 사용
-- `#4f46e5` 같은 브랜드 color 하드코딩
+- `#2563eb` 같은 브랜드 color 하드코딩
 - Tailwind class를 UI 패키지 내부에서 사용
 - 전역 element selector reset
 - 소비자 DOM 구조에 의존하는 selector
@@ -1235,8 +1244,11 @@ export interface CheckboxProps {
 - checked, unchecked, indeterminate를 지원한다.
 - keyboard Space로 toggle된다.
 - focus-visible indicator를 제공한다.
+- checked와 indeterminate indicator는 `--dds-checkbox-indicator`를 사용해 light/dark 모두 흰색으로 표시한다.
 - form 관련 prop을 Radix root에 전달한다.
 - label component를 강제하지 않으며 native `<label htmlFor>` 예시를 제공한다.
+- Checkbox root는 inline text 옆에서도 중앙 정렬되도록 `vertical-align: middle`과 shrink 방지를 적용한다.
+- label 조합은 consumer wrapper에서 `align-items: center`와 `--dds-space-2` gap을 사용하며 Checkbox 자체에 외부 margin을 강제하지 않는다.
 - check indicator SVG는 내부 장식이다.
 
 ### 필수 tests/stories
@@ -1246,6 +1258,7 @@ export interface CheckboxProps {
 - indeterminate
 - disabled
 - label click
+- label과 control의 중앙 정렬 및 token gap
 - keyboard interaction
 - form name/value example
 
@@ -1468,6 +1481,7 @@ export type SwitchProps = Omit<SwitchPrimitive.SwitchProps, "children">;
 - ref는 실제 `HTMLButtonElement`를 가리키고 native props와 `className`을 전달한다.
 - Thumb은 내부 구조로 고정하며 consumer children을 받지 않는다.
 - checked/unchecked 표현은 `data-state`와 semantic/control token을 사용한다.
+- Thumb은 `--dds-switch-thumb-bg`를 사용해 dark theme에서도 흰색으로 표시한다.
 - focus-visible indicator와 reduced motion을 지원한다.
 - 초기 공개 API에는 size나 tone variant를 추가하지 않는다.
 
@@ -1532,11 +1546,45 @@ export type PageHeaderActionsProps = React.HTMLAttributes<HTMLDivElement>;
 - actions 없음, 긴 콘텐츠, 좁은 영역, dark theme
 - 두 예제 앱에서 package root import로 사용
 
+## CMP-015 — RadioGroup
+
+여러 항목 중 하나를 선택하는 form value를 Radix Radio Group Primitive로 제공한다.
+
+### 공개 API
+
+```ts
+export type RadioGroupRootProps = RadioGroupPrimitive.RadioGroupProps;
+export type RadioGroupItemProps = Omit<RadioGroupPrimitive.RadioGroupItemProps, "children">;
+```
+
+```tsx
+<RadioGroup.Root aria-label="프로젝트 공개 범위" defaultValue="team" name="visibility">
+  <RadioGroup.Item id="visibility-team" value="team" />
+  <label htmlFor="visibility-team">팀 전용</label>
+</RadioGroup.Root>
+```
+
+### 요구사항
+
+- `Root`, `Item`의 named compound API를 제공한다.
+- controlled/uncontrolled value, `name`, `required`, disabled item을 Radix 계약대로 지원한다.
+- Root는 `aria-label` 또는 `aria-labelledby`로 이름을 제공하고, Item은 외부 native label과 연결한다.
+- Arrow key 이동과 선택 상태는 Radix에 위임한다.
+- Item은 Checkbox와 같이 inline text 옆 중앙 정렬과 shrink 방지를 적용한다. label 조합의 gap은 consumer wrapper에서 `--dds-space-2`를 사용한다.
+- 선택 점은 `--dds-radio-indicator` component token을 사용한다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용한다.
+
+### 필수 tests/stories
+
+- role과 accessible name, pointer/Arrow key, controlled/uncontrolled value, disabled item
+- form name/required/value, Root와 Item native props/ref/className 전달
+- label 조합, controlled, disabled, form, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
 
-- RadioGroup
 - Tabs
 - Accordion
 - Popover
@@ -1618,8 +1666,12 @@ Tailwind Vite consumer의 main CSS:
 @import "@ddoni-ds/ui/styles.css";
 
 :root {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 ```
@@ -1999,9 +2051,13 @@ npm install @ddoni-ds/ui @ddoni-ds/tokens @ddoni-ds/tailwind
 ### theme override
 
 ```css
-[data-dds-brand="violet"] {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+[data-dds-brand="teal"] {
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 ```
@@ -2279,6 +2335,26 @@ npm run check
 - 모든 하위 컴포넌트의 native props, ref, className 전달을 테스트한다.
 - 두 예제 앱이 `PageHeader`를 package root에서 import한다.
 - package tarball에 PageHeader declaration이 포함된다.
+
+## Phase 11 — v0.3 RadioGroup
+
+### 범위
+
+- [ ] `CMP-015` Radix 기반 RadioGroup
+- [ ] RadioGroup tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 단일 선택 form 사례 통합
+- [ ] Radix runtime dependency와 public declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- role, accessible name, pointer/Arrow key, controlled/uncontrolled value, disabled item을 테스트한다.
+- Root와 Item의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `RadioGroup`을 package root에서 import한다.
+- package tarball에 RadioGroup declaration이 포함된다.
 
 ---
 

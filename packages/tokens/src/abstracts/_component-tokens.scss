@@ -43,6 +43,15 @@ $component-tokens: (
     "disabled-bg": var(--dds-color-bg-surface-subtle),
     "disabled-text": var(--dds-color-text-disabled),
   ),
+  "checkbox": (
+    "indicator": var(--dds-color-neutral-0),
+  ),
+  "radio": (
+    "indicator": var(--dds-color-neutral-0),
+  ),
+  "switch": (
+    "thumb-bg": var(--dds-color-neutral-0),
+  ),
   "dialog": (
     "bg": var(--dds-color-bg-surface-elevated),
     "radius": var(--dds-radius-xl),

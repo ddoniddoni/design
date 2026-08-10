@@ -46,7 +46,7 @@
     block-size: calc(var(--dds-control-height-sm) - var(--dds-space-2));
     inline-size: calc(var(--dds-control-height-sm) - var(--dds-space-2));
     border-radius: var(--dds-radius-full);
-    background-color: var(--dds-color-bg-surface);
+    background-color: var(--dds-switch-thumb-bg);
     box-shadow: var(--dds-shadow-xs);
     transform: translateX(0);
     transition: transform var(--dds-duration-fast) var(--dds-ease-standard);

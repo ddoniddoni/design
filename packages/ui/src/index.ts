@@ -62,6 +62,8 @@ export type {
   PageHeaderRootProps,
   PageHeaderTitleProps,
 } from "./components/PageHeader";
+export { RadioGroup } from "./components/RadioGroup";
+export type { RadioGroupItemProps, RadioGroupRootProps } from "./components/RadioGroup";
 export { Spinner } from "./components/Spinner";
 export type { SpinnerProps, SpinnerSize } from "./components/Spinner";
 export { Switch } from "./components/Switch";

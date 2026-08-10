@@ -1,4 +1,14 @@
-import { Badge, Button, Card, Field, Input, PageHeader, Switch, Tooltip } from "@ddoni-ds/ui";
+import {
+  Badge,
+  Button,
+  Card,
+  Field,
+  Input,
+  PageHeader,
+  RadioGroup,
+  Switch,
+  Tooltip,
+} from "@ddoni-ds/ui";
 
 export function App() {
   return (
@@ -24,7 +34,7 @@ export function App() {
             <div className="rounded-dds-control border border-dds-border bg-dds-surface p-dds-4 shadow-dds-md">
               <p className="text-dds-sm text-dds-text-muted">Tailwind utility</p>
               <h2 id="shared-theme-title" className="mt-dds-2 text-dds-lg font-semibold">
-                같은 violet brand token
+                같은 teal brand token
               </h2>
               <div className="mt-dds-4 rounded-dds-control bg-dds-primary p-dds-4 text-dds-sm text-white">
                 bg-dds-primary + rounded-dds-control
@@ -89,6 +99,24 @@ export function App() {
               <Switch id="new-project-notifications" defaultChecked />
               <label htmlFor="new-project-notifications">새 프로젝트 알림 받기</label>
             </div>
+            <Field.Root className="gap-dds-2">
+              <Field.Label id="project-visibility-label">프로젝트 공개 범위</Field.Label>
+              <RadioGroup.Root
+                aria-labelledby="project-visibility-label"
+                className="gap-dds-2"
+                defaultValue="team"
+                name="projectVisibility"
+              >
+                <div className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
+                  <RadioGroup.Item id="tailwind-visibility-team" value="team" />
+                  <label htmlFor="tailwind-visibility-team">팀 전용</label>
+                </div>
+                <div className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
+                  <RadioGroup.Item id="tailwind-visibility-public" value="public" />
+                  <label htmlFor="tailwind-visibility-public">공개</label>
+                </div>
+              </RadioGroup.Root>
+            </Field.Root>
           </section>
         </div>
       </main>

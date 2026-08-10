@@ -4,8 +4,12 @@
 @import "@ddoni-ds/ui/styles.css";
 
 :root {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 

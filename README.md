@@ -48,16 +48,20 @@ npm install @ddoni-ds/ui @ddoni-ds/tokens @ddoni-ds/tailwind
 루트나 하위 컨테이너에 `data-dds-theme="light"`, `"dark"`, `"system"`을 설정할 수 있습니다. 속성이 없으면 light 테마가 기본입니다.
 
 ```css
-[data-dds-brand="violet"] {
-  --dds-color-brand-600: #7c3aed;
-  --dds-color-brand-700: #6d28d9;
+[data-dds-brand="teal"] {
+  --dds-color-brand-300: #5eead4;
+  --dds-color-brand-400: #2dd4bf;
+  --dds-color-brand-500: #0d8278;
+  --dds-color-brand-600: #0f766e;
+  --dds-color-brand-700: #115e59;
+  --dds-color-brand-800: #134e4a;
   --dds-control-radius: 12px;
 }
 ```
 
 ```tsx
-<section data-dds-brand="violet" data-dds-theme="dark">
-  <Button>보라색 브랜드 버튼</Button>
+<section data-dds-brand="teal" data-dds-theme="dark">
+  <Button>청록색 브랜드 버튼</Button>
 </section>
 ```
 
