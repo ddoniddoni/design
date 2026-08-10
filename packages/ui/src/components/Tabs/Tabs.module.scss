@@ -1,0 +1,75 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    display: grid;
+    box-sizing: border-box;
+    gap: var(--dds-space-3);
+    min-inline-size: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-primary);
+  }
+
+  .list {
+    overflow-x: auto;
+    display: flex;
+    box-sizing: border-box;
+    align-items: stretch;
+    gap: var(--dds-space-1);
+    min-inline-size: 0;
+    border-block-end: var(--dds-control-border-width) solid var(--dds-tabs-border);
+  }
+
+  .trigger {
+    cursor: pointer;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding-block: var(--dds-space-1);
+    padding-inline: var(--dds-space-3);
+    min-block-size: var(--dds-control-height-sm);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    font-weight: var(--dds-font-weight-medium);
+    color: var(--dds-color-text-secondary);
+    white-space: nowrap;
+    border: 0;
+    border-block-end: var(--dds-control-border-width) solid transparent;
+    background-color: transparent;
+
+    @include styles.control-transition;
+
+    &:not(:disabled):hover {
+      color: var(--dds-color-text-primary);
+    }
+
+    &:focus-visible {
+      @include styles.focus-ring;
+    }
+
+    &[data-state="active"] {
+      color: var(--dds-tabs-active-text);
+      border-block-end-color: var(--dds-tabs-active-border);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--dds-color-text-disabled);
+    }
+  }
+
+  .content {
+    min-inline-size: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-primary);
+
+    &:focus-visible {
+      @include styles.focus-ring;
+    }
+  }
+}

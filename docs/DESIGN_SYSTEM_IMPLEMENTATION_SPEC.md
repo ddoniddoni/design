@@ -1581,11 +1581,52 @@ export type RadioGroupItemProps = Omit<RadioGroupPrimitive.RadioGroupItemProps, 
 - label 조합, controlled, disabled, form, dark theme, Storybook interaction
 - 일반 React와 Tailwind 예제 앱에서 package root import로 사용
 
+## CMP-016 — Tabs
+
+동등한 콘텐츠 섹션을 한 번에 하나씩 전환하는 navigation primitive를 Radix Tabs로 제공한다.
+
+### 공개 API
+
+```ts
+export type TabsRootProps = TabsPrimitive.TabsProps;
+export type TabsListProps = TabsPrimitive.TabsListProps;
+export type TabsTriggerProps = TabsPrimitive.TabsTriggerProps;
+export type TabsContentProps = TabsPrimitive.TabsContentProps;
+```
+
+```tsx
+<Tabs.Root defaultValue="overview">
+  <Tabs.List aria-label="프로젝트 설정">
+    <Tabs.Trigger value="overview">개요</Tabs.Trigger>
+    <Tabs.Trigger value="members">멤버</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="overview">프로젝트 기본 정보</Tabs.Content>
+  <Tabs.Content value="members">프로젝트 멤버</Tabs.Content>
+</Tabs.Root>
+```
+
+### 요구사항
+
+- `Root`, `List`, `Trigger`, `Content`의 named compound API를 제공한다.
+- controlled/uncontrolled value, `orientation`, `activationMode`, disabled Trigger를 Radix 계약대로 지원한다.
+- List에는 `aria-label` 또는 `aria-labelledby`로 접근 가능한 이름을 제공한다.
+- Trigger와 Content의 role, selected state, keyboard 관계는 Radix에 위임한다.
+- 긴 Trigger label은 줄바꿈하지 않고 List 내부에서 가로 scroll한다.
+- active border와 text는 `--dds-tabs-border`, `--dds-tabs-active-border`, `--dds-tabs-active-text` component token을 사용한다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용한다.
+- 초기 공개 API에는 product-specific icon, count, sticky variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- tablist/tab/tabpanel role과 accessible name, pointer/Arrow key, controlled/uncontrolled value, disabled Trigger
+- Root/List/Trigger/Content native props, ref, className 전달
+- controlled, disabled, 긴 label, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
 
-- Tabs
 - Accordion
 - Popover
 - Toast
@@ -2355,6 +2396,26 @@ npm run check
 - Root와 Item의 ref, native props, className 전달을 테스트한다.
 - 두 예제 앱이 `RadioGroup`을 package root에서 import한다.
 - package tarball에 RadioGroup declaration이 포함된다.
+
+## Phase 12 — v0.3 Tabs
+
+### 범위
+
+- [ ] `CMP-016` Radix 기반 Tabs
+- [ ] Tabs tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 콘텐츠 전환 사례 통합
+- [ ] Radix runtime dependency와 public declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- tablist/tab/tabpanel role, accessible name, pointer/Arrow key, controlled/uncontrolled value, disabled Trigger를 테스트한다.
+- Root/List/Trigger/Content의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Tabs`를 package root에서 import한다.
+- package tarball에 Tabs declaration이 포함된다.
 
 ---
 

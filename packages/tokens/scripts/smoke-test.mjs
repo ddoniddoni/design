@@ -11,6 +11,9 @@ const requiredTokens = [
   "--dds-checkbox-indicator",
   "--dds-radio-indicator",
   "--dds-switch-thumb-bg",
+  "--dds-tabs-border",
+  "--dds-tabs-active-border",
+  "--dds-tabs-active-text",
 ];
 
 const expectedBrandPalette = new Map([

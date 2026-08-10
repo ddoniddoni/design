@@ -68,6 +68,13 @@ export { Spinner } from "./components/Spinner";
 export type { SpinnerProps, SpinnerSize } from "./components/Spinner";
 export { Switch } from "./components/Switch";
 export type { SwitchProps } from "./components/Switch";
+export { Tabs } from "./components/Tabs";
+export type {
+  TabsContentProps,
+  TabsListProps,
+  TabsRootProps,
+  TabsTriggerProps,
+} from "./components/Tabs";
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 export { Tooltip } from "./components/Tooltip";

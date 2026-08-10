@@ -13,6 +13,7 @@ import {
   PageHeader,
   RadioGroup,
   Switch,
+  Tabs,
   Textarea,
   Tooltip,
 } from "@ddoni-ds/ui";
@@ -259,6 +260,27 @@ export function App() {
               </Card.Content>
             </Card.Root>
           </div>
+
+          <section aria-labelledby="tabs-title" className="section">
+            <div className="sectionHeading">
+              <div>
+                <p className="eyebrow">Navigation</p>
+                <h2 id="tabs-title">Tabs</h2>
+              </div>
+            </div>
+            <Tabs.Root defaultValue="overview">
+              <Tabs.List aria-label="프로젝트 정보">
+                <Tabs.Trigger value="overview">개요</Tabs.Trigger>
+                <Tabs.Trigger value="activity">최근 활동</Tabs.Trigger>
+              </Tabs.List>
+              <Tabs.Content className="tabsContent" value="overview">
+                프로젝트의 공개 범위와 기본 설정을 한곳에서 확인합니다.
+              </Tabs.Content>
+              <Tabs.Content className="tabsContent" value="activity">
+                최근 설정 변경과 멤버 활동을 확인합니다.
+              </Tabs.Content>
+            </Tabs.Root>
+          </section>
 
           <section aria-labelledby="override-title" className="overrideTheme">
             <div>

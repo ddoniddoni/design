@@ -1,7 +1,7 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-11
-- 현재 Phase: Phase 11 RadioGroup 완료
+- 현재 Phase: Phase 12 Tabs 완료
 - 전체 상태: v0.2 개발 진행 중
 
 ## Phase 0
@@ -125,6 +125,16 @@
 - [x] RadioGroup Storybook states, interaction, docs, dark theme
 - [x] 일반 React와 Tailwind 예제 앱의 단일 선택 form 사례 통합
 - [x] `@radix-ui/react-radio-group` stable runtime dependency 선언
+- [x] public named export, declaration, package tarball 검증
+
+## Phase 12
+
+- [x] CMP-016 Radix 기반 Tabs
+- [x] tablist/tab/tabpanel, accessible name, pointer/Arrow key, controlled/uncontrolled, disabled Trigger 테스트
+- [x] Root/List/Trigger/Content native props, ref, className 전달 테스트
+- [x] Tabs Storybook states, interaction, 긴 label, dark theme, docs
+- [x] 일반 React와 Tailwind 예제 앱의 콘텐츠 전환 사례 통합
+- [x] `@radix-ui/react-tabs` stable runtime dependency 선언
 - [x] public named export, declaration, package tarball 검증
 
 ## 브랜드 및 dark theme 품질 개선

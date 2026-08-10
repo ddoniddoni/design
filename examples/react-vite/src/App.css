@@ -122,6 +122,12 @@
   min-block-size: 24px;
 }
 
+.tabsContent {
+  color: var(--dds-color-text-secondary);
+  font-size: var(--dds-font-size-sm);
+  line-height: var(--dds-line-height-normal);
+}
+
 .overrideTheme {
   justify-content: space-between;
   gap: 24px;

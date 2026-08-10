@@ -52,6 +52,11 @@ $component-tokens: (
   "switch": (
     "thumb-bg": var(--dds-color-neutral-0),
   ),
+  "tabs": (
+    "border": var(--dds-color-border-default),
+    "active-border": var(--dds-color-action-primary-bg),
+    "active-text": var(--dds-color-action-primary-bg),
+  ),
   "dialog": (
     "bg": var(--dds-color-bg-surface-elevated),
     "radius": var(--dds-radius-xl),

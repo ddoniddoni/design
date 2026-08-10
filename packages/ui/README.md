@@ -34,12 +34,12 @@ export function ProfileForm() {
 - Button, IconButton
 - Spinner, Badge
 - Field, Input, Textarea, Checkbox, RadioGroup, Switch
-- Card, PageHeader
+- Card, PageHeader, Tabs
 - Dialog, Tooltip, DropdownMenu
 
-컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, DropdownMenu, Checkbox, RadioGroup, Switch의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
+컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, DropdownMenu, Checkbox, RadioGroup, Switch, Tabs의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
 
-Dark theme에서도 선택 표시가 선명하도록 Checkbox indicator와 Switch thumb는 기본적으로 흰색 component token을 사용합니다.
+Dark theme에서도 선택 표시가 선명하도록 Checkbox·RadioGroup indicator와 Switch thumb는 기본적으로 흰색 component token을 사용합니다.
 
 Checkbox와 label은 control 자체에 margin을 넣지 않고, 소비자 layout에서 중앙 정렬과 token gap을 함께 적용합니다.
 
@@ -82,6 +82,19 @@ RadioGroup은 여러 항목 중 하나를 선택하는 form 값에 사용합니�
   align-items: center;
   gap: var(--dds-space-2);
 }
+```
+
+Tabs는 연관된 콘텐츠 영역을 전환할 때 사용합니다. List에는 접근 가능한 이름을 제공합니다.
+
+```tsx
+<Tabs.Root defaultValue="overview">
+  <Tabs.List aria-label="프로젝트 설정">
+    <Tabs.Trigger value="overview">개요</Tabs.Trigger>
+    <Tabs.Trigger value="members">멤버</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="overview">프로젝트 기본 정보</Tabs.Content>
+  <Tabs.Content value="members">프로젝트 멤버</Tabs.Content>
+</Tabs.Root>
 ```
 
 PageHeader는 페이지의 주 제목과 설명, 대표 action을 semantic header로 묶습니다.

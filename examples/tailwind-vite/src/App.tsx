@@ -7,6 +7,7 @@ import {
   PageHeader,
   RadioGroup,
   Switch,
+  Tabs,
   Tooltip,
 } from "@ddoni-ds/ui";
 
@@ -117,6 +118,30 @@ export function App() {
                 </div>
               </RadioGroup.Root>
             </Field.Root>
+          </section>
+
+          <section
+            aria-labelledby="tabs-title"
+            className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface p-dds-6"
+          >
+            <div>
+              <p className="text-dds-sm text-dds-text-muted">Navigation primitive</p>
+              <h2 id="tabs-title" className="text-dds-lg font-semibold">
+                Tabs도 Tailwind layout utility와 함께 사용
+              </h2>
+            </div>
+            <Tabs.Root defaultValue="overview" className="gap-dds-3">
+              <Tabs.List aria-label="Tailwind 프로젝트 정보">
+                <Tabs.Trigger value="overview">개요</Tabs.Trigger>
+                <Tabs.Trigger value="activity">최근 활동</Tabs.Trigger>
+              </Tabs.List>
+              <Tabs.Content className="text-dds-sm text-dds-text-muted" value="overview">
+                semantic token과 component token으로 활성 탭을 일관되게 표시합니다.
+              </Tabs.Content>
+              <Tabs.Content className="text-dds-sm text-dds-text-muted" value="activity">
+                Tailwind utility는 패널의 typography와 layout을 조절합니다.
+              </Tabs.Content>
+            </Tabs.Root>
           </section>
         </div>
       </main>

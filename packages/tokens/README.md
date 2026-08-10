@@ -21,7 +21,7 @@ import "@ddoni-ds/tokens/tokens.css";
 ```
 
 브랜드와 컴포넌트 표현은 Sass 변수가 아니라 공개 CSS Custom Property로 재정의합니다.
-기본 signature palette는 cobalt blue이며, Checkbox indicator와 Switch thumb는 각각 `--dds-checkbox-indicator`, `--dds-switch-thumb-bg`로 독립 조정할 수 있습니다.
+기본 signature palette는 cobalt blue입니다. Checkbox와 RadioGroup의 선택 표시는 각각 `--dds-checkbox-indicator`, `--dds-radio-indicator`로, Switch thumb는 `--dds-switch-thumb-bg`로 조정할 수 있습니다. Tabs의 구분선과 활성 상태는 `--dds-tabs-border`, `--dds-tabs-active-border`, `--dds-tabs-active-text`로 조정합니다.
 
 ```css
 [data-dds-brand="teal"] {
