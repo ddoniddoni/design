@@ -32,12 +32,12 @@ export function ProfileForm() {
 ## 공개 컴포넌트
 
 - Button, IconButton
-- Spinner, Badge
+- Spinner, Badge, Toast
 - Field, Input, Textarea, Checkbox, RadioGroup, Switch
-- Card, PageHeader, Tabs
-- Dialog, Tooltip, DropdownMenu
+- Card, PageHeader, Tabs, Accordion
+- Dialog, Tooltip, Popover, DropdownMenu
 
-컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, DropdownMenu, Checkbox, RadioGroup, Switch, Tabs의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
+컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, Popover, DropdownMenu, Checkbox, RadioGroup, Switch, Tabs, Accordion의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
 
 Dark theme에서도 선택 표시가 선명하도록 Checkbox·RadioGroup indicator와 Switch thumb는 기본적으로 흰색 component token을 사용합니다.
 
@@ -95,6 +95,54 @@ Tabs는 연관된 콘텐츠 영역을 전환할 때 사용합니다. List에는 
   <Tabs.Content value="overview">프로젝트 기본 정보</Tabs.Content>
   <Tabs.Content value="members">프로젝트 멤버</Tabs.Content>
 </Tabs.Root>
+```
+
+Accordion은 FAQ나 보조 안내처럼 독립적인 여러 콘텐츠를 접고 펼칠 때 사용합니다.
+
+```tsx
+<Accordion.Root defaultValue="usage" type="single">
+  <Accordion.Item value="usage">
+    <Accordion.Header>
+      <Accordion.Trigger>언제 사용하나요?</Accordion.Trigger>
+    </Accordion.Header>
+    <Accordion.Content>연관된 보조 정보를 필요한 순간에 표시합니다.</Accordion.Content>
+  </Accordion.Item>
+</Accordion.Root>
+```
+
+Popover는 trigger 또는 anchor 근처에 간단한 보조 설정과 action을 표시할 때 사용합니다. Content에는 접근 가능한 이름을 제공합니다.
+
+```tsx
+<Popover.Root>
+  <Popover.Trigger asChild>
+    <Button tone="neutral" variant="outline">
+      공유 옵션
+    </Button>
+  </Popover.Trigger>
+  <Popover.Portal>
+    <Popover.Content aria-label="공유 옵션">
+      프로젝트 링크를 복사할 수 있습니다.
+      <Popover.Close asChild>
+        <Button size="sm">닫기</Button>
+      </Popover.Close>
+      <Popover.Arrow />
+    </Popover.Content>
+  </Popover.Portal>
+</Popover.Root>
+```
+
+Toast는 저장 완료처럼 일시적인 피드백에 사용합니다. 비긴급 알림은 `type="background"`로 설정하고, Action에는 `altText`를 제공합니다.
+
+```tsx
+<Toast.Provider duration={5000}>
+  <Toast.Root defaultOpen tone="success" type="background">
+    <Toast.Title>저장 완료</Toast.Title>
+    <Toast.Description>프로젝트 설정을 저장했습니다.</Toast.Description>
+    <Toast.Action altText="저장 변경을 실행 취소합니다.">실행 취소</Toast.Action>
+    <Toast.Close aria-label="알림 닫기">닫기</Toast.Close>
+  </Toast.Root>
+  <Toast.Viewport label="알림 ({hotkey})" />
+</Toast.Provider>
 ```
 
 PageHeader는 페이지의 주 제목과 설명, 대표 action을 semantic header로 묶습니다.

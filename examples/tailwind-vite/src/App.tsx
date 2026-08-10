@@ -1,15 +1,43 @@
+import { useState } from "react";
 import {
+  Accordion,
   Badge,
   Button,
   Card,
   Field,
   Input,
   PageHeader,
+  Popover,
   RadioGroup,
   Switch,
   Tabs,
+  Toast,
   Tooltip,
 } from "@ddoni-ds/ui";
+
+function ToastFeedback() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Toast.Provider duration={5_000} label="Tailwind 예제 알림">
+      <section className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface p-dds-6">
+        <div>
+          <p className="text-dds-sm text-dds-text-muted">Feedback primitive</p>
+          <h2 className="text-dds-lg font-semibold">Toast와 Tailwind layout utility</h2>
+        </div>
+        <Button className="justify-self-start" onClick={() => setOpen(true)}>
+          저장 완료 알림 표시
+        </Button>
+      </section>
+      <Toast.Root open={open} onOpenChange={setOpen} tone="success" type="background">
+        <Toast.Title>프로젝트 설정을 저장했습니다.</Toast.Title>
+        <Toast.Description>Toast surface도 동일한 token과 theme을 사용합니다.</Toast.Description>
+        <Toast.Close aria-label="Tailwind 예제 알림 닫기">닫기</Toast.Close>
+      </Toast.Root>
+      <Toast.Viewport label="Tailwind 예제 알림 ({hotkey})" />
+    </Toast.Provider>
+  );
+}
 
 export function App() {
   return (
@@ -81,6 +109,27 @@ export function App() {
                   </Tooltip.Content>
                 </Tooltip.Portal>
               </Tooltip.Root>
+              <Popover.Root>
+                <Popover.Trigger asChild>
+                  <Button size="sm" tone="neutral" variant="outline">
+                    공유 옵션
+                  </Button>
+                </Popover.Trigger>
+                <Popover.Portal>
+                  <Popover.Content
+                    aria-label="공유 옵션"
+                    className="text-dds-sm text-dds-text-muted"
+                  >
+                    <div>Popover surface도 Tailwind layout utility와 token을 함께 사용합니다.</div>
+                    <Popover.Close asChild>
+                      <Button size="sm" tone="neutral" variant="ghost">
+                        닫기
+                      </Button>
+                    </Popover.Close>
+                    <Popover.Arrow />
+                  </Popover.Content>
+                </Popover.Portal>
+              </Popover.Root>
             </div>
             <Field.Root className="gap-dds-3">
               <Field.Label htmlFor="project-search">프로젝트 검색</Field.Label>
@@ -143,6 +192,38 @@ export function App() {
               </Tabs.Content>
             </Tabs.Root>
           </section>
+
+          <section
+            aria-labelledby="accordion-title"
+            className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface-subtle p-dds-6"
+          >
+            <div>
+              <p className="text-dds-sm text-dds-text-muted">Disclosure primitive</p>
+              <h2 id="accordion-title" className="text-dds-lg font-semibold">
+                Accordion과 Tailwind typography utility
+              </h2>
+            </div>
+            <Accordion.Root defaultValue="usage" type="single">
+              <Accordion.Item value="usage">
+                <Accordion.Header>
+                  <Accordion.Trigger>언제 사용하나요?</Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="text-dds-sm text-dds-text-muted">
+                  독립적인 보조 정보를 필요할 때 펼쳐 보일 때 사용합니다.
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item value="theme">
+                <Accordion.Header>
+                  <Accordion.Trigger>어떻게 커스터마이즈하나요?</Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="text-dds-sm text-dds-text-muted">
+                  CSS token은 컴포넌트 상태와 Tailwind utility에 함께 반영됩니다.
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion.Root>
+          </section>
+
+          <ToastFeedback />
         </div>
       </main>
     </Tooltip.Provider>

@@ -14,6 +14,23 @@ const requiredTokens = [
   "--dds-tabs-border",
   "--dds-tabs-active-border",
   "--dds-tabs-active-text",
+  "--dds-accordion-border",
+  "--dds-accordion-trigger-hover-bg",
+  "--dds-accordion-trigger-open-bg",
+  "--dds-popover-bg",
+  "--dds-popover-border",
+  "--dds-popover-radius",
+  "--dds-popover-shadow",
+  "--dds-toast-bg",
+  "--dds-toast-text",
+  "--dds-toast-border",
+  "--dds-toast-radius",
+  "--dds-toast-shadow",
+  "--dds-toast-neutral-accent",
+  "--dds-toast-success-accent",
+  "--dds-toast-warning-accent",
+  "--dds-toast-danger-accent",
+  "--dds-toast-info-accent",
 ];
 
 const expectedBrandPalette = new Map([

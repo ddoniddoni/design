@@ -1,0 +1,49 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .content {
+    z-index: var(--dds-z-index-dropdown);
+    display: grid;
+    box-sizing: border-box;
+    gap: var(--dds-space-3);
+    padding: var(--dds-space-4);
+    max-inline-size: 320px;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-normal);
+    border: var(--dds-control-border-width) solid var(--dds-popover-border);
+    border-radius: var(--dds-popover-radius);
+    background-color: var(--dds-popover-bg);
+    box-shadow: var(--dds-popover-shadow);
+    transform-origin: var(--radix-popover-content-transform-origin);
+    animation: popover-in var(--dds-duration-fast) var(--dds-ease-standard);
+
+    &:focus-visible {
+      @include styles.focus-ring;
+    }
+  }
+
+  .arrow {
+    fill: var(--dds-popover-bg);
+  }
+
+  @keyframes popover-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @include styles.reduced-motion {
+    .content {
+      animation: none;
+    }
+  }
+}

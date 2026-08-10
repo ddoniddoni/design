@@ -1623,13 +1623,153 @@ export type TabsContentProps = TabsPrimitive.TabsContentProps;
 - controlled, disabled, 긴 label, dark theme, Storybook interaction
 - 일반 React와 Tailwind 예제 앱에서 package root import로 사용
 
+## CMP-017 — Accordion
+
+독립적인 보조 콘텐츠를 접고 펼치는 disclosure primitive를 Radix Accordion으로 제공한다.
+
+### 공개 API
+
+```ts
+export type AccordionRootProps =
+  | AccordionPrimitive.AccordionSingleProps
+  | AccordionPrimitive.AccordionMultipleProps;
+export type AccordionItemProps = AccordionPrimitive.AccordionItemProps;
+export type AccordionHeaderProps = AccordionPrimitive.AccordionHeaderProps;
+export type AccordionTriggerProps = AccordionPrimitive.AccordionTriggerProps;
+export type AccordionContentProps = AccordionPrimitive.AccordionContentProps;
+```
+
+```tsx
+<Accordion.Root defaultValue="usage" type="single">
+  <Accordion.Item value="usage">
+    <Accordion.Header>
+      <Accordion.Trigger>언제 사용하나요?</Accordion.Trigger>
+    </Accordion.Header>
+    <Accordion.Content>연관된 보조 정보를 필요한 순간에 표시합니다.</Accordion.Content>
+  </Accordion.Item>
+</Accordion.Root>
+```
+
+### 요구사항
+
+- `Root`, `Item`, `Header`, `Trigger`, `Content`의 named compound API를 제공한다.
+- `single`과 `multiple` value, controlled/uncontrolled state, `collapsible`, disabled Item을 Radix 계약대로 지원한다.
+- Header는 h3, Trigger는 button semantics를 유지하며 Arrow key로 Trigger 사이를 이동한다.
+- Content의 open/closed 상태와 Trigger의 `aria-expanded` 관계는 Radix에 위임한다.
+- Content는 긴 내용과 좁은 영역에서 자연스럽게 흐르고, motion은 reduced motion을 존중한다.
+- 구분선과 Trigger hover/open background는 `--dds-accordion-border`, `--dds-accordion-trigger-hover-bg`, `--dds-accordion-trigger-open-bg` component token을 사용한다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용한다.
+- 초기 공개 API에는 product-specific icon, count, size variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- Trigger semantics, pointer/Arrow key, controlled single, uncontrolled multiple, disabled Item
+- Root/Item/Header/Trigger/Content native props, ref, className 전달
+- controlled, multiple, disabled, 긴 content, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-018 — Popover
+
+Trigger 또는 Anchor 가까이에 짧은 보조 콘텐츠와 action을 표시하는 Popover를 Radix Popover로 제공한다.
+
+### 공개 API
+
+```ts
+export type PopoverRootProps = PopoverPrimitive.PopoverProps;
+export type PopoverAnchorProps = PopoverPrimitive.PopoverAnchorProps;
+export type PopoverTriggerProps = PopoverPrimitive.PopoverTriggerProps;
+export type PopoverPortalProps = PopoverPrimitive.PopoverPortalProps;
+export type PopoverContentProps = PopoverPrimitive.PopoverContentProps;
+export type PopoverCloseProps = PopoverPrimitive.PopoverCloseProps;
+export type PopoverArrowProps = PopoverPrimitive.PopoverArrowProps;
+```
+
+```tsx
+<Popover.Root>
+  <Popover.Trigger asChild>
+    <Button tone="neutral" variant="outline">공유 옵션</Button>
+  </Popover.Trigger>
+  <Popover.Portal>
+    <Popover.Content aria-label="공유 옵션">
+      프로젝트 링크를 복사할 수 있습니다.
+      <Popover.Close asChild><Button size="sm">닫기</Button></Popover.Close>
+      <Popover.Arrow />
+    </Popover.Content>
+  </Popover.Portal>
+</Popover.Root>
+```
+
+### 요구사항
+
+- `Root`, `Anchor`, `Trigger`, `Portal`, `Content`, `Close`, `Arrow`의 named compound API를 제공한다.
+- controlled/uncontrolled open state와 `modal`은 Radix 계약대로 지원한다.
+- Trigger click, Escape, Close, outside interaction으로 닫히며 닫힌 뒤 Trigger focus를 복귀한다.
+- Content는 portal을 사용하고, `aria-label` 또는 `aria-labelledby`로 dialog의 접근 가능한 이름을 consumer가 제공한다.
+- Anchor로 Trigger와 다른 요소를 배치 기준으로 선택할 수 있다.
+- Content의 collision padding과 side offset은 각각 16px, 8px을 기본으로 제공하되 consumer prop으로 override할 수 있다.
+- Content surface와 arrow는 `--dds-popover-bg`, `--dds-popover-border`, `--dds-popover-radius`, `--dds-popover-shadow` component token을 사용한다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용하며 motion은 reduced motion을 존중한다.
+- 초기 공개 API에는 product-specific title, form, size variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- Trigger semantics, pointer click, controlled/uncontrolled state, Close, Escape, focus restore, portal rendering
+- Anchor/Trigger/Content/Close/Arrow native props, ref, className 전달
+- controlled, Anchor, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-019 — Toast
+
+사용자의 작업 완료나 상태 변화를 짧게 알리는 Toast를 Radix Toast로 제공한다. 확인이 필요한 action이나 지속적인 상태 표시는 Toast로 대체하지 않는다.
+
+### 공개 API
+
+```ts
+export type ToastTone = "neutral" | "success" | "warning" | "danger" | "info";
+export type ToastProviderProps = ToastPrimitive.ToastProviderProps;
+export type ToastViewportProps = ToastPrimitive.ToastViewportProps;
+export type ToastRootProps = ToastPrimitive.ToastProps & { tone?: ToastTone };
+export type ToastTitleProps = ToastPrimitive.ToastTitleProps;
+export type ToastDescriptionProps = ToastPrimitive.ToastDescriptionProps;
+export type ToastActionProps = ToastPrimitive.ToastActionProps;
+export type ToastCloseProps = ToastPrimitive.ToastCloseProps;
+```
+
+```tsx
+<Toast.Provider duration={5000}>
+  <Toast.Root defaultOpen tone="success" type="background">
+    <Toast.Title>저장 완료</Toast.Title>
+    <Toast.Description>프로젝트 설정을 저장했습니다.</Toast.Description>
+    <Toast.Action altText="저장 변경을 실행 취소합니다.">실행 취소</Toast.Action>
+    <Toast.Close aria-label="알림 닫기">닫기</Toast.Close>
+  </Toast.Root>
+  <Toast.Viewport label="알림 ({hotkey})" />
+</Toast.Provider>
+```
+
+### 요구사항
+
+- `Provider`, `Viewport`, `Root`, `Title`, `Description`, `Action`, `Close`의 named compound API를 제공한다.
+- Root는 controlled/uncontrolled open state, duration, `foreground`/`background` type을 Radix 계약대로 지원한다.
+- `tone`은 `neutral`, `success`, `warning`, `danger`, `info`를 제공하며, 색상 외 Title/Description 텍스트로 상태를 함께 전달한다.
+- 비긴급 피드백은 `type="background"`으로 polite announcement를 사용하도록 문서화한다. Action에는 대체 동작을 설명하는 비어 있지 않은 `altText`가 필요하다.
+- Viewport는 `--dds-z-index-toast`를 사용해 fixed 영역에 표시하고 F8 shortcut과 localised label을 Radix 계약대로 제공한다.
+- Root는 Close, Action, duration, Escape, swipe dismiss를 지원하며 motion은 reduced motion을 존중한다.
+- Viewport/Root/Title/Description/Action/Close의 native props, ref, className을 전달하고 Root의 button child는 기본 `type="button"`을 사용한다.
+- Toast surface와 tone accent는 `--dds-toast-bg`, `--dds-toast-text`, `--dds-toast-border`, `--dds-toast-radius`, `--dds-toast-shadow`, `--dds-toast-*-accent` component token을 사용한다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용한다. 초기 공개 API에는 queue/store/hook 같은 전역 상태 관리를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- background notification, Action altText/click, Close, controlled/uncontrolled state, viewport F8 shortcut
+- Viewport/Root/Title/Description/Action/Close native props, ref, className 전달
+- controlled, tone, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
 
-- Accordion
-- Popover
-- Toast
 - Skeleton
 - Select
 - Pagination
@@ -2416,6 +2556,66 @@ npm run check
 - Root/List/Trigger/Content의 ref, native props, className 전달을 테스트한다.
 - 두 예제 앱이 `Tabs`를 package root에서 import한다.
 - package tarball에 Tabs declaration이 포함된다.
+
+## Phase 13 — v0.3 Accordion
+
+### 범위
+
+- [ ] `CMP-017` Radix 기반 Accordion
+- [ ] Accordion tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 disclosure 사례 통합
+- [ ] Radix runtime dependency와 public declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- Trigger semantics, pointer/Arrow key, controlled single, uncontrolled multiple, disabled Item을 테스트한다.
+- Root/Item/Header/Trigger/Content의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Accordion`을 package root에서 import한다.
+- package tarball에 Accordion declaration이 포함된다.
+
+## Phase 14 — v0.3 Popover
+
+### 범위
+
+- [ ] `CMP-018` Radix 기반 Popover
+- [ ] Popover tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 contextual action 사례 통합
+- [ ] Radix runtime dependency와 public declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- Trigger semantics, pointer click, controlled/uncontrolled state, Close, Escape, focus restore, portal rendering을 테스트한다.
+- Anchor/Trigger/Content/Close/Arrow native props, ref, className 전달을 테스트한다.
+- 두 예제 앱이 `Popover`를 package root에서 import한다.
+- package tarball에 Popover declaration이 포함된다.
+
+## Phase 15 — v0.3 Toast
+
+### 범위
+
+- [ ] `CMP-019` Radix 기반 Toast
+- [ ] Toast tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 action feedback 사례 통합
+- [ ] Radix runtime dependency와 public declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- background notification, Action altText/click, Close, controlled/uncontrolled state, viewport F8 shortcut을 테스트한다.
+- Viewport/Root/Title/Description/Action/Close native props, ref, className 전달을 테스트한다.
+- 두 예제 앱이 `Toast`를 package root에서 import한다.
+- package tarball에 Toast declaration이 포함된다.
 
 ---
 

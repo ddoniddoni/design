@@ -1,8 +1,8 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-11
-- 현재 Phase: Phase 12 Tabs 완료
-- 전체 상태: v0.2 개발 진행 중
+- 현재 Phase: Phase 15 Toast 완료
+- 전체 상태: v0.3 개발 진행 중
 
 ## Phase 0
 
@@ -137,6 +137,36 @@
 - [x] `@radix-ui/react-tabs` stable runtime dependency 선언
 - [x] public named export, declaration, package tarball 검증
 
+## Phase 13
+
+- [x] CMP-017 Radix 기반 Accordion
+- [x] Trigger semantics, pointer/Arrow key, controlled single, uncontrolled multiple, disabled Item 테스트
+- [x] Root/Item/Header/Trigger/Content native props, ref, className 전달 테스트
+- [x] Accordion Storybook states, interaction, 긴 content, dark theme, docs
+- [x] 일반 React와 Tailwind 예제 앱의 disclosure 사례 통합
+- [x] `@radix-ui/react-accordion` stable runtime dependency 선언
+- [x] public named export, declaration, package tarball 검증
+
+## Phase 14
+
+- [x] CMP-018 Radix 기반 Popover
+- [x] Trigger semantics, pointer click, controlled/uncontrolled, Close, Escape, focus restore, portal rendering 테스트
+- [x] Anchor/Trigger/Content/Close/Arrow native props, ref, className 전달 테스트
+- [x] Popover Storybook states, interaction, Anchor, dark theme, docs
+- [x] 일반 React와 Tailwind 예제 앱의 contextual action 사례 통합
+- [x] `@radix-ui/react-popover` stable runtime dependency 선언
+- [x] public named export, declaration, package tarball 검증
+
+## Phase 15
+
+- [x] CMP-019 Radix 기반 Toast
+- [x] background notification, Action altText/click, Close, controlled/uncontrolled, viewport F8 shortcut 테스트
+- [x] Viewport/Root/Title/Description/Action/Close native props, ref, className 전달 테스트
+- [x] Toast Storybook states, interaction, tone, dark theme, docs
+- [x] 일반 React와 Tailwind 예제 앱의 action feedback 사례 통합
+- [x] `@radix-ui/react-toast` stable runtime dependency 선언
+- [x] public named export, declaration, package tarball 검증
+
 ## 브랜드 및 dark theme 품질 개선
 
 - [x] TOK-003 기본 signature palette를 indigo에서 cobalt blue로 변경
@@ -162,17 +192,17 @@
 | `npm run lint`                                      | PASS | ESLint warning/error 0건                       |
 | `npm run stylelint`                                 | PASS | SCSS/CSS 선언 순서와 논리 속성 규칙 준수       |
 | `npm run typecheck`                                 | PASS | 루트 설정 및 UI workspace strict 검사 통과     |
-| `npm run test`                                      | PASS | 14개 파일, 39개 component test 통과            |
+| `npm run test`                                      | PASS | 19개 파일, 54개 component test 통과            |
 | `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과        |
 | `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
-| `npm run build-storybook`                           | PASS | Phase 2~10 component/foundation story 포함     |
+| `npm run build-storybook`                           | PASS | Phase 2~15 component/foundation story 포함     |
 | `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
 | `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰, theme selector, brand 대비 확인     |
 | `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |
 | `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성                |
 | `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함  |
-| `npm run pack:check`                                | PASS | tokens 3, ui 69, tailwind 3 files 계약 통과    |
-| `npm run check`                                     | PASS | Phase 0~10 전체 quality gate 통과              |
+| `npm run pack:check`                                | PASS | tokens 3, ui 89, tailwind 3 files 계약 통과    |
+| `npm run check`                                     | PASS | Phase 0~15 전체 quality gate 통과              |
 | `npx react-doctor@latest --verbose --scope changed` | PASS | full scan 100/100, issue 없음                  |
 
 ## 알려진 이슈

@@ -1,5 +1,13 @@
 export { Badge } from "./components/Badge";
 export type { BadgeProps, BadgeSize, BadgeTone, BadgeVariant } from "./components/Badge";
+export { Accordion } from "./components/Accordion";
+export type {
+  AccordionContentProps,
+  AccordionHeaderProps,
+  AccordionItemProps,
+  AccordionRootProps,
+  AccordionTriggerProps,
+} from "./components/Accordion";
 export { Button } from "./components/Button";
 export type { ButtonProps, ButtonSize, ButtonTone, ButtonVariant } from "./components/Button";
 export { Card } from "./components/Card";
@@ -62,6 +70,16 @@ export type {
   PageHeaderRootProps,
   PageHeaderTitleProps,
 } from "./components/PageHeader";
+export { Popover } from "./components/Popover";
+export type {
+  PopoverAnchorProps,
+  PopoverArrowProps,
+  PopoverCloseProps,
+  PopoverContentProps,
+  PopoverPortalProps,
+  PopoverRootProps,
+  PopoverTriggerProps,
+} from "./components/Popover";
 export { RadioGroup } from "./components/RadioGroup";
 export type { RadioGroupItemProps, RadioGroupRootProps } from "./components/RadioGroup";
 export { Spinner } from "./components/Spinner";
@@ -75,6 +93,17 @@ export type {
   TabsRootProps,
   TabsTriggerProps,
 } from "./components/Tabs";
+export { Toast } from "./components/Toast";
+export type {
+  ToastActionProps,
+  ToastCloseProps,
+  ToastDescriptionProps,
+  ToastProviderProps,
+  ToastRootProps,
+  ToastTitleProps,
+  ToastTone,
+  ToastViewportProps,
+} from "./components/Toast";
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 export { Tooltip } from "./components/Tooltip";
