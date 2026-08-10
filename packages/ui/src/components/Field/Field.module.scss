@@ -1,0 +1,48 @@
+@layer components {
+  .root {
+    display: grid;
+    box-sizing: border-box;
+    gap: var(--dds-space-2);
+    min-inline-size: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-primary);
+  }
+
+  .label {
+    margin: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    font-weight: var(--dds-font-weight-medium);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-normal);
+  }
+
+  .description,
+  .error {
+    margin: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    line-height: var(--dds-line-height-normal);
+  }
+
+  .description {
+    color: var(--dds-color-text-secondary);
+  }
+
+  .error {
+    color: var(--dds-color-status-danger-text);
+  }
+
+  .root[data-invalid="true"] .label {
+    color: var(--dds-color-status-danger-text);
+  }
+
+  .root[data-disabled="true"] .label,
+  .root[data-disabled="true"] .description,
+  .root[data-disabled="true"] .error {
+    color: var(--dds-color-text-disabled);
+  }
+}

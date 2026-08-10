@@ -1,19 +1,21 @@
-import { Badge, Button, Card, Checkbox, Input, Tooltip } from "@ddoni-ds/ui";
+import { Badge, Button, Card, Field, Input, PageHeader, Switch, Tooltip } from "@ddoni-ds/ui";
 
 export function App() {
   return (
     <Tooltip.Provider delayDuration={250}>
       <main className="min-h-[100%] bg-dds-canvas p-dds-6 text-dds-text">
         <div className="mx-auto grid max-w-[1080px] gap-dds-6">
-          <header className="grid gap-dds-3">
-            <Badge tone="primary">Tailwind CSS v4</Badge>
-            <div className="grid gap-dds-2">
-              <h1 className="text-dds-lg font-bold">Tailwind adapter 소비자 예제</h1>
-              <p className="max-w-[720px] text-dds-md text-dds-text-muted">
+          <PageHeader.Root className="grid gap-dds-3">
+            <PageHeader.Content className="items-start gap-dds-3">
+              <Badge tone="primary">Tailwind CSS v4</Badge>
+              <PageHeader.Title className="text-dds-lg">
+                Tailwind adapter 소비자 예제
+              </PageHeader.Title>
+              <PageHeader.Description className="max-w-[720px] text-dds-text-muted">
                 semantic utility와 @ddoni-ds/ui 컴포넌트가 같은 CSS token을 참조합니다.
-              </p>
-            </div>
-          </header>
+              </PageHeader.Description>
+            </PageHeader.Content>
+          </PageHeader.Root>
 
           <section
             aria-labelledby="shared-theme-title"
@@ -69,13 +71,24 @@ export function App() {
                 </Tooltip.Portal>
               </Tooltip.Root>
             </div>
-            <div className="grid gap-dds-3 min-[720px]:grid-cols-[1fr_auto]">
-              <Input aria-label="프로젝트 검색" placeholder="프로젝트 검색" />
-              <Button className="w-full min-[720px]:w-auto">검색</Button>
+            <Field.Root className="gap-dds-3">
+              <Field.Label htmlFor="project-search">프로젝트 검색</Field.Label>
+              <div className="grid gap-dds-3 min-[720px]:grid-cols-[1fr_auto]">
+                <Input
+                  aria-describedby="project-search-description"
+                  id="project-search"
+                  placeholder="프로젝트 검색"
+                />
+                <Button className="w-full min-[720px]:w-auto">검색</Button>
+              </div>
+              <Field.Description id="project-search-description">
+                Field의 구조와 Tailwind layout utility를 함께 사용합니다.
+              </Field.Description>
+            </Field.Root>
+            <div className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
+              <Switch id="new-project-notifications" defaultChecked />
+              <label htmlFor="new-project-notifications">새 프로젝트 알림 받기</label>
             </div>
-            <label className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
-              <Checkbox defaultChecked />새 프로젝트 알림 받기
-            </label>
           </section>
         </div>
       </main>

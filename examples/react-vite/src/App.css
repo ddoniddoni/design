@@ -11,29 +11,21 @@
   margin-inline: auto;
 }
 
-.hero,
 .sectionHeading,
 .buttonRow,
 .checkboxRow,
+.switchRow,
 .overrideTheme,
 .themeControl {
   display: flex;
   align-items: center;
 }
 
-.hero {
-  justify-content: space-between;
-  gap: 24px;
+.pageHeader {
   padding-block-end: 32px;
   border-block-end: 1px solid var(--dds-color-border-default);
 }
 
-.heroCopy {
-  display: grid;
-  gap: 12px;
-}
-
-.hero h1,
 .section h2,
 .contentGrid h2,
 .overrideTheme h2 {
@@ -41,12 +33,6 @@
   color: var(--dds-color-text-primary);
 }
 
-.hero h1 {
-  font-size: 30px;
-  line-height: 36px;
-}
-
-.hero p,
 .contentGrid p,
 .overrideTheme p {
   margin: 0;
@@ -111,27 +97,21 @@
 }
 
 .form,
-.field,
 .stack {
   display: grid;
   gap: 16px;
 }
 
-.field {
-  color: var(--dds-color-text-primary);
-  font-size: 14px;
-  font-weight: var(--dds-font-weight-medium);
-  line-height: 20px;
-}
-
-.checkboxRow {
+.checkboxRow,
+.switchRow {
   gap: 8px;
   color: var(--dds-color-text-secondary);
   font-size: 14px;
   line-height: 20px;
 }
 
-.checkboxRow label {
+.checkboxRow label,
+.switchRow label {
   cursor: pointer;
 }
 
@@ -159,12 +139,12 @@
 }
 
 @media (max-width: 640px) {
-  .hero,
   .overrideTheme {
     align-items: flex-start;
     flex-direction: column;
   }
 
+  .themeActions,
   .themeControl {
     inline-size: 100%;
     justify-content: space-between;

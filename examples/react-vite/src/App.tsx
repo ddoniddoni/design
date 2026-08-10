@@ -7,8 +7,11 @@ import {
   Checkbox,
   Dialog,
   DropdownMenu,
+  Field,
   IconButton,
   Input,
+  PageHeader,
+  Switch,
   Textarea,
   Tooltip,
 } from "@ddoni-ds/ui";
@@ -42,30 +45,32 @@ export function App() {
     <Tooltip.Provider delayDuration={250}>
       <main className="app">
         <div className="container">
-          <header className="hero">
-            <div className="heroCopy">
+          <PageHeader.Root className="pageHeader">
+            <PageHeader.Content>
               <Badge tone="primary">React Vite</Badge>
-              <h1>일반 CSS 소비자 예제</h1>
-              <p>
+              <PageHeader.Title>일반 CSS 소비자 예제</PageHeader.Title>
+              <PageHeader.Description>
                 토큰 CSS와 컴포넌트 CSS만 import해 light, dark, system 테마와 브랜드 커스터마이징을
                 확인합니다.
-              </p>
-            </div>
-            <label className="themeControl" htmlFor="theme-select">
-              <span>테마</span>
-              <select
-                id="theme-select"
-                value={theme}
-                onChange={(event) => setTheme(event.target.value as Theme)}
-              >
-                {themeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </header>
+              </PageHeader.Description>
+            </PageHeader.Content>
+            <PageHeader.Actions className="themeActions">
+              <label className="themeControl" htmlFor="theme-select">
+                <span>테마</span>
+                <select
+                  id="theme-select"
+                  value={theme}
+                  onChange={(event) => setTheme(event.target.value as Theme)}
+                >
+                  {themeOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </PageHeader.Actions>
+          </PageHeader.Root>
 
           <section aria-labelledby="button-title" className="section">
             <div className="sectionHeading">
@@ -144,30 +149,38 @@ export function App() {
               </Card.Header>
               <Card.Content>
                 <form className="form" onSubmit={handleSubmit}>
-                  <label className="field" htmlFor="project-name">
-                    <span>프로젝트 이름</span>
+                  <Field.Root>
+                    <Field.Label htmlFor="project-name">프로젝트 이름</Field.Label>
                     <Input
+                      aria-describedby="project-name-description"
                       id="project-name"
                       name="projectName"
                       value={projectName}
                       onChange={(event) => setProjectName(event.target.value)}
                     />
-                  </label>
-                  <label className="field" htmlFor="project-description">
-                    <span>설명</span>
+                    <Field.Description id="project-name-description">
+                      여러 예제 화면에서 표시할 이름입니다.
+                    </Field.Description>
+                  </Field.Root>
+                  <Field.Root>
+                    <Field.Label htmlFor="project-description">설명</Field.Label>
                     <Textarea
                       id="project-description"
                       name="description"
                       value={description}
                       onChange={(event) => setDescription(event.target.value)}
                     />
-                  </label>
+                  </Field.Root>
                   <div className="checkboxRow">
-                    <Checkbox
+                    <Checkbox defaultChecked id="confirm-settings" name="confirmSettings" />
+                    <label htmlFor="confirm-settings">설정 변경사항 확인</label>
+                  </div>
+                  <div className="switchRow">
+                    <Switch
                       checked={receivesDigest}
                       id="weekly-digest"
                       name="weeklyDigest"
-                      onCheckedChange={(checked) => setReceivesDigest(checked === true)}
+                      onCheckedChange={setReceivesDigest}
                     />
                     <label htmlFor="weekly-digest">주간 요약 메일 받기</label>
                   </div>

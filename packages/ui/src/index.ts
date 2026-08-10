@@ -43,12 +43,29 @@ export type {
   DropdownMenuSubTriggerProps,
   DropdownMenuTriggerProps,
 } from "./components/DropdownMenu";
+export { Field } from "./components/Field";
+export type {
+  FieldDescriptionProps,
+  FieldErrorProps,
+  FieldLabelProps,
+  FieldRootProps,
+} from "./components/Field";
 export { IconButton } from "./components/IconButton";
 export type { IconButtonProps } from "./components/IconButton";
 export { Input } from "./components/Input";
 export type { InputProps, InputSize } from "./components/Input";
+export { PageHeader } from "./components/PageHeader";
+export type {
+  PageHeaderActionsProps,
+  PageHeaderContentProps,
+  PageHeaderDescriptionProps,
+  PageHeaderRootProps,
+  PageHeaderTitleProps,
+} from "./components/PageHeader";
 export { Spinner } from "./components/Spinner";
 export type { SpinnerProps, SpinnerSize } from "./components/Spinner";
+export { Switch } from "./components/Switch";
+export type { SwitchProps } from "./components/Switch";
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 export { Tooltip } from "./components/Tooltip";

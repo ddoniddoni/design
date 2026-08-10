@@ -1,0 +1,67 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    cursor: pointer;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex-shrink: 0;
+    padding: var(--dds-space-1);
+    block-size: var(--dds-control-height-sm);
+    inline-size: var(--dds-control-height-lg);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    border: 0;
+    border-radius: var(--dds-radius-full);
+    background-color: var(--dds-color-action-neutral-bg);
+
+    @include styles.control-transition;
+
+    &:not(:disabled):hover {
+      background-color: var(--dds-color-action-neutral-hover);
+    }
+
+    &:focus-visible {
+      @include styles.focus-ring;
+    }
+
+    &[data-state="checked"] {
+      background-color: var(--dds-color-action-primary-bg);
+    }
+
+    &[data-state="checked"]:not(:disabled):hover {
+      background-color: var(--dds-color-action-primary-hover);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: var(--dds-input-disabled-bg);
+    }
+  }
+
+  .thumb {
+    pointer-events: none;
+    display: block;
+    block-size: calc(var(--dds-control-height-sm) - var(--dds-space-2));
+    inline-size: calc(var(--dds-control-height-sm) - var(--dds-space-2));
+    border-radius: var(--dds-radius-full);
+    background-color: var(--dds-color-bg-surface);
+    box-shadow: var(--dds-shadow-xs);
+    transform: translateX(0);
+    transition: transform var(--dds-duration-fast) var(--dds-ease-standard);
+
+    @include styles.reduced-motion {
+      transition-duration: 0ms;
+    }
+  }
+
+  .root[data-state="checked"] .thumb {
+    transform: translateX(calc(var(--dds-control-height-lg) - var(--dds-control-height-sm)));
+  }
+
+  .root:disabled .thumb {
+    background-color: var(--dds-color-text-disabled);
+    box-shadow: none;
+  }
+}

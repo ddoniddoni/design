@@ -1,0 +1,49 @@
+@layer components {
+  .root {
+    display: flex;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--dds-space-4);
+    min-inline-size: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-primary);
+  }
+
+  .content {
+    display: grid;
+    flex: 1 1 auto;
+    gap: var(--dds-space-2);
+    min-inline-size: 0;
+  }
+
+  .title {
+    margin: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-2xl);
+    font-weight: var(--dds-font-weight-bold);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-relaxed);
+  }
+
+  .description {
+    margin: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-md);
+    color: var(--dds-color-text-secondary);
+    line-height: var(--dds-line-height-normal);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    gap: var(--dds-space-2);
+    min-inline-size: 0;
+  }
+}

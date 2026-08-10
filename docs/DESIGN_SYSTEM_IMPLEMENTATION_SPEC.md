@@ -3,7 +3,7 @@
 > 이 문서는 사람에게 개념을 설명하는 소개서가 아니라, **Codex가 저장소를 실제로 생성·수정·검증할 수 있도록 작성된 실행 명세서**다.
 
 - 문서 상태: 구현 기준 문서
-- 기준일: 2026-08-10
+- 기준일: 2026-08-11
 - 언어: 한국어
 - 패키지 매니저: npm
 - 저장소 형태: npm workspaces 모노레포
@@ -1389,13 +1389,154 @@ Radix DropdownMenu Primitive를 기반으로 한다.
 
 ---
 
-# 10. 이후 추가 예정이지만 MVP에서 제외되는 컴포넌트
+# 10. v0.2+ 컴포넌트
 
-아래는 `v0.2+` 후보로 문서만 남기고 초기 구현하지 않는다.
+## CMP-012 — Field
 
-- Field / FormField
+일반 React와 Tailwind 예제 앱에서 visible label, control, 설명을 조합하는 사용 사례가 확인되어 v0.2 첫 컴포넌트로 추가한다.
+
+### 공개 API
+
+```ts
+export interface FieldRootProps extends React.HTMLAttributes<HTMLDivElement> {
+  disabled?: boolean;
+  invalid?: boolean;
+}
+
+export type FieldLabelProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+export type FieldDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;
+export type FieldErrorProps = React.HTMLAttributes<HTMLParagraphElement>;
+```
+
+```tsx
+<Field.Root invalid>
+  <Field.Label htmlFor="email">이메일</Field.Label>
+  <Input aria-describedby="email-error" id="email" invalid />
+  <Field.Error id="email-error">올바른 이메일 주소를 입력하세요.</Field.Error>
+</Field.Root>
+```
+
+### 하위 컴포넌트
+
+- `Field.Root`
+- `Field.Label`
+- `Field.Description`
+- `Field.Error`
+
+### 요구사항
+
+- label, control, description, error를 children으로 명시적으로 조합한다.
+- `htmlFor`/`id`, `aria-describedby`, control의 invalid/disabled 상태는 native prop으로 명확히 연결한다.
+- Root의 `invalid`, `disabled`는 field text의 시각 상태를 위한 `data-*` attribute로 표현하며 실제 control state를 암묵적으로 변경하지 않는다.
+- 모든 하위 컴포넌트는 native props와 `className`을 전달하고 실제 DOM 요소로 ref를 전달한다.
+- Description과 Error는 기본 paragraph element이며 Error에 live region role을 강제하지 않는다.
+- component rule은 `@layer components` 안에 두고 semantic token만 사용한다.
+- Input, Textarea 등 특정 control에 결합하지 않는다.
+
+### 필수 tests/stories
+
+- native label association과 `aria-describedby`
+- invalid/disabled state attribute
+- native props, className, ref 전달
+- description, error, Input, Textarea 조합
+- dark theme
+- 두 예제 앱에서 package root import로 사용
+
+## CMP-013 — Switch
+
+일반 React와 Tailwind 예제 앱의 notification boolean 설정 두 곳을 근거로 v0.2 컴포넌트로 추가한다. 변경 즉시 효력이 생기는 설정에 사용하고, 제출 시 확정되는 선택이나 약관 동의에는 Checkbox를 유지한다.
+
+Radix Switch Primitive를 기반으로 한다.
+
+### 공개 API
+
+```ts
+export type SwitchProps = Omit<SwitchPrimitive.SwitchProps, "children">;
+```
+
+```tsx
+<Switch id="project-notifications" defaultChecked />
+<label htmlFor="project-notifications">새 프로젝트 알림 받기</label>
+```
+
+### 요구사항
+
+- checked와 unchecked controlled/uncontrolled state를 지원한다.
+- `role="switch"`, `aria-checked`, Space keyboard 동작은 Radix 계약을 유지한다.
+- 외부 `<label htmlFor>` 또는 `aria-label`로 accessible name을 제공한다.
+- `disabled`, `required`, `name`, `value`, form 관련 prop을 Radix Root에 전달한다.
+- ref는 실제 `HTMLButtonElement`를 가리키고 native props와 `className`을 전달한다.
+- Thumb은 내부 구조로 고정하며 consumer children을 받지 않는다.
+- checked/unchecked 표현은 `data-state`와 semantic/control token을 사용한다.
+- focus-visible indicator와 reduced motion을 지원한다.
+- 초기 공개 API에는 size나 tone variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- pointer와 Space keyboard toggle
+- controlled/uncontrolled state
+- native label association과 disabled state
+- form name/value/required
+- native props, className, ref 전달
+- checked, unchecked, dark theme
+- 두 예제 앱에서 package root import로 사용
+
+## CMP-014 — PageHeader
+
+일반 React와 Tailwind 예제 앱이 페이지 최상단에서 제목과 설명을 같은 구조로 반복하고 있어 v0.2 layout 컴포넌트로 추가한다. 제품 전용 navigation이나 action을 내장하지 않고 semantic page intro의 배치만 제공한다.
+
+### 공개 API
+
+```ts
+export type PageHeaderRootProps = React.HTMLAttributes<HTMLElement>;
+export type PageHeaderContentProps = React.HTMLAttributes<HTMLDivElement>;
+export type PageHeaderTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
+export type PageHeaderDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;
+export type PageHeaderActionsProps = React.HTMLAttributes<HTMLDivElement>;
+```
+
+```tsx
+<PageHeader.Root>
+  <PageHeader.Content>
+    <PageHeader.Title>프로젝트</PageHeader.Title>
+    <PageHeader.Description>프로젝트 설정과 상태를 관리합니다.</PageHeader.Description>
+  </PageHeader.Content>
+  <PageHeader.Actions>
+    <Button>새 프로젝트</Button>
+  </PageHeader.Actions>
+</PageHeader.Root>
+```
+
+### 하위 컴포넌트
+
+- `PageHeader.Root`
+- `PageHeader.Content`
+- `PageHeader.Title`
+- `PageHeader.Description`
+- `PageHeader.Actions`
+
+### 요구사항
+
+- Root는 semantic `header`, Title은 페이지 주 제목인 `h1`을 기본 렌더링한다.
+- Content에는 Badge 등 소비자 콘텐츠와 Title, Description을 명시적으로 조합한다.
+- Actions는 optional이며 제품 전용 action이나 navigation을 내장하지 않는다.
+- 모든 하위 컴포넌트는 native props와 `className`을 전달하고 실제 DOM 요소로 ref를 전달한다.
+- 좁은 영역과 긴 텍스트에서 Content와 Actions가 겹치지 않고 자연스럽게 wrap된다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용한다.
+- 초기 공개 API에는 size, alignment, sticky variant나 `asChild`를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- semantic header, h1, description, optional actions
+- 모든 하위 컴포넌트의 native props, className, ref 전달
+- actions 없음, 긴 콘텐츠, 좁은 영역, dark theme
+- 두 예제 앱에서 package root import로 사용
+
+## 나머지 후보
+
+아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
+
 - RadioGroup
-- Switch
 - Tabs
 - Accordion
 - Popover
@@ -1405,10 +1546,7 @@ Radix DropdownMenu Primitive를 기반으로 한다.
 - Pagination
 - Table
 - EmptyState
-- PageHeader
 - FilterBar
-
-추가 시에는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
 
 ---
 
@@ -1551,6 +1689,7 @@ Components/
   Feedback/Spinner
   Data Display/Badge
   Data Display/Card
+  Layout/PageHeader
   Forms/Input
   Forms/Textarea
   Forms/Checkbox
@@ -2081,6 +2220,65 @@ npm run check
 ```
 
 clean checkout 기준으로 통과해야 한다.
+
+## Phase 8 — v0.2 Field
+
+### 범위
+
+- [ ] `CMP-012` Field compound API
+- [ ] Field tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱 통합
+- [ ] public named exports와 declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- label/control/description/error의 native 접근성 연결을 테스트한다.
+- 두 예제 앱이 `Field`를 package root에서 import한다.
+- package tarball에 Field declaration이 포함된다.
+
+## Phase 9 — v0.2 Switch
+
+### 범위
+
+- [ ] `CMP-013` Radix 기반 Switch
+- [ ] Switch tests, stories, docs
+- [ ] 두 notification 설정 예제 앱 통합
+- [ ] Radix runtime dependency와 public declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- role, accessible name, pointer/Space, controlled/uncontrolled state를 테스트한다.
+- Checkbox와 Switch 사용 목적이 예제와 문서에서 구분된다.
+- 두 예제 앱이 `Switch`를 package root에서 import한다.
+- package tarball에 Switch declaration이 포함된다.
+
+## Phase 10 — v0.2 PageHeader
+
+### 범위
+
+- [ ] `CMP-014` semantic PageHeader compound API
+- [ ] PageHeader tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 page header 통합
+- [ ] public named exports와 declaration 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- semantic `header`, `h1`, description, optional actions를 테스트한다.
+- 모든 하위 컴포넌트의 native props, ref, className 전달을 테스트한다.
+- 두 예제 앱이 `PageHeader`를 package root에서 import한다.
+- package tarball에 PageHeader declaration이 포함된다.
 
 ---
 
