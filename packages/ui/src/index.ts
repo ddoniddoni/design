@@ -84,6 +84,8 @@ export { RadioGroup } from "./components/RadioGroup";
 export type { RadioGroupItemProps, RadioGroupRootProps } from "./components/RadioGroup";
 export { Spinner } from "./components/Spinner";
 export type { SpinnerProps, SpinnerSize } from "./components/Spinner";
+export { Skeleton } from "./components/Skeleton";
+export type { SkeletonProps, SkeletonShape } from "./components/Skeleton";
 export { Switch } from "./components/Switch";
 export type { SwitchProps } from "./components/Switch";
 export { Tabs } from "./components/Tabs";

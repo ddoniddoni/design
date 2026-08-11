@@ -1,0 +1,48 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    display: block;
+    box-sizing: border-box;
+    min-block-size: var(--dds-font-size-md);
+    inline-size: 100%;
+    font: inherit;
+    border-radius: var(--dds-skeleton-radius);
+    background: linear-gradient(
+      to right,
+      var(--dds-skeleton-bg) 0%,
+      var(--dds-skeleton-highlight) 50%,
+      var(--dds-skeleton-bg) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer var(--dds-duration-slow) var(--dds-ease-standard) infinite;
+  }
+
+  .root[data-shape="circle"] {
+    flex: none;
+    min-block-size: 0;
+    inline-size: var(--dds-control-height-md);
+    aspect-ratio: 1;
+    border-radius: var(--dds-radius-full);
+  }
+
+  .root[data-shape="rect"] {
+    min-block-size: var(--dds-control-height-md);
+  }
+
+  @keyframes skeleton-shimmer {
+    from {
+      background-position: 100% 0;
+    }
+
+    to {
+      background-position: -100% 0;
+    }
+  }
+
+  @include styles.reduced-motion {
+    .root {
+      animation: none;
+    }
+  }
+}

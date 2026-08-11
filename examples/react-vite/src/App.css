@@ -103,6 +103,39 @@
   gap: 16px;
 }
 
+.skeletonPreview,
+.skeletonText {
+  display: grid;
+  gap: var(--dds-space-3);
+}
+
+.skeletonPreview {
+  max-inline-size: 480px;
+  padding: var(--dds-space-4);
+  border: 1px solid var(--dds-color-border-default);
+  border-radius: var(--dds-control-radius);
+  background: var(--dds-color-bg-surface);
+}
+
+.skeletonProfile {
+  display: flex;
+  align-items: center;
+  gap: var(--dds-space-3);
+}
+
+.skeletonText {
+  flex: 1;
+  gap: var(--dds-space-2);
+}
+
+.skeletonShortLine {
+  inline-size: 45%;
+}
+
+.skeletonBlock {
+  min-block-size: var(--dds-space-24);
+}
+
 .checkboxRow,
 .radioRow,
 .switchRow {

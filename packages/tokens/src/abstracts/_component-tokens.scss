@@ -80,6 +80,11 @@ $component-tokens: (
     "danger-accent": var(--dds-color-status-danger-border),
     "info-accent": var(--dds-color-status-info-border),
   ),
+  "skeleton": (
+    "bg": var(--dds-color-bg-surface-subtle),
+    "highlight": var(--dds-color-border-default),
+    "radius": var(--dds-radius-sm),
+  ),
   "dialog": (
     "bg": var(--dds-color-bg-surface-elevated),
     "radius": var(--dds-radius-xl),

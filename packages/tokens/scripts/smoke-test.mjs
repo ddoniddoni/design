@@ -31,6 +31,9 @@ const requiredTokens = [
   "--dds-toast-warning-accent",
   "--dds-toast-danger-accent",
   "--dds-toast-info-accent",
+  "--dds-skeleton-bg",
+  "--dds-skeleton-highlight",
+  "--dds-skeleton-radius",
 ];
 
 const expectedBrandPalette = new Map([

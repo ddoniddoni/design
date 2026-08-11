@@ -9,6 +9,7 @@ import {
   PageHeader,
   Popover,
   RadioGroup,
+  Skeleton,
   Switch,
   Tabs,
   Toast,
@@ -36,6 +37,32 @@ function ToastFeedback() {
       </Toast.Root>
       <Toast.Viewport label="Tailwind 예제 알림 ({hotkey})" />
     </Toast.Provider>
+  );
+}
+
+function SkeletonPreview() {
+  return (
+    <section
+      aria-labelledby="skeleton-title"
+      className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface p-dds-6"
+    >
+      <div>
+        <p className="text-dds-sm text-dds-text-muted">Loading primitive</p>
+        <h2 id="skeleton-title" className="text-dds-lg font-semibold">
+          Skeleton과 Tailwind layout utility
+        </h2>
+      </div>
+      <div aria-busy="true" aria-label="프로젝트 정보를 불러오는 중" className="grid gap-dds-4">
+        <div className="flex items-center gap-dds-3">
+          <Skeleton shape="circle" className="size-10" />
+          <div className="grid flex-1 gap-dds-2">
+            <Skeleton className="max-w-[10rem]" />
+            <Skeleton className="max-w-[18rem]" />
+          </div>
+        </div>
+        <Skeleton shape="rect" className="min-h-24" />
+      </div>
+    </section>
   );
 }
 
@@ -223,6 +250,7 @@ export function App() {
             </Accordion.Root>
           </section>
 
+          <SkeletonPreview />
           <ToastFeedback />
         </div>
       </main>

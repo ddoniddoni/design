@@ -13,6 +13,7 @@ import {
   PageHeader,
   Popover,
   RadioGroup,
+  Skeleton,
   Switch,
   Tabs,
   Textarea,
@@ -349,6 +350,33 @@ export function AccordionSection() {
           </Accordion.Content>
         </Accordion.Item>
       </Accordion.Root>
+    </section>
+  );
+}
+
+export function SkeletonSection() {
+  return (
+    <section aria-labelledby="skeleton-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Loading state</p>
+          <h2 id="skeleton-title">Skeleton</h2>
+        </div>
+      </div>
+      <div
+        aria-busy="true"
+        aria-label="최근 프로젝트 활동을 불러오는 중"
+        className="skeletonPreview"
+      >
+        <div className="skeletonProfile">
+          <Skeleton shape="circle" />
+          <div className="skeletonText">
+            <Skeleton className="skeletonShortLine" />
+            <Skeleton />
+          </div>
+        </div>
+        <Skeleton className="skeletonBlock" shape="rect" />
+      </div>
     </section>
   );
 }

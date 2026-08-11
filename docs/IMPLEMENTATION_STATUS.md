@@ -1,8 +1,8 @@
 # 구현 상태
 
-- 마지막 갱신: 2026-08-11
-- 현재 Phase: Phase 15 Toast 완료
-- 전체 상태: v0.3 개발 진행 중
+- 마지막 갱신: 2026-08-12
+- 현재 Phase: Phase 16 Skeleton 완료
+- 전체 상태: v0.4 개발 진행 중
 
 ## Phase 0
 
@@ -167,6 +167,14 @@
 - [x] `@radix-ui/react-toast` stable runtime dependency 선언
 - [x] public named export, declaration, package tarball 검증
 
+## Phase 16
+
+- [x] CMP-020 Skeleton visual-only placeholder
+- [x] text/circle/rect shape, ref, className, native props 전달 테스트
+- [x] reduced motion, dark theme, content preview Storybook docs
+- [x] 일반 React와 Tailwind 예제 앱의 loading placeholder 사례 통합
+- [x] public named export, declaration, token, package tarball 검증
+
 ## 브랜드 및 dark theme 품질 개선
 
 - [x] TOK-003 기본 signature palette를 indigo에서 cobalt blue로 변경
@@ -192,17 +200,17 @@
 | `npm run lint`                                      | PASS | ESLint warning/error 0건                       |
 | `npm run stylelint`                                 | PASS | SCSS/CSS 선언 순서와 논리 속성 규칙 준수       |
 | `npm run typecheck`                                 | PASS | 루트 설정 및 UI workspace strict 검사 통과     |
-| `npm run test`                                      | PASS | 19개 파일, 54개 component test 통과            |
+| `npm run test`                                      | PASS | 20개 파일, 57개 component test 통과            |
 | `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과        |
 | `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
-| `npm run build-storybook`                           | PASS | Phase 2~15 component/foundation story 포함     |
+| `npm run build-storybook`                           | PASS | Phase 2~16 component/foundation story 포함     |
 | `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
 | `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰, theme selector, brand 대비 확인     |
 | `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |
 | `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성                |
 | `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함  |
-| `npm run pack:check`                                | PASS | tokens 3, ui 89, tailwind 3 files 계약 통과    |
-| `npm run check`                                     | PASS | Phase 0~15 전체 quality gate 통과              |
+| `npm run pack:check`                                | PASS | tokens 3, ui 93, tailwind 3 files 계약 통과    |
+| `npm run check`                                     | PASS | Phase 0~16 전체 quality gate 통과              |
 | `npx react-doctor@latest --verbose --scope changed` | PASS | full scan 100/100, issue 없음                  |
 
 ## 알려진 이슈

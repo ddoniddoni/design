@@ -32,7 +32,7 @@ export function ProfileForm() {
 ## 공개 컴포넌트
 
 - Button, IconButton
-- Spinner, Badge, Toast
+- Spinner, Skeleton, Badge, Toast
 - Field, Input, Textarea, Checkbox, RadioGroup, Switch
 - Card, PageHeader, Tabs, Accordion
 - Dialog, Tooltip, Popover, DropdownMenu
@@ -40,6 +40,17 @@ export function ProfileForm() {
 컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, Popover, DropdownMenu, Checkbox, RadioGroup, Switch, Tabs, Accordion의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
 
 Dark theme에서도 선택 표시가 선명하도록 Checkbox·RadioGroup indicator와 Switch thumb는 기본적으로 흰색 component token을 사용합니다.
+
+Skeleton은 카드나 목록의 구조를 유지하며 데이터를 불러올 때 사용하는 시각 전용 placeholder입니다. 로딩 상태와 이름은 Skeleton이 아닌 상위 컨테이너에 제공합니다.
+
+```tsx
+<section aria-busy="true" aria-label="프로필 정보를 불러오는 중">
+  <Skeleton style={{ inlineSize: "12rem" }} />
+  <Skeleton shape="rect" />
+</section>
+```
+
+`shape`는 `text`, `circle`, `rect`를 지원하며, 크기와 배치는 native `style` 또는 `className`으로 조정합니다. 표현은 `--dds-skeleton-bg`, `--dds-skeleton-highlight`, `--dds-skeleton-radius` token으로 재정의합니다.
 
 Checkbox와 label은 control 자체에 margin을 넣지 않고, 소비자 layout에서 중앙 정렬과 token gap을 함께 적용합니다.
 

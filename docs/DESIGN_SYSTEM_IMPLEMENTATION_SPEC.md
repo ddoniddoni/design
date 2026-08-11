@@ -1766,11 +1766,49 @@ export type ToastCloseProps = ToastPrimitive.ToastCloseProps;
 - controlled, tone, dark theme, Storybook interaction
 - 일반 React와 Tailwind 예제 앱에서 package root import로 사용
 
+## CMP-020 — Skeleton
+
+데이터를 기다리는 동안 최종 콘텐츠의 구조를 유지하는 시각 전용 Skeleton placeholder를 제공한다. 독립적인 진행 상태 알림에는 Spinner를 사용한다.
+
+### 공개 API
+
+```ts
+export type SkeletonShape = "text" | "circle" | "rect";
+
+export interface SkeletonProps
+  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "aria-hidden" | "children"> {
+  shape?: SkeletonShape;
+}
+```
+
+```tsx
+<section aria-busy="true" aria-label="프로필 정보를 불러오는 중">
+  <Skeleton style={{ inlineSize: "12rem" }} />
+  <Skeleton shape="rect" />
+</section>
+```
+
+### 요구사항
+
+- `Skeleton`의 named export를 제공하며 기본 element는 `span`이다.
+- `shape`는 `text`, `circle`, `rect`를 지원하고 기본값은 `text`다.
+- component는 시각 전용이므로 항상 `aria-hidden="true"`를 적용한다. 로딩 상태와 이름은 consumer가 상위 컨테이너의 `aria-busy`와 accessible name으로 제공한다.
+- 크기와 배치는 불필요한 prop을 추가하지 않고 native `style` 또는 `className`으로 조정한다.
+- ref, `className`, `style`, `data-*`, `title` 등 나머지 native prop을 실제 `HTMLSpanElement`로 전달한다.
+- shimmer와 shape 표현은 `--dds-skeleton-bg`, `--dds-skeleton-highlight`, `--dds-skeleton-radius` component token을 사용하고 reduced motion에서는 animation을 중지한다.
+- component rule은 `@layer components` 안에 두고 semantic/foundation token만 사용한다.
+
+### 필수 tests/stories
+
+- visual-only 기본 상태와 `text`/`circle`/`rect` shape
+- ref, className, native prop 전달
+- content preview, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
 
-- Skeleton
 - Select
 - Pagination
 - Table
@@ -2616,6 +2654,26 @@ npm run check
 - Viewport/Root/Title/Description/Action/Close native props, ref, className 전달을 테스트한다.
 - 두 예제 앱이 `Toast`를 package root에서 import한다.
 - package tarball에 Toast declaration이 포함된다.
+
+## Phase 16 — v0.4 Skeleton
+
+### 범위
+
+- [ ] `CMP-020` Skeleton
+- [ ] Skeleton tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 loading placeholder 사례 통합
+- [ ] public named export, declaration, token, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- Skeleton은 항상 visual-only이며 상위 컨테이너가 `aria-busy`와 accessible name을 제공하는 사용 예시를 포함한다.
+- `text`, `circle`, `rect` shape와 reduced motion, dark theme를 검증한다.
+- 두 예제 앱이 `Skeleton`을 package root에서 import한다.
+- package tarball에 Skeleton declaration이 포함된다.
 
 ---
 

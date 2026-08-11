@@ -7,6 +7,7 @@ import {
   AppHeader,
   OverlayComponentsCard,
   ProjectSettingsCard,
+  SkeletonSection,
   TabsSection,
   ThemeOverride,
 } from "./AppSections";
@@ -64,6 +65,7 @@ export function App() {
             </div>
             <TabsSection />
             <AccordionSection />
+            <SkeletonSection />
             <ThemeOverride />
           </div>
         </main>
