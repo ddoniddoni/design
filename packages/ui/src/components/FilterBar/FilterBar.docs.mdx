@@ -1,0 +1,52 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as FilterBarStories from "./FilterBar.stories";
+
+<Meta of={FilterBarStories} name="문서" />
+
+# FilterBar
+
+검색과 filter control, submit 또는 reset action을 조합하는 이름 있는 search form layout입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 목록 검색과 filter control을 한 form 안에서 조합할 때 사용합니다.
+- 검색, 초기화 같은 action을 control과 시각적으로 분리할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- query, URL 동기화, debounce, data fetching, 결과 state를 대신 관리하지 않습니다.
+- 단일 text input만 필요한 화면에는 layout wrapper 없이 `Input`을 사용할 수 있습니다.
+
+<Canvas of={FilterBarStories.Playground} sourceState="shown" />
+
+<h2 id="composition">control과 action 조합</h2>
+
+`Controls`에는 `Field`, `Input`, `Select` 같은 consumer control을 넣고, `Actions`에는 submit 또는 reset Button을 명시적으로 넣습니다. state와 submit handler는 consumer가 관리합니다.
+
+<Canvas of={FilterBarStories.Interaction} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`는 native `form`과 `role="search"`를 렌더링하며 기본 accessible name은 `목록 필터`입니다. `Controls`와 `Actions`는 layout `div`로 native props, className, ref를 전달합니다.
+
+<Controls of={FilterBarStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- Root에는 화면 맥락을 드러내는 `aria-label`을 제공합니다.
+- 각 control은 Field 또는 native label로 이름을 갖고, submit은 native form 흐름을 유지합니다.
+- 검색 결과와 reset 결과처럼 동적으로 바뀌는 상태는 필요할 때 consumer가 `aria-live`로 안내합니다.
+- layout은 responsive하게 wrap되므로 action 순서와 focus 순서가 일치하는지 확인합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+FilterBar surface는 `--dds-filter-bar-bg`, `--dds-filter-bar-border`, `--dds-filter-bar-text`, `--dds-filter-bar-radius` token으로 조정합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-filter-bar-border: var(--dds-color-brand-200);
+  --dds-filter-bar-radius: var(--dds-radius-lg);
+}
+```

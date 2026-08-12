@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, within } from "storybook/test";
 import { Button } from "../Button/Button";
 import type { CheckboxCheckedState } from "../Checkbox/Checkbox";
@@ -55,8 +54,8 @@ const meta = {
   component: DropdownMenu.Content,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.dropdownMenu } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof DropdownMenu.Content>;
 
 export default meta;

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, within } from "storybook/test";
 import { IconButton } from "../IconButton/IconButton";
 import { Tooltip } from "./Tooltip";
@@ -27,12 +26,8 @@ const meta = {
   component: Tooltip.Content,
   parameters: {
     a11y: { test: "error" },
-    docs: {
-      description: {
-        component: componentDocs.tooltip,
-      },
-    },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Tooltip.Content>;
 
 export default meta;

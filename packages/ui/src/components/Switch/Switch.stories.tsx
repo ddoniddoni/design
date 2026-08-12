@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import { Switch } from "./Switch";
 
@@ -18,7 +17,7 @@ function ControlledExample() {
 const meta = {
   title: "Components/Forms/Switch",
   component: Switch,
-  parameters: { docs: { description: { component: componentDocs.switch } } },
+  tags: ["!autodocs"],
   args: {
     "aria-label": "프로젝트 알림",
     onCheckedChange: fn(),

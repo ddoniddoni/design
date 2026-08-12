@@ -2,7 +2,6 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Pagination } from "./Pagination";
 
 const pages = [1, 2, 3, 8] as const;
@@ -71,8 +70,8 @@ const meta = {
   component: Pagination.Root,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.pagination } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Pagination.Root>;
 
 export default meta;

@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as TooltipStories from "./Tooltip.stories";
+
+<Meta of={TooltipStories} name="문서" />
+
+# Tooltip
+
+pointer hover 또는 keyboard focus에서 짧은 보조 설명을 제공하는 overlay 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- icon-only control의 의미나 짧은 추가 맥락을 보조할 때 사용합니다.
+- 화면을 방해하지 않는 간결한 도움말이 필요할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- essential information 또는 오류 메시지의 유일한 전달 수단으로 사용하지 않습니다.
+- action이나 form을 포함하는 interactive content에는 `Popover` 또는 `Dialog`를 사용합니다.
+
+<Canvas of={TooltipStories.Playground} sourceState="shown" />
+
+<h2 id="composition">provider와 trigger 조합</h2>
+
+`Provider`, `Root`, `Trigger`, `Portal`, `Content`, `Arrow`를 조합합니다. `Trigger asChild`로 IconButton 같은 기존 control의 semantics를 보존하고, Provider의 `delayDuration`으로 노출 지연을 조정합니다.
+
+<Canvas of={TooltipStories.Interaction} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+Provider는 delay 설정을, Root는 open state를 Radix 계약대로 지원합니다. Content의 기본 `sideOffset`은 8이며 Content와 Arrow는 native props, `className`, ref를 실제 DOM 요소에 전달합니다.
+
+<Controls of={TooltipStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- Tooltip은 pointer hover와 keyboard focus 모두에서 표시되며 trigger와 tooltip role 관계는 Radix가 연결합니다.
+- icon-only trigger에는 Tooltip과 별개로 `aria-label` 같은 accessible name을 반드시 제공합니다.
+- 오류, 제한사항, 완료 조건처럼 사용자가 반드시 알아야 하는 정보는 화면에 항상 보이는 text로도 제공합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Tooltip surface와 layer는 `--dds-tooltip-bg`, `--dds-tooltip-text`, `--dds-tooltip-radius`, `--dds-z-index-tooltip` token으로 조정합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-tooltip-bg: var(--dds-color-bg-inverse);
+  --dds-tooltip-radius: var(--dds-radius-md);
+}
+```

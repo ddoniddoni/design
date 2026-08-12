@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Badge } from "../Badge";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Table } from "./Table";
 
 function ProjectTable() {
@@ -44,8 +43,8 @@ const meta = {
   component: Table.Root,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.table } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Table.Root>;
 
 export default meta;

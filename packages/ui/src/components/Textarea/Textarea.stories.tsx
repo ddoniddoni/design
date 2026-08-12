@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import { Textarea } from "./Textarea";
 
 const meta = {
   title: "Components/Forms/Textarea",
   component: Textarea,
-  parameters: { docs: { description: { component: componentDocs.textarea } } },
+  tags: ["!autodocs"],
   args: {
     "aria-label": "설명",
     onChange: fn(),

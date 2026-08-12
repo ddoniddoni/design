@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, fn, within } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Select } from "./Select";
 import type { SelectRootProps } from "./Select";
 
@@ -55,8 +54,8 @@ const meta = {
   component: Select.Root,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.select } },
   },
+  tags: ["!autodocs"],
   args: {
     defaultValue: "team",
     onValueChange: fn(),

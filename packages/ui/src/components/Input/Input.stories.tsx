@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import { Input } from "./Input";
 
 const meta = {
   title: "Components/Forms/Input",
   component: Input,
-  parameters: { docs: { description: { component: componentDocs.input } } },
+  tags: ["!autodocs"],
   args: {
     "aria-label": "입력값",
     onChange: fn(),

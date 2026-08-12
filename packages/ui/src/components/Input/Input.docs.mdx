@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as InputStories from "./Input.stories";
+
+<Meta of={InputStories} name="문서" />
+
+# Input
+
+짧은 한 줄 값을 받는 native input primitive입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 이름, 이메일, 검색어처럼 한 줄의 값을 입력할 때 사용합니다.
+- Field와 조합해 label, 설명, 오류 메시지를 명시할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 여러 줄의 설명이나 의견에는 `Textarea`를 사용합니다.
+- 제한된 옵션 중 하나를 선택해야 하면 `Select` 또는 `RadioGroup`을 사용합니다.
+
+<Canvas of={InputStories.Playground} sourceState="shown" />
+
+<h2 id="states">크기와 입력 상태</h2>
+
+`size`는 control의 높이와 글자 크기를 조정합니다. placeholder는 label을 대신하지 않으며, invalid와 disabled 상태는 native 속성과 함께 사용합니다.
+
+<Canvas of={InputStories.AllSizes} sourceState="shown" />
+
+<Canvas of={InputStories.Invalid} sourceState="shown" />
+
+<Canvas of={InputStories.WithLabelAndDescription} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`size`의 기본값은 `md`이며, `invalid`는 `aria-invalid="true"`를 설정합니다. `type`, `name`, `value`, `defaultValue`, `onChange`, `readOnly`, `required` 등 native input props와 ref를 전달합니다.
+
+<Controls of={InputStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- visible `<label htmlFor>` 또는 `aria-label`로 이름을 제공합니다.
+- placeholder는 입력 형식을 보조할 수 있지만 label의 대체물이 아닙니다.
+- invalid 이유는 `aria-describedby`로 오류 텍스트와 연결합니다.
+- disabled와 readOnly는 서로 다른 상태입니다. 값을 보존하면서 수정만 막으려면 readOnly를 사용합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+입력 surface와 상태는 `--dds-input-bg`, `--dds-input-text`, `--dds-input-placeholder`, `--dds-input-border-*`, `--dds-control-*` token으로 조정합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-input-border-focus: var(--dds-color-brand-500);
+  --dds-control-radius: var(--dds-radius-lg);
+}
+```

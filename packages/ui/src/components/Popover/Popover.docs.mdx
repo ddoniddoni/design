@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as PopoverStories from "./Popover.stories";
+
+<Meta of={PopoverStories} name="문서" />
+
+# Popover
+
+trigger 또는 anchor 가까이에 짧은 보조 콘텐츠와 action을 표시하는 overlay 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 공유 옵션, 간단한 preview처럼 현재 맥락을 벗어나지 않는 보조 content에 사용합니다.
+- trigger와 다른 요소를 배치 기준으로 삼아야 할 때 `Anchor`를 사용합니다.
+
+### 사용하지 않을 때
+
+- 작업을 중단하거나 focus trap이 필요한 흐름에는 `Dialog`를 사용합니다.
+- 짧은 hover 도움말에는 `Tooltip`을 사용합니다.
+
+<Canvas of={PopoverStories.Playground} sourceState="shown" />
+
+<h2 id="composition">trigger, content, anchor 조합</h2>
+
+`Root`, `Trigger`, `Portal`, `Content`, `Close`, `Arrow`를 조합하고, 필요할 때 `Anchor`로 trigger와 다른 배치 기준을 지정합니다. 표시 state는 `open`과 `onOpenChange`로 제어할 수 있습니다.
+
+<Canvas of={PopoverStories.WithAnchor} sourceState="shown" />
+
+<Canvas of={PopoverStories.Interaction} sourceState="shown" />
+
+<h2 id="props">주요 API와 state</h2>
+
+Content는 기본 `sideOffset={8}`, `collisionPadding={16}`을 사용하며 consumer가 override할 수 있습니다. Root의 state API와 Content·Close·Arrow의 native props, `className`, ref를 함께 사용합니다.
+
+<Controls of={PopoverStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- Popover Content는 dialog role을 사용하므로 `aria-label` 또는 `aria-labelledby`로 이름을 제공합니다.
+- Escape, Close, outside interaction으로 닫히며 닫힌 뒤 Trigger로 focus가 복귀합니다.
+- 짧은 보조 content와 action만 넣고, 긴 form이나 중요한 결정은 Dialog로 분리합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Popover surface와 arrow는 `--dds-popover-bg`, `--dds-popover-border`, `--dds-popover-radius`, `--dds-popover-shadow` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-popover-bg: var(--dds-color-bg-surface-elevated);
+  --dds-popover-radius: var(--dds-radius-lg);
+}
+```

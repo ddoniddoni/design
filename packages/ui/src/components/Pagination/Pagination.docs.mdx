@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as PaginationStories from "./Pagination.stories";
+
+<Meta of={PaginationStories} name="문서" />
+
+# Pagination
+
+여러 페이지로 나뉜 목록의 현재 위치와 페이지 이동 link를 제공하는 semantic navigation 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트, 활동, 검색 결과처럼 같은 종류의 목록을 명확한 페이지 단위로 나눌 때 사용합니다.
+- URL 또는 query parameter로 현재 페이지를 표현하는 consumer 흐름에 사용할 때 적합합니다.
+
+### 사용하지 않을 때
+
+- 더 불러오기나 무한 scroll 방식의 목록에는 사용하지 않습니다.
+- 페이지 전환, data fetching, 현재 state는 component 내부에서 관리하지 않습니다.
+
+<Canvas of={PaginationStories.Playground} sourceState="shown" />
+
+<h2 id="composition">link와 현재 페이지</h2>
+
+`Root`, `List`, `Item` 안에 native anchor인 `Link`, `Previous`, `Next`를 조합합니다. 각 link의 `href`와 click 처리, 목록 데이터는 consumer가 담당합니다.
+
+<Canvas of={PaginationStories.Interaction} sourceState="shown" />
+
+<Canvas of={PaginationStories.FirstPage} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`는 기본 이름이 `페이지 탐색`인 `nav`, `List`는 `ol`, `Item`과 `Ellipsis`는 `li`를 렌더링합니다. `Link`, `Previous`, `Next`의 `href`는 필수이고, 모든 component가 native props, `className`, ref를 전달합니다.
+
+<Controls of={PaginationStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- `Root`의 `aria-label`은 목록 맥락에 맞게 지정합니다. 예: `프로젝트 목록 페이지`.
+- 현재 페이지의 `Link`에는 반드시 `aria-current="page"`를 지정하고, 각 페이지 link에는 대상 페이지를 알 수 있는 label을 제공합니다.
+- `Ellipsis`는 visual-only입니다. 클릭 가능한 생략 기호가 필요하면 별도 link를 consumer가 구성합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+link, hover, current page state는 `--dds-pagination-*` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-pagination-current-bg: var(--dds-color-brand-600);
+  --dds-pagination-current-text: var(--dds-color-neutral-0);
+}
+```

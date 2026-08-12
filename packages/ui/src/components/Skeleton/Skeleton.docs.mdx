@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as SkeletonStories from "./Skeleton.stories";
+
+<Meta of={SkeletonStories} name="문서" />
+
+# Skeleton
+
+아직 준비되지 않은 콘텐츠의 구조를 시각적으로 유지하는 loading placeholder입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 카드, 프로필, 목록처럼 최종 layout을 유지하며 데이터를 불러올 때 사용합니다.
+- 콘텐츠의 길이와 위치를 미리 보여 줘 layout shift를 줄여야 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 독립적인 처리 진행 상태에는 `Spinner`, 작업 완료나 변경 알림에는 `Toast`를 사용합니다.
+- 로딩 상태와 이름을 Skeleton 자체에 넣지 않습니다.
+
+<Canvas of={SkeletonStories.Playground} sourceState="shown" />
+
+<h2 id="variants">shape와 콘텐츠 preview</h2>
+
+기본 `text` 외에 avatar용 `circle`, block 영역용 `rect`를 제공합니다. 크기와 배치는 새 prop 대신 native `style` 또는 `className`으로 조정합니다.
+
+<Canvas of={SkeletonStories.Shapes} sourceState="shown" />
+
+<Canvas of={SkeletonStories.ContentPreview} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`shape`는 `text`, `circle`, `rect` 중 하나를 선택합니다. `Skeleton`은 native `span`의 `style`, `className`, `data-*`, `title`, ref를 전달합니다.
+
+<Controls of={SkeletonStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- Skeleton은 항상 `aria-hidden="true"`인 시각 요소입니다.
+- 상위 컨테이너에 `aria-busy="true"`와 `aria-label="프로필 정보를 불러오는 중"`처럼 로딩 상태와 이름을 제공합니다.
+- 애니메이션은 reduced motion 환경에서 중지되므로 shimmer에만 진행 정보를 의존하지 않습니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Skeleton의 base, highlight, radius는 `--dds-skeleton-bg`, `--dds-skeleton-highlight`, `--dds-skeleton-radius` token으로 조정합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-skeleton-bg: var(--dds-color-brand-100);
+  --dds-skeleton-highlight: var(--dds-color-brand-50);
+}
+```

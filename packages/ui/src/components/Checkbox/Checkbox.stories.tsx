@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { CSSProperties } from "react";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import type { CheckboxCheckedState } from "./Checkbox";
 import { Checkbox } from "./Checkbox";
@@ -32,7 +31,7 @@ function ControlledExample() {
 const meta = {
   title: "Components/Forms/Checkbox",
   component: Checkbox,
-  parameters: { docs: { description: { component: componentDocs.checkbox } } },
+  tags: ["!autodocs"],
   args: {
     "aria-label": "이용약관에 동의합니다",
     onCheckedChange: fn(),

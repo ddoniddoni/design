@@ -5,7 +5,6 @@ import { expect } from "storybook/test";
 import { Button } from "../Button";
 import { Field } from "../Field";
 import { Input } from "../Input";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { FilterBar } from "./FilterBar";
 
 function ProjectFilterBar() {
@@ -52,12 +51,12 @@ function ProjectFilterBar() {
 }
 
 const meta = {
-  title: "Components/Form/FilterBar",
+  title: "Components/Forms/FilterBar",
   component: FilterBar.Root,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.filterBar } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof FilterBar.Root>;
 
 export default meta;

@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as DropdownMenuStories from "./DropdownMenu.stories";
+
+<Meta of={DropdownMenuStories} name="문서" />
+
+# DropdownMenu
+
+trigger에 연결된 관련 action을 compact하게 제공하는 menu 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 편집, 복제, 내보내기처럼 같은 대상과 관련된 여러 action을 묶을 때 사용합니다.
+- 제한된 공간에서 secondary action을 숨기되 keyboard로도 접근 가능하게 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- form value를 선택하는 control에는 `Select`를 사용합니다.
+- menu item 안에 별도의 button을 중첩하거나, 꼭 필요한 action을 menu에만 숨기지 않습니다.
+
+<Canvas of={DropdownMenuStories.Playground} sourceState="shown" />
+
+<h2 id="composition">item, 선택, submenu 조합</h2>
+
+`Root`, `Trigger`, `Portal`, `Content` 안에 `Item`, `CheckboxItem`, `RadioGroup`, `RadioItem`, `Sub`를 조합합니다. disabled item, shortcut, destructive `tone="danger"`를 명시적으로 표현할 수 있습니다.
+
+<Canvas of={DropdownMenuStories.Interaction} sourceState="shown" />
+
+<h2 id="props">주요 API와 state</h2>
+
+Root는 controlled/uncontrolled open state를, Content는 `sideOffset`을 Radix 계약대로 제공합니다. Item 계열은 `inset`, `shortcut`, `tone` 외 native props, `className`, ref를 실제 menu item에 전달합니다.
+
+<Controls of={DropdownMenuStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- menu role과 Arrow key navigation, disabled item, Escape close, trigger focus 복귀는 Radix가 관리합니다.
+- action label은 동작을 명확히 설명해야 하며 shortcut은 보조 시각 정보입니다.
+- 파괴적 action은 `danger` tone과 `프로젝트 삭제` 같은 text를 함께 제공합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+DropdownMenu는 `--dds-color-bg-surface-elevated`, `--dds-color-border-default`, `--dds-color-text-*`, `--dds-z-index-dropdown` semantic token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-color-bg-surface-elevated: var(--dds-color-brand-50);
+  --dds-z-index-dropdown: 1100;
+}
+```

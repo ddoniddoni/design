@@ -1,0 +1,200 @@
+.docsPage {
+  min-inline-size: 0;
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  color: var(--dds-color-text-primary);
+  font-family: var(--dds-font-family-sans);
+  font-size: var(--dds-font-size-md);
+  line-height: var(--dds-line-height-relaxed);
+}
+
+.content {
+  min-inline-size: 0;
+}
+
+// Storybook 10 renders attached MDX directly in `.sbdocs-content`, rather
+// than under the custom DocsPage wrapper. Keep the selectors specific enough
+// to win over Storybook's generated document styles in both themes.
+:global(.sbdocs.sbdocs-content) {
+  color: var(--dds-color-text-primary);
+  font-family: var(--dds-font-family-sans);
+  font-size: var(--dds-font-size-md);
+  line-height: var(--dds-line-height-relaxed);
+}
+
+:global(.sbdocs.sbdocs-preview) {
+  border: 1px solid var(--dds-color-border-default);
+  border-radius: var(--dds-radius-md);
+  background-color: var(--dds-color-bg-surface);
+  box-shadow: var(--dds-shadow-xs);
+  color: var(--dds-color-text-primary);
+}
+
+:global(.sbdocs.sbdocs-preview .docs-story) {
+  color: var(--dds-color-text-primary);
+}
+
+:global(.sbdocs.sbdocs-content h1),
+:global(.sbdocs.sbdocs-content h2),
+:global(.sbdocs.sbdocs-content h3),
+:global(.sbdocs.sbdocs-content h4),
+:global(.sbdocs.sbdocs-content h5),
+:global(.sbdocs.sbdocs-content h6),
+:global(.sbdocs.sbdocs-content p),
+:global(.sbdocs.sbdocs-content li),
+:global(.sbdocs.sbdocs-content td) {
+  color: var(--dds-color-text-primary);
+}
+
+:global(.sbdocs.sbdocs-content a) {
+  color: var(--dds-color-text-link);
+}
+
+.docsPage :global(h1),
+.docsPage :global(h2),
+.docsPage :global(h3),
+.docsPage :global(h4),
+.docsPage :global(h5),
+.docsPage :global(h6) {
+  color: var(--dds-color-text-primary);
+  font-family: var(--dds-font-family-sans);
+}
+
+.docsPage :global(h2) {
+  margin-block-start: var(--dds-space-12);
+  padding-block-end: var(--dds-space-2);
+  border-block-end: 1px solid var(--dds-color-border-default);
+}
+
+.docsPage :global(p),
+.docsPage :global(li),
+.docsPage :global(td) {
+  color: var(--dds-color-text-primary);
+}
+
+.docsPage :global(a) {
+  color: var(--dds-color-text-link);
+}
+
+.docsPage :global(code) {
+  border-color: var(--dds-color-border-default);
+  border-radius: var(--dds-radius-sm);
+  background-color: var(--dds-color-bg-surface-subtle);
+  color: var(--dds-color-text-primary);
+}
+
+.docsPage :global(pre) {
+  max-inline-size: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--dds-color-border-default);
+  border-radius: var(--dds-radius-md);
+  background-color: var(--dds-color-bg-surface-subtle);
+  box-shadow: var(--dds-shadow-xs);
+}
+
+.docsPage :global(pre code) {
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+}
+
+.docsPage :global(table) {
+  display: block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  border-color: var(--dds-color-border-default);
+}
+
+.docsPage .content :global(table tr),
+.docsPage .content :global(table tr:nth-of-type(2n)) {
+  border-color: var(--dds-color-border-default);
+  background-color: var(--dds-color-bg-surface);
+}
+
+.docsPage .content :global(table th),
+.docsPage .content :global(table td) {
+  background-color: var(--dds-color-bg-surface);
+  border-color: var(--dds-color-border-default);
+  color: var(--dds-color-text-primary);
+}
+
+.docsPage .content :global(table th) {
+  background-color: var(--dds-color-bg-surface-subtle);
+  color: var(--dds-color-text-secondary);
+}
+
+.docsPage .content :global(table tbody > tr > *) {
+  background-color: var(--dds-color-bg-surface);
+  border-color: var(--dds-color-border-default);
+  color: var(--dds-color-text-primary);
+}
+
+.docsPage :global(.sbdocs-preview) {
+  border: 1px solid var(--dds-color-border-default);
+  border-radius: var(--dds-radius-md);
+  background-color: var(--dds-color-bg-surface);
+  box-shadow: var(--dds-shadow-xs);
+}
+
+:global(.sbdocs.sbdocs-wrapper) {
+  align-items: flex-start;
+  gap: var(--dds-space-12);
+  padding: var(--dds-space-12) var(--dds-space-8);
+  background-color: var(--dds-color-bg-canvas);
+}
+
+:global(.sbdocs.sbdocs-content) {
+  max-inline-size: 72rem;
+  color: var(--dds-color-text-primary);
+}
+
+:global(.sbdocs.sbdocs-toc--custom) {
+  flex: 0 0 12rem;
+  inline-size: 12rem;
+}
+
+:global(.sbdocs.sbdocs-toc--custom nav) {
+  position: sticky;
+  inset-block-start: var(--dds-space-8);
+  inline-size: inherit;
+  padding-block: var(--dds-space-2);
+  color: var(--dds-color-text-secondary);
+}
+
+:global(.sbdocs.sbdocs-toc--custom h2) {
+  color: var(--dds-color-text-primary);
+}
+
+:global(.sbdocs.sbdocs-toc--custom .toc-list),
+:global(.sbdocs.sbdocs-toc--custom .toc-list .toc-list) {
+  border-inline-start-color: var(--dds-color-border-default);
+}
+
+:global(.sbdocs.sbdocs-toc--custom .toc-list-item > a) {
+  color: var(--dds-color-text-secondary);
+}
+
+:global(.sbdocs.sbdocs-toc--custom .toc-list-item.is-active-li > a) {
+  color: var(--dds-color-text-link);
+}
+
+@media (max-width: 1200px) {
+  :global(.sbdocs.sbdocs-wrapper) {
+    gap: var(--dds-space-8);
+  }
+
+  :global(.sbdocs.sbdocs-toc--custom) {
+    flex-basis: 10rem;
+    inline-size: 10rem;
+  }
+}
+
+@media (max-width: 960px) {
+  :global(.sbdocs.sbdocs-wrapper) {
+    padding: var(--dds-space-8) var(--dds-space-4);
+  }
+
+  :global(.sbdocs.sbdocs-toc--custom) {
+    display: none;
+  }
+}

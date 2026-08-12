@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect } from "storybook/test";
 import { Input } from "../Input/Input";
 import { Textarea } from "../Textarea/Textarea";
@@ -9,7 +8,7 @@ import { Field } from "./Field";
 const meta = {
   title: "Components/Forms/Field",
   component: Field.Root,
-  parameters: { docs: { description: { component: componentDocs.field } } },
+  tags: ["!autodocs"],
   args: {
     disabled: false,
     invalid: false,

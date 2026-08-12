@@ -1,0 +1,55 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as BadgeStories from "./Badge.stories";
+
+<Meta of={BadgeStories} name="문서" />
+
+# Badge
+
+짧은 상태나 분류를 compact하게 표시하는 inline data display 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 목록과 Card에서 상태, 분류, 우선순위를 짧은 텍스트로 구분할 때 사용합니다.
+- 색상과 visible text를 함께 사용해 빠르게 스캔할 수 있게 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- Badge 색상만으로 성공·오류처럼 중요한 의미를 전달하지 않습니다.
+- 길이가 긴 설명, 사용자 action, 진행 상태에는 적절한 text나 Button, Spinner를 사용합니다.
+
+<Canvas of={BadgeStories.Playground} sourceState="shown" />
+
+<h2 id="variants">variant, tone, dot</h2>
+
+`variant`는 `solid`, `soft`, `outline` 표현을, `tone`은 상태 의미를 선택합니다. `dot`은 text를 보조하는 장식이므로 의미를 대체하지 않습니다.
+
+<Canvas of={BadgeStories.AllVariants} sourceState="shown" />
+
+<Canvas of={BadgeStories.AllTones} sourceState="shown" />
+
+<Canvas of={BadgeStories.WithDot} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`Badge`는 native `span`을 렌더링합니다. `variant`, `tone`, `size`, `dot` 외에도 `className`, `title`, `data-*`, `aria-*`, ref를 전달합니다.
+
+<Controls of={BadgeStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- 상태는 색상만이 아니라 `완료`, `검토 중` 같은 텍스트로 함께 제공합니다.
+- `dot`은 `aria-hidden`인 장식입니다. dot의 의미가 중요하면 Badge의 text 또는 인접한 설명에 표현합니다.
+- Badge는 non-interactive `span`입니다. click action이 필요하면 button 또는 link semantics를 사용합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Badge는 `--dds-color-status-*`, `--dds-color-action-*`, `--dds-radius-full`, `--dds-space-*` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-color-status-success-bg: var(--dds-color-brand-100);
+  --dds-color-status-success-text: var(--dds-color-brand-800);
+}
+```

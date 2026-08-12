@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ToastStories from "./Toast.stories";
+
+<Meta of={ToastStories} name="문서" />
+
+# Toast
+
+사용자의 action 결과나 상태 변화를 잠시 알리는 non-blocking feedback 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 저장 완료처럼 현재 흐름을 중단하지 않고 확인할 수 있는 짧은 피드백에 사용합니다.
+- 실행 취소처럼 제한된 action을 곁들일 수 있는 상태 변화에 사용합니다.
+
+### 사용하지 않을 때
+
+- 위험한 작업의 확인에는 `Dialog`, 지속적으로 보여야 하는 상태에는 inline text나 `Badge`를 사용합니다.
+- queue, store, data fetching 같은 전역 상태 관리를 Toast에 추가하지 않습니다.
+
+<Canvas of={ToastStories.Playground} sourceState="shown" />
+
+<h2 id="states">tone과 제어 상태</h2>
+
+`tone`은 상태 의미를 보조하며, `Title`과 `Description`으로 결과를 text로도 전달합니다. consumer는 `open`과 `onOpenChange`로 표시 상태를 제어할 수 있습니다.
+
+<Canvas of={ToastStories.Tones} sourceState="shown" />
+
+<Canvas of={ToastStories.Controlled} sourceState="shown" />
+
+<h2 id="props">주요 API와 state</h2>
+
+`Provider`, `Viewport`, `Root`, `Title`, `Description`, `Action`, `Close`를 조합합니다. Root는 `open`, `defaultOpen`, `onOpenChange`, `type`, `duration`을 Radix 계약대로 지원하고 DOM subcomponent는 native props와 ref를 전달합니다.
+
+<Controls of={ToastStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- 비긴급 알림에는 `type="background"`을 사용해 polite announcement를 유지합니다.
+- `Action`에는 대체 동작을 설명하는 비어 있지 않은 `altText`가 필요합니다.
+- `Viewport`에는 맥락에 맞는 label을 제공하며 F8 shortcut, Escape, swipe dismiss는 Radix 동작을 따릅니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Toast surface와 tone accent는 `--dds-toast-bg`, `--dds-toast-text`, `--dds-toast-border`, `--dds-toast-radius`, `--dds-toast-shadow`, `--dds-toast-*-accent` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-toast-success-accent: var(--dds-color-brand-600);
+  --dds-toast-radius: var(--dds-radius-lg);
+}
+```

@@ -1,6 +1,8 @@
 import type { Preview } from "@storybook/react-vite";
 import "./preview.css";
 import "../packages/tokens/src/index.scss";
+import { DDoniDocsPage } from "./docs/DocsPage";
+import { ddoniStorybookTheme } from "./theme";
 
 const themeOptions = ["light", "dark", "system"] as const;
 type ThemeOption = (typeof themeOptions)[number];
@@ -10,6 +12,7 @@ function getThemeOption(value: unknown): ThemeOption {
 }
 
 const preview: Preview = {
+  tags: ["autodocs"],
   globalTypes: {
     theme: {
       description: "DDoni Design System theme",
@@ -36,6 +39,50 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    docs: {
+      page: DDoniDocsPage,
+      theme: ddoniStorybookTheme,
+      toc: {
+        headingSelector: "h2",
+        ignoreSelector: ".docs-story *, .skip-toc",
+        title: "On this page",
+      },
+    },
+    options: {
+      storySort: {
+        method: "alphabetical",
+        order: [
+          "Foundations",
+          ["Colors", "Typography", "Spacing", "Radius", "Shadows", "Motion"],
+          "Components",
+          [
+            "Actions",
+            ["Button", "IconButton"],
+            "Forms",
+            [
+              "Field",
+              "Input",
+              "Textarea",
+              "Checkbox",
+              "RadioGroup",
+              "Select",
+              "Switch",
+              "FilterBar",
+            ],
+            "Layout",
+            ["Card", "PageHeader"],
+            "Navigation",
+            ["Accordion", "Tabs", "Pagination"],
+            "Data Display",
+            ["Badge", "Table"],
+            "Feedback",
+            ["EmptyState", "Skeleton", "Spinner", "Toast"],
+            "Overlays",
+            ["Dialog", "DropdownMenu", "Popover", "Tooltip"],
+          ],
+        ],
       },
     },
   },

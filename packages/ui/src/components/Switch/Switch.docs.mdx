@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as SwitchStories from "./Switch.stories";
+
+<Meta of={SwitchStories} name="문서" />
+
+# Switch
+
+변경 즉시 효력이 생기는 단일 boolean 설정을 켜거나 끄는 control입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 알림, 자동 저장처럼 토글하는 즉시 설정이 적용될 때 사용합니다.
+- 켜짐과 꺼짐이 독립된 현재 상태를 명확히 표현해야 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- form 제출 전까지 확정되지 않는 선택이나 약관 동의에는 `Checkbox`를 사용합니다.
+- 여러 항목 중 하나를 선택하는 경우에는 `RadioGroup`을 사용합니다.
+
+<Canvas of={SwitchStories.Playground} sourceState="shown" />
+
+<h2 id="states">제어 상태와 form</h2>
+
+`checked`와 `onCheckedChange`로 제어하거나 `defaultChecked`로 초기 상태를 지정합니다. `name`, `value`, `required`는 form 안에서 사용할 수 있습니다.
+
+<Canvas of={SwitchStories.Controlled} sourceState="shown" />
+
+<Canvas of={SwitchStories.WithLabel} sourceState="shown" />
+
+<Canvas of={SwitchStories.Disabled} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`checked`, `defaultChecked`, `onCheckedChange`, `disabled`, `name`, `value`, `required`, `id`와 aria props를 전달합니다. children은 받지 않으며 thumb은 내부 구조입니다.
+
+<Controls of={SwitchStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- 외부 `<label htmlFor>` 또는 `aria-label`로 이름을 제공합니다.
+- `role="switch"`, `aria-checked`, Space keyboard 동작은 Radix가 관리합니다.
+- on/off의 결과나 변경 시점을 label 또는 주변 설명에서 분명히 알립니다.
+- disabled state에는 action이 실행되지 않습니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Switch track은 `--dds-color-action-primary-*`, `--dds-color-action-neutral-*`을, thumb은 `--dds-switch-thumb-bg`를 사용합니다.
+
+```css
+[data-dds-theme="dark"] {
+  --dds-switch-thumb-bg: var(--dds-color-neutral-0);
+  --dds-color-action-primary-bg: var(--dds-color-brand-600);
+}
+```

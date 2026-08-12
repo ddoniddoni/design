@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as SpinnerStories from "./Spinner.stories";
+
+<Meta of={SpinnerStories} name="문서" />
+
+# Spinner
+
+짧은 비동기 처리 진행 상태를 알리는 compact feedback 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- button loading이나 특정 영역의 짧은 처리 진행 상태를 알릴 때 사용합니다.
+- 화면 전체 layout을 바꾸지 않고 진행 중임을 알려야 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 최종 콘텐츠 구조를 유지한 채 데이터를 불러올 때는 `Skeleton`을 사용합니다.
+- 작업 완료, 실패, 취소 가능 action의 피드백에는 `Toast` 또는 inline message를 사용합니다.
+
+<Canvas of={SpinnerStories.Playground} sourceState="shown" />
+
+<h2 id="variants">size와 장식 용도</h2>
+
+`sm`, `md`, `lg` size를 제공하며, Button 내부처럼 주변 text가 이미 상태를 설명하는 경우에는 `decorative`를 사용합니다.
+
+<Canvas of={SpinnerStories.AllSizes} sourceState="shown" />
+
+<Canvas of={SpinnerStories.Decorative} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`size`, `label`, `decorative`와 native `span` props를 지원합니다. standalone 기본값은 `role="status"`, 기본 label은 `로딩 중`입니다.
+
+<Controls of={SpinnerStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- standalone Spinner에는 현재 작업을 설명하는 `label`을 제공합니다.
+- `decorative`는 `aria-hidden`을 적용하므로 인접한 text나 control이 같은 상태를 설명할 때만 사용합니다.
+- reduced motion에서는 animation이 중지될 수 있으므로 spinner만으로 중요한 상태를 전달하지 않습니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Spinner의 motion과 원형 표현은 `--dds-duration-slow`, `--dds-ease-standard`, `--dds-radius-full`, action color semantic token을 따릅니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-color-action-primary-bg: var(--dds-color-brand-700);
+  --dds-duration-slow: 320ms;
+}
+```

@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, fn } from "storybook/test";
 import { IconButton } from "./IconButton";
 
 const meta = {
   title: "Components/Actions/IconButton",
   component: IconButton,
-  parameters: { docs: { description: { component: componentDocs.iconButton } } },
+  tags: ["!autodocs"],
   args: {
     "aria-label": "메뉴 열기",
     icon: <span aria-hidden="true">☰</span>,

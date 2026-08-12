@@ -1,0 +1,55 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as TextareaStories from "./Textarea.stories";
+
+<Meta of={TextareaStories} name="문서" />
+
+# Textarea
+
+여러 줄의 텍스트 값을 받는 native textarea primitive입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트 설명, 의견, 메시지처럼 줄바꿈이 필요한 긴 값을 입력할 때 사용합니다.
+- Field와 조합해 label, 설명, 오류 메시지를 제공할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 짧은 한 줄 값에는 `Input`을 사용합니다.
+- 서식 있는 문서 편집이나 markdown editor 기능은 제공하지 않습니다.
+
+<Canvas of={TextareaStories.Playground} sourceState="shown" />
+
+<h2 id="states">리사이즈와 오류 상태</h2>
+
+기본 `resize`는 `vertical`입니다. layout을 유지해야 하면 `none`을, 가로 변경이 제품 요구사항에 맞을 때만 `horizontal` 또는 `both`를 사용합니다.
+
+<Canvas of={TextareaStories.ResizeModes} sourceState="shown" />
+
+<Canvas of={TextareaStories.Invalid} sourceState="shown" />
+
+<Canvas of={TextareaStories.WithLabel} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`size`, `invalid`, `resize` 외 `name`, `value`, `defaultValue`, `onChange`, `required`, `readOnly` 같은 native textarea props와 ref를 전달합니다. `invalid`는 `aria-invalid="true"`를 설정합니다.
+
+<Controls of={TextareaStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- visible `<label htmlFor>` 또는 `aria-label`을 제공합니다.
+- 입력 가능한 최대 길이, 형식, 오류는 control 근처의 text로 설명하고 `aria-describedby`로 연결합니다.
+- placeholder는 label을 대신하지 않으며, resize가 가능해도 keyboard 입력 흐름은 그대로 유지됩니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Textarea는 Input과 `--dds-input-*`, `--dds-control-radius`, `--dds-control-border-width` token을 공유합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-input-border-focus: var(--dds-color-brand-500);
+  --dds-input-border-invalid: var(--dds-color-danger-500);
+}
+```

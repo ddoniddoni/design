@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Badge } from "../Badge/Badge";
 import { Button } from "../Button/Button";
 import { PageHeader } from "./PageHeader";
@@ -7,7 +6,7 @@ import { PageHeader } from "./PageHeader";
 const meta = {
   title: "Components/Layout/PageHeader",
   component: PageHeader.Root,
-  parameters: { docs: { description: { component: componentDocs.pageHeader } } },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof PageHeader.Root>;
 
 export default meta;

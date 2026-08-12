@@ -2,7 +2,6 @@ import { useState } from "react";
 import type { CSSProperties } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, fn } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { RadioGroup } from "./RadioGroup";
 
 const radioOptionLayout: CSSProperties = {
@@ -49,7 +48,7 @@ function ControlledExample() {
 const meta = {
   title: "Components/Forms/RadioGroup",
   component: RadioGroup.Root,
-  parameters: { docs: { description: { component: componentDocs.radioGroup } } },
+  tags: ["!autodocs"],
   args: {
     "aria-label": "프로젝트 공개 범위",
     defaultValue: "team",

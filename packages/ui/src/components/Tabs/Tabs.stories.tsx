@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, fn } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Tabs } from "./Tabs";
 
 function TabPanels() {
@@ -32,7 +31,7 @@ function ControlledExample() {
 const meta = {
   title: "Components/Navigation/Tabs",
   component: Tabs.Root,
-  parameters: { docs: { description: { component: componentDocs.tabs } } },
+  tags: ["!autodocs"],
   args: {
     defaultValue: "overview",
     onValueChange: fn(),

@@ -1,1 +1,10 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
+html[data-dds-theme] body.sb-show-main {
+  background-color: var(--dds-color-bg-canvas);
+  color: var(--dds-color-text-primary);
+}
+
+html[data-dds-theme] #storybook-root {
+  min-block-size: 100vh;
+}

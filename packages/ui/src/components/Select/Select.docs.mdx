@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as SelectStories from "./Select.stories";
+
+<Meta of={SelectStories} name="문서" />
+
+# Select
+
+여러 옵션 중 하나를 compact한 trigger와 listbox로 선택하는 form control입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트 템플릿이나 국가처럼 하나의 값을 선택하지만 화면 공간을 절약해야 할 때 사용합니다.
+- 그룹, label, disabled option을 포함하는 단일 선택 목록을 만들 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 선택지가 적고 모든 옵션을 항상 비교해야 하면 `RadioGroup`을 사용합니다.
+- 검색, 다중 선택, 새 값 생성이 필요하면 별도 Combobox를 사용합니다.
+
+<Canvas of={SelectStories.Playground} sourceState="shown" />
+
+<h2 id="states">제어 상태와 form</h2>
+
+`value`와 `onValueChange`로 제어하거나 `defaultValue`로 초기값을 지정합니다. `Root`의 `name`, `required`, `disabled`, `form`은 Radix의 native select bridge를 통해 form에 연결됩니다.
+
+<Canvas of={SelectStories.Controlled} sourceState="shown" />
+
+<Canvas of={SelectStories.Disabled} sourceState="shown" />
+
+<Canvas of={SelectStories.FormNameAndValue} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`, `Trigger`, `Value`, `Icon`, `Portal`, `Content`, `Viewport`, `Group`, `Label`, `Item`, `Separator`를 조합합니다. `Content`는 기본 `position="popper"`, `sideOffset={8}`, `collisionPadding={16}`을 사용합니다.
+
+<Controls of={SelectStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- Trigger에 외부 `<label htmlFor>` 또는 aria label로 accessible name을 제공합니다.
+- Space, Enter, Arrow key로 목록을 열고 항목을 탐색하며 Escape 뒤에는 Trigger로 focus가 돌아옵니다.
+- disabled option은 선택할 수 없습니다. option의 의미를 색상만으로 구분하지 않습니다.
+- Trigger의 placeholder는 현재 값이 없음을 보일 뿐, label을 대체하지 않습니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Trigger와 menu surface는 `--dds-select-bg`, `--dds-select-border-*`, `--dds-select-content-*`, `--dds-select-item-*`, `--dds-control-*` token으로 조정합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-select-border-focus: var(--dds-color-brand-500);
+  --dds-select-item-highlight-bg: var(--dds-color-brand-100);
+}
+```

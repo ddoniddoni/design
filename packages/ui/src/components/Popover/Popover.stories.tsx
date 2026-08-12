@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, within } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Button } from "../Button/Button";
 import { Popover } from "./Popover";
 
@@ -55,8 +54,8 @@ const meta = {
   component: Popover.Content,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.popover } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Popover.Content>;
 
 export default meta;

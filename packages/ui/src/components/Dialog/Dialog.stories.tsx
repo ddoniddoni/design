@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { expect, within } from "storybook/test";
 import { Button } from "../Button/Button";
 import { Dialog } from "./Dialog";
@@ -34,8 +33,8 @@ const meta = {
   component: Dialog.Content,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.dialog } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Dialog.Content>;
 
 export default meta;

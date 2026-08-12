@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Skeleton } from "./Skeleton";
 
 function ProfilePreview() {
@@ -24,7 +23,7 @@ function ProfilePreview() {
 const meta = {
   title: "Components/Feedback/Skeleton",
   component: Skeleton,
-  parameters: { docs: { description: { component: componentDocs.skeleton } } },
+  tags: ["!autodocs"],
   argTypes: {
     shape: { control: "select", options: ["text", "circle", "rect"] },
   },

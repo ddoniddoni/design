@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Button } from "../Button/Button";
 import { Card } from "./Card";
 
 const meta = {
   title: "Components/Layout/Card",
   component: Card.Root,
-  parameters: { docs: { description: { component: componentDocs.card } } },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Card.Root>;
 
 export default meta;

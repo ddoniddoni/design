@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, fn } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Accordion } from "./Accordion";
 
 function AccordionItems() {
@@ -46,9 +45,9 @@ function ControlledExample() {
 }
 
 const meta = {
-  title: "Components/Disclosure/Accordion",
+  title: "Components/Navigation/Accordion",
   component: Accordion.Root,
-  parameters: { docs: { description: { component: componentDocs.accordion } } },
+  tags: ["!autodocs"],
   args: {
     collapsible: true,
     defaultValue: "usage",

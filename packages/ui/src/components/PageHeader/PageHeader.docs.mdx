@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as PageHeaderStories from "./PageHeader.stories";
+
+<Meta of={PageHeaderStories} name="문서" />
+
+# PageHeader
+
+페이지의 주 제목, 설명, 대표 action을 semantic header로 조합하는 layout 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 화면 최상단에서 현재 페이지의 목적과 대표 action을 함께 제시할 때 사용합니다.
+- 페이지마다 일관된 제목과 설명 구조를 유지할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- Card 안의 작은 구역 제목이나 사이트 전체 navigation header에는 사용하지 않습니다.
+- product-specific breadcrumb, tab navigation, sticky 동작을 내장하지 않습니다.
+
+<Canvas of={PageHeaderStories.Playground} sourceState="shown" />
+
+<h2 id="composition">콘텐츠와 action 조합</h2>
+
+`Content` 안에는 Badge, `Title`, `Description`을 필요한 만큼 조합하고, 대표 action은 선택적인 `Actions`에 둡니다. `Actions`가 없거나 제목이 길어도 layout이 자연스럽게 wrap됩니다.
+
+<Canvas of={PageHeaderStories.WithoutActions} sourceState="shown" />
+
+<Canvas of={PageHeaderStories.LongContent} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`는 `header`, `Title`은 `h1`, `Description`은 `p`를 렌더링합니다. `Content`와 `Actions`는 layout `div`이며 모든 하위 component가 native props, `className`, ref를 전달합니다.
+
+<Controls of={PageHeaderStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- `PageHeader.Title`은 페이지의 주 제목인 `h1`입니다. 한 페이지의 heading hierarchy를 먼저 정합니다.
+- 대표 action은 native button 또는 link semantics로 조합하고, visible label을 제공합니다.
+- 좁은 화면에서 action이 다음 줄로 이동해도 DOM 순서와 keyboard focus 순서가 유지됩니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+PageHeader는 `--dds-color-text-*`, `--dds-font-*`, `--dds-space-*` foundation·semantic token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-color-text-secondary: var(--dds-color-brand-700);
+  --dds-space-6: 1.75rem;
+}
+```

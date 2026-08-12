@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as IconButtonStories from "./IconButton.stories";
+
+<Meta of={IconButtonStories} name="문서" />
+
+# IconButton
+
+텍스트 없이 아이콘만으로 명확한 action을 실행하는 native button 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 메뉴 열기, 닫기처럼 아이콘 의미가 널리 알려져 있고 주변 문맥이 충분할 때 사용합니다.
+- 좁은 toolbar에서 action의 hit area를 유지해야 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- action 이름을 함께 보여 주어야 하면 `Button`을 사용합니다.
+- 아이콘 의미가 모호하거나 처음 사용하는 기능이면 텍스트 label을 우선합니다.
+
+<Canvas of={IconButtonStories.Playground} sourceState="shown" />
+
+<h2 id="variants">크기와 상태</h2>
+
+`size`, `variant`, `tone`은 Button과 같은 선택지를 공유합니다. 파괴적인 action에는 `danger` tone을 사용하고, loading은 중복 실행을 막습니다.
+
+<Canvas of={IconButtonStories.AllSizes} sourceState="shown" />
+
+<Canvas of={IconButtonStories.Loading} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`aria-label`과 `icon`은 필수입니다. `variant`, `tone`, `size`, `loading`과 native button props를 함께 전달할 수 있으며 기본 `type`은 `button`입니다.
+
+<Controls of={IconButtonStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- visible text가 없으므로 action을 설명하는 고유한 `aria-label`을 반드시 제공합니다.
+- 전달한 icon은 장식 처리됩니다. 이름은 icon 자체가 아니라 `aria-label`에서 제공해야 합니다.
+- Enter와 Space로 실행되며, loading 또는 disabled 상태에서는 native disabled로 동작하지 않습니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Button과 같은 `--dds-button-primary-*`, `--dds-button-neutral-*`, `--dds-button-danger-*`와 `--dds-control-height-*`, `--dds-control-radius`를 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-button-primary-bg: var(--dds-color-brand-700);
+  --dds-button-primary-hover: var(--dds-color-brand-800);
+  --dds-control-radius: var(--dds-radius-lg);
+}
+```

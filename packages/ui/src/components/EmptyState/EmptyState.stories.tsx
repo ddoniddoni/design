@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../Button";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { EmptyState } from "./EmptyState";
 
 function ProjectIcon() {
@@ -47,8 +46,8 @@ const meta = {
   component: EmptyState.Root,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.emptyState } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof EmptyState.Root>;
 
 export default meta;

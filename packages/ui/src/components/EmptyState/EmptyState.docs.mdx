@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as EmptyStateStories from "./EmptyState.stories";
+
+<Meta of={EmptyStateStories} name="문서" />
+
+# EmptyState
+
+목록이나 검색 결과가 비어 있는 이유와 다음 action을 안내하는 presentation 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트 목록이나 검색 결과처럼 사용자가 기대한 콘텐츠가 없을 때 사용합니다.
+- 빈 상태의 이유와 다음 action을 함께 제시해야 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 데이터를 기다리는 동안의 구조에는 `Skeleton`, 짧은 처리 알림에는 `Spinner`를 사용합니다.
+- fetch, filter reset, create action, error state를 EmptyState 내부에서 관리하지 않습니다.
+
+<Canvas of={EmptyStateStories.Playground} sourceState="shown" />
+
+<h2 id="composition">안내와 다음 action 조합</h2>
+
+`Icon`, `Title`, `Description`, 선택적인 `Actions`를 필요한 순서로 조합합니다. action이 없어도 원인과 다음 행동을 설명하는 text는 남겨야 합니다.
+
+<Canvas of={EmptyStateStories.WithoutActions} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`, `Actions`는 `div`, `Icon`은 `span`, `Title`은 `h2`, `Description`은 `p`를 렌더링합니다. 모든 하위 component는 native props, `className`, ref를 실제 DOM 요소에 전달합니다.
+
+<Controls of={EmptyStateStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- `Title`은 semantic `h2`이며, Icon은 항상 장식으로 숨겨집니다.
+- 의미 있는 이미지나 오류 원인은 Icon 대신 `Title`과 `Description`에 text로 제공합니다.
+- action은 native Button 또는 link로 명시적으로 조합하고, 목적이 드러나는 label을 제공합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+surface, icon, text, radius는 `--dds-empty-state-bg`, `--dds-empty-state-border`, `--dds-empty-state-icon-*`, `--dds-empty-state-text`, `--dds-empty-state-radius` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-empty-state-icon-bg: var(--dds-color-brand-100);
+  --dds-empty-state-icon-text: var(--dds-color-brand-700);
+}
+```

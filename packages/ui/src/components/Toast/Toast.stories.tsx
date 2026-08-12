@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, within } from "storybook/test";
-import { componentDocs } from "../../stories/internal/componentDocs";
 import { Button } from "../Button/Button";
 import { Toast } from "./Toast";
 
@@ -49,8 +48,8 @@ const meta = {
   component: Toast.Root,
   parameters: {
     a11y: { test: "error" },
-    docs: { description: { component: componentDocs.toast } },
   },
+  tags: ["!autodocs"],
 } satisfies Meta<typeof Toast.Root>;
 
 export default meta;

@@ -1,0 +1,53 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as TabsStories from "./Tabs.stories";
+
+<Meta of={TabsStories} name="문서" />
+
+# Tabs
+
+같은 맥락의 콘텐츠 영역을 한 번에 하나씩 전환하는 navigation 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트 설정, 상세 정보처럼 동등한 섹션을 제한된 공간에서 전환할 때 사용합니다.
+- 선택한 탭에 따라 하나의 콘텐츠 panel만 보여 줄 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 여러 섹션을 동시에 열어 비교해야 할 때는 `Accordion`을 사용합니다.
+- 순서대로 완료해야 하는 단계 진행이나 URL 수준의 주요 navigation에는 사용하지 않습니다.
+
+<Canvas of={TabsStories.Playground} sourceState="shown" />
+
+<h2 id="composition">탭 목록과 panel 조합</h2>
+
+`Root` 안에 접근 가능한 이름을 가진 `List`, 각 `Trigger`, 대응하는 `Content`를 같은 `value`로 연결합니다. controlled state는 `value`와 `onValueChange`로 consumer가 관리합니다.
+
+<Canvas of={TabsStories.Controlled} sourceState="shown" />
+
+<Canvas of={TabsStories.LongLabels} sourceState="shown" />
+
+<h2 id="props">주요 API와 state</h2>
+
+`Root`는 `value`, `defaultValue`, `onValueChange`, `orientation`, `activationMode`를 Radix 계약대로 지원합니다. `Trigger`에는 `disabled`를 지정할 수 있으며 모든 DOM subcomponent가 native props, `className`, ref를 전달합니다.
+
+<Controls of={TabsStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- `Tabs.List`에 `aria-label` 또는 `aria-labelledby`로 tablist의 이름을 제공합니다.
+- Arrow key로 tab 사이를 이동하며, tab·tabpanel role과 selected 상태의 관계는 Radix가 관리합니다.
+- 긴 Trigger label은 줄바꿈하지 않고 가로 scroll됩니다. label을 짧고 구분 가능하게 작성합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+Tabs의 경계와 active state는 `--dds-tabs-border`, `--dds-tabs-active-border`, `--dds-tabs-active-text` token으로 제어합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-tabs-active-border: var(--dds-color-brand-600);
+  --dds-tabs-active-text: var(--dds-color-brand-700);
+}
+```
