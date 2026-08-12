@@ -1,8 +1,8 @@
 # 구현 상태
 
-- 마지막 갱신: 2026-08-12
-- 현재 Phase: Phase 21 FilterBar 완료
-- 전체 상태: v0.5 릴리즈 준비 완료 (npm 배포 대기)
+- 마지막 갱신: 2026-08-13
+- 현재 Phase: Storybook 문서 사이트 Day 7~8 정적 품질 검토와 배포 준비 완료
+- 전체 상태: v0.5 패키지 릴리즈 및 문서 hosting 승인 대기
 
 ## Phase 0
 
@@ -220,6 +220,15 @@
 - [x] 일반 React와 Tailwind 예제 앱의 project search/filter 사례 통합
 - [x] public named export, declaration, token, package tarball 검증
 
+## Storybook 문서 사이트
+
+- [x] SB-007 25개 공개 component 상세 MDX Docs와 공통 3열 Docs 레이아웃
+- [x] Docs·public export·sidebar 순서·Story 연결·public token 정적 계약 검사
+- [x] `npm run check`에 `npm run check:storybook-docs` 통합
+- [x] static Storybook build와 package tarball 검증
+- [ ] light/dark/system 시각 대비와 keyboard 수동 점검 (현재 세션에 연결 가능한 브라우저 없음)
+- [ ] 문서 hosting 대상과 public URL 결정 (별도 승인 필요)
+
 ## 브랜드 및 dark theme 품질 개선
 
 - [x] TOK-003 기본 signature palette를 indigo에서 cobalt blue로 변경
@@ -238,6 +247,7 @@
 - [x] public package와 workspace internal dependency version을 `0.5.0`으로 통일
 - [x] CHANGELOG와 tokens → ui → tailwind publish 순서 문서화
 - [x] release-ready `npm run check` 및 package tarball 검증
+- [x] Storybook 문서 site release note와 사전 점검 절차 문서화
 - [ ] npm registry publish, Git tag, GitHub release 생성 (별도 승인 필요)
 
 ## 스타일 정책
@@ -258,6 +268,7 @@
 | `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과        |
 | `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
 | `npm run build-storybook`                           | PASS | Phase 2~21 component/foundation story 포함     |
+| `npm run check:storybook-docs`                      | PASS | 25개 Docs, export, sidebar, Story, token 계약  |
 | `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
 | `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰, theme selector, brand 대비 확인     |
 | `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |

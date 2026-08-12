@@ -9,6 +9,8 @@
 - `@ddoni-ds/ui`: Select, Pagination, Table, EmptyState, FilterBar component API
 - 일반 React와 Tailwind CSS v4 예제의 form, data display, empty state, filtering 사례
 - 각 신규 component의 Storybook docs, dark theme story, interaction/component test
+- 25개 공개 component를 탐색할 수 있는 Storybook 문서 사이트와 공통 3열 Docs 레이아웃
+- 문서·공개 export·sidebar 순서·Story 연결·공개 token을 검사하는 `npm run check:storybook-docs` 품질 게이트
 
 ### Changed
 
