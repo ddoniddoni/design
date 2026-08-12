@@ -2,7 +2,7 @@
 
 - 마지막 갱신: 2026-08-12
 - 현재 Phase: Phase 21 FilterBar 완료
-- 전체 상태: v0.5 개발 진행 중
+- 전체 상태: v0.5 릴리즈 준비 완료 (npm 배포 대기)
 
 ## Phase 0
 
@@ -232,6 +232,13 @@
 - [x] token smoke test에 brand 값과 foreground/control/focus contrast gate 추가
 - [x] nested dark theme scope에서 component token을 다시 emit해 Accordion open background 대비 보장
 - [x] non-solid primary accent foreground를 `--dds-color-text-link`로 통일해 dark surface 대비 보장
+
+## v0.5 릴리즈 준비
+
+- [x] public package와 workspace internal dependency version을 `0.5.0`으로 통일
+- [x] CHANGELOG와 tokens → ui → tailwind publish 순서 문서화
+- [x] release-ready `npm run check` 및 package tarball 검증
+- [ ] npm registry publish, Git tag, GitHub release 생성 (별도 승인 필요)
 
 ## 스타일 정책
 

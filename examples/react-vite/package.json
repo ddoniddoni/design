@@ -1,6 +1,6 @@
 {
   "name": "@ddoni-ds/example-react-vite",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,8 +9,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@ddoni-ds/tokens": "0.1.0",
-    "@ddoni-ds/ui": "0.1.0",
+    "@ddoni-ds/tokens": "0.5.0",
+    "@ddoni-ds/ui": "0.5.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
