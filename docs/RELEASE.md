@@ -26,7 +26,7 @@ git log -1 --oneline
 - sidebar에서 각 Docs 진입점과 우측 목차 anchor 이동
 - overlay 예제의 keyboard 동작과 focus 복귀
 
-문서 hosting은 npm package publish와 별도 승인 항목입니다. `storybook-static`은 build 산출물이므로 커밋하거나 npm package에 포함하지 않습니다.
+문서 hosting은 npm package publish와 별도 승인 항목입니다. GitHub Pages 배포는 [GitHub Pages Storybook 배포 안내](GITHUB_PAGES.md)를 따릅니다. `storybook-static`은 build 산출물이므로 커밋하거나 npm package에 포함하지 않습니다.
 
 ## 배포 순서
 

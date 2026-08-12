@@ -256,3 +256,7 @@ npm run check
 `npm run check`는 format, lint, stylelint, typecheck, component test, package/example build, Storybook build와 package tarball 검사를 실행합니다. 구현 기준은 `docs/DESIGN_SYSTEM_IMPLEMENTATION_SPEC.md`, 진행 상태는 `docs/IMPLEMENTATION_STATUS.md`에서 확인할 수 있습니다.
 
 릴리즈 전 확인과 npm 배포 순서는 [릴리즈 절차](docs/RELEASE.md)를 따릅니다. 현재 준비 버전은 `0.5.0`입니다.
+
+## Storybook 문서 사이트
+
+`develop` 브랜치에 push하면 GitHub Pages 배포 workflow가 Storybook을 정적으로 빌드합니다. 기본 주소는 [DDoni Design System Storybook](https://ddoniddoni.github.io/design/)입니다. Pages 설정과 운영 방법은 [GitHub Pages 배포 안내](docs/GITHUB_PAGES.md)를 따릅니다.

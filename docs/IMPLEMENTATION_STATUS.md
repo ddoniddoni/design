@@ -2,7 +2,7 @@
 
 - 마지막 갱신: 2026-08-13
 - 현재 Phase: Storybook 문서 사이트 Day 7~8 정적 품질 검토와 배포 준비 완료
-- 전체 상태: v0.5 패키지 릴리즈 및 문서 hosting 승인 대기
+- 전체 상태: v0.5 패키지 릴리즈 승인 및 Storybook 첫 배포 대기
 
 ## Phase 0
 
@@ -226,8 +226,9 @@
 - [x] Docs·public export·sidebar 순서·Story 연결·public token 정적 계약 검사
 - [x] `npm run check`에 `npm run check:storybook-docs` 통합
 - [x] static Storybook build와 package tarball 검증
+- [x] `develop` push 기반 GitHub Pages Storybook 배포 workflow와 project base path 구성
 - [ ] light/dark/system 시각 대비와 keyboard 수동 점검 (현재 세션에 연결 가능한 브라우저 없음)
-- [ ] 문서 hosting 대상과 public URL 결정 (별도 승인 필요)
+- [ ] 첫 GitHub Pages 배포 후 public URL과 수동 Docs 점검 확인
 
 ## 브랜드 및 dark theme 품질 개선
 
