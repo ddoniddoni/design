@@ -17,7 +17,7 @@
   - [x] Day 7 — 25개 문서의 정적 계약, 공개 export, sidebar 순서 자동 검증
   - [ ] Day 7 — 브라우저 수동 시각·키보드 점검 (현재 세션에 연결 가능한 브라우저 없음)
   - [x] Day 8 — 통합 정적 검증과 릴리즈 영향 범위 정리
-  - [x] Day 8 — GitHub Pages hosting workflow와 배포 경로 구성
+  - [x] Day 8 — GitHub Pages hosting workflow 구성 및 첫 배포 성공
   - [ ] Day 8 — 배포된 Storybook 수동 확인 (첫 배포 후 확인)
 
 ## 1. 목표와 범위
