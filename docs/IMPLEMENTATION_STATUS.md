@@ -1,8 +1,8 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-12
-- 현재 Phase: Phase 16 Skeleton 완료
-- 전체 상태: v0.4 개발 진행 중
+- 현재 Phase: Phase 21 FilterBar 완료
+- 전체 상태: v0.5 개발 진행 중
 
 ## Phase 0
 
@@ -175,6 +175,51 @@
 - [x] 일반 React와 Tailwind 예제 앱의 loading placeholder 사례 통합
 - [x] public named export, declaration, token, package tarball 검증
 
+## Phase 17
+
+- [x] CMP-021 Radix 기반 Select
+- [x] combobox/listbox/option role, pointer/Arrow/Enter, controlled/uncontrolled, Escape focus restore, disabled state 테스트
+- [x] Trigger/Value/Icon/Content/Viewport/Group/Label/Item/Separator native props, ref, className와 form name/required/value 전달 테스트
+- [x] grouped item, controlled, disabled, form, dark theme, Storybook interaction과 docs
+- [x] 일반 React와 Tailwind 예제 앱의 single value form 사례 통합
+- [x] `@radix-ui/react-select` stable runtime dependency, public named export, declaration, token, package tarball 검증
+
+## Phase 18
+
+- [x] CMP-022 semantic Pagination compound API
+- [x] navigation/list/link semantics, current page `aria-current`, Ellipsis, native link click 테스트
+- [x] Root/List/Item/Link/Previous/Next/Ellipsis native props, ref, className 전달 테스트
+- [x] Pagination Storybook current/first page, dark theme, interaction과 docs
+- [x] 일반 React와 Tailwind 예제 앱의 paged activity 사례 통합
+- [x] public named export, declaration, token, package tarball 검증
+
+## Phase 19
+
+- [x] CMP-023 native semantic Table compound API
+- [x] table/caption/header/cell semantic과 `scope`, `colSpan`, `rowSpan` native prop 전달 테스트
+- [x] Container/Root/Caption/Header/Body/Footer/Row/Head/Cell native props, ref, className 전달 테스트
+- [x] Table Storybook footer, narrow long-content container, dark theme과 docs
+- [x] 일반 React와 Tailwind 예제 앱의 project status table 사례 통합
+- [x] public named export, declaration, token, package tarball 검증
+
+## Phase 20
+
+- [x] CMP-024 EmptyState compound API
+- [x] title/description semantics, visual-only Icon, consumer action click 테스트
+- [x] Root/Icon/Title/Description/Actions native props, ref, className 전달 테스트
+- [x] EmptyState Storybook action 없음, dark theme과 docs
+- [x] 일반 React와 Tailwind 예제 앱의 empty project/search result 사례 통합
+- [x] public named export, declaration, token, package tarball 검증
+
+## Phase 21
+
+- [x] CMP-025 semantic FilterBar compound API
+- [x] named search landmark, consumer submit handler, native form behavior 테스트
+- [x] Root/Controls/Actions native props, ref, className 전달 테스트
+- [x] responsive layout, dark theme, Storybook interaction과 docs
+- [x] 일반 React와 Tailwind 예제 앱의 project search/filter 사례 통합
+- [x] public named export, declaration, token, package tarball 검증
+
 ## 브랜드 및 dark theme 품질 개선
 
 - [x] TOK-003 기본 signature palette를 indigo에서 cobalt blue로 변경
@@ -185,6 +230,8 @@
 - [x] CMP-013 Switch thumb를 light/dark 모두 흰색으로 통일
 - [x] 기존 brand override 예제를 AA 대비를 충족하는 teal palette로 교체
 - [x] token smoke test에 brand 값과 foreground/control/focus contrast gate 추가
+- [x] nested dark theme scope에서 component token을 다시 emit해 Accordion open background 대비 보장
+- [x] non-solid primary accent foreground를 `--dds-color-text-link`로 통일해 dark surface 대비 보장
 
 ## 스타일 정책
 
@@ -200,17 +247,17 @@
 | `npm run lint`                                      | PASS | ESLint warning/error 0건                       |
 | `npm run stylelint`                                 | PASS | SCSS/CSS 선언 순서와 논리 속성 규칙 준수       |
 | `npm run typecheck`                                 | PASS | 루트 설정 및 UI workspace strict 검사 통과     |
-| `npm run test`                                      | PASS | 20개 파일, 57개 component test 통과            |
+| `npm run test`                                      | PASS | 25개 파일, 72개 component test 통과            |
 | `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과        |
 | `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
-| `npm run build-storybook`                           | PASS | Phase 2~16 component/foundation story 포함     |
+| `npm run build-storybook`                           | PASS | Phase 2~21 component/foundation story 포함     |
 | `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
 | `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰, theme selector, brand 대비 확인     |
 | `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |
 | `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성                |
 | `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함  |
-| `npm run pack:check`                                | PASS | tokens 3, ui 93, tailwind 3 files 계약 통과    |
-| `npm run check`                                     | PASS | Phase 0~16 전체 quality gate 통과              |
+| `npm run pack:check`                                | PASS | tokens 3, ui 113, tailwind 3 files 계약 통과   |
+| `npm run check`                                     | PASS | Phase 0~21 전체 quality gate 통과              |
 | `npx react-doctor@latest --verbose --scope changed` | PASS | full scan 100/100, issue 없음                  |
 
 ## 알려진 이슈

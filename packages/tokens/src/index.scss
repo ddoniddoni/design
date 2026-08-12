@@ -10,18 +10,21 @@
 
 [data-dds-theme="light"] {
   @include tools.emit-css-vars(tokens.$semantic-light);
+  @include tools.emit-css-vars(tokens.$component-tokens);
 
   color-scheme: light;
 }
 
 [data-dds-theme="dark"] {
   @include tools.emit-css-vars(tokens.$semantic-dark);
+  @include tools.emit-css-vars(tokens.$component-tokens);
 
   color-scheme: dark;
 }
 
 [data-dds-theme="system"] {
   @include tools.emit-css-vars(tokens.$semantic-light);
+  @include tools.emit-css-vars(tokens.$component-tokens);
 
   color-scheme: light;
 }
@@ -29,6 +32,7 @@
 @media (prefers-color-scheme: dark) {
   [data-dds-theme="system"] {
     @include tools.emit-css-vars(tokens.$semantic-dark);
+    @include tools.emit-css-vars(tokens.$component-tokens);
 
     color-scheme: dark;
   }

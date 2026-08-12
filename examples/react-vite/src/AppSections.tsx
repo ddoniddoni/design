@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import {
   Accordion,
   Badge,
@@ -7,14 +7,19 @@ import {
   Checkbox,
   Dialog,
   DropdownMenu,
+  EmptyState,
   Field,
+  FilterBar,
   IconButton,
   Input,
   PageHeader,
+  Pagination,
   Popover,
   RadioGroup,
+  Select,
   Skeleton,
   Switch,
+  Table,
   Tabs,
   Textarea,
   Tooltip,
@@ -36,16 +41,33 @@ interface ActionSectionProps {
 interface ProjectSettingsCardProps {
   description: string;
   projectName: string;
+  projectTemplate: string;
   projectVisibility: string;
   receivesDigest: boolean;
   onDescriptionChange: (description: string) => void;
   onProjectNameChange: (projectName: string) => void;
+  onProjectTemplateChange: (projectTemplate: string) => void;
   onProjectVisibilityChange: (projectVisibility: string) => void;
   onReceivesDigestChange: (receivesDigest: boolean) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 interface OverlayComponentsCardProps {
+  onStatusMessageChange: (message: string) => void;
+}
+
+interface PaginationSectionProps {
+  currentPage: number;
+  onPageChange: (page: number) => void;
+}
+
+interface EmptyStateSectionProps {
+  onStatusMessageChange: (message: string) => void;
+}
+
+interface FilterBarSectionProps {
+  projectQuery: string;
+  onProjectQueryChange: (query: string) => void;
   onStatusMessageChange: (message: string) => void;
 }
 
@@ -169,10 +191,12 @@ export function ActionSection({ onStatusMessageChange }: ActionSectionProps) {
 export function ProjectSettingsCard({
   description,
   projectName,
+  projectTemplate,
   projectVisibility,
   receivesDigest,
   onDescriptionChange,
   onProjectNameChange,
+  onProjectTemplateChange,
   onProjectVisibilityChange,
   onReceivesDigestChange,
   onSubmit,
@@ -184,7 +208,7 @@ export function ProjectSettingsCard({
           <h2>프로젝트 설정</h2>
         </Card.Title>
         <Card.Description>
-          native form 흐름을 유지하는 Input, Textarea, Checkbox, RadioGroup 예시입니다.
+          native form 흐름을 유지하는 Input, Select, Textarea, Checkbox, RadioGroup 예시입니다.
         </Card.Description>
       </Card.Header>
       <Card.Content>
@@ -210,6 +234,34 @@ export function ProjectSettingsCard({
               value={description}
               onChange={(event) => onDescriptionChange(event.target.value)}
             />
+          </Field.Root>
+          <Field.Root>
+            <Field.Label htmlFor="project-template">프로젝트 템플릿</Field.Label>
+            <Select.Root
+              name="projectTemplate"
+              value={projectTemplate}
+              onValueChange={onProjectTemplateChange}
+            >
+              <Select.Trigger aria-describedby="project-template-description" id="project-template">
+                <Select.Value placeholder="템플릿을 선택하세요" />
+                <Select.Icon />
+              </Select.Trigger>
+              <Select.Portal>
+                <Select.Content>
+                  <Select.Viewport>
+                    <Select.Group>
+                      <Select.Label>시작 템플릿</Select.Label>
+                      <Select.Item value="product">제품 개발</Select.Item>
+                      <Select.Item value="marketing">마케팅 캠페인</Select.Item>
+                      <Select.Item value="research">리서치</Select.Item>
+                    </Select.Group>
+                  </Select.Viewport>
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
+            <Field.Description id="project-template-description">
+              선택한 템플릿의 기본 상태와 작업 항목을 준비합니다.
+            </Field.Description>
           </Field.Root>
           <div className="checkboxRow">
             <Checkbox defaultChecked id="confirm-settings" name="confirmSettings" />
@@ -319,6 +371,184 @@ export function TabsSection() {
           최근 설정 변경과 멤버 활동을 확인합니다.
         </Tabs.Content>
       </Tabs.Root>
+    </section>
+  );
+}
+
+export function PaginationSection({ currentPage, onPageChange }: PaginationSectionProps) {
+  function handlePageChange(event: MouseEvent<HTMLAnchorElement>, page: number) {
+    event.preventDefault();
+    onPageChange(page);
+  }
+
+  return (
+    <section aria-labelledby="pagination-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Navigation</p>
+          <h2 id="pagination-title">Pagination</h2>
+        </div>
+      </div>
+      <div className="paginationContent">
+        <p aria-live="polite">최근 활동 {currentPage}페이지를 보고 있습니다.</p>
+        <Pagination.Root aria-label="최근 활동 페이지">
+          <Pagination.List>
+            {currentPage > 1 ? (
+              <Pagination.Item>
+                <Pagination.Previous
+                  href={`#activity-page-${currentPage - 1}`}
+                  onClick={(event) => handlePageChange(event, currentPage - 1)}
+                />
+              </Pagination.Item>
+            ) : null}
+            {[1, 2, 3].map((page) => (
+              <Pagination.Item key={page}>
+                <Pagination.Link
+                  aria-current={currentPage === page ? "page" : undefined}
+                  aria-label={`최근 활동 ${page}페이지`}
+                  href={`#activity-page-${page}`}
+                  onClick={(event) => handlePageChange(event, page)}
+                >
+                  {page}
+                </Pagination.Link>
+              </Pagination.Item>
+            ))}
+            {currentPage < 3 ? (
+              <Pagination.Item>
+                <Pagination.Next
+                  href={`#activity-page-${currentPage + 1}`}
+                  onClick={(event) => handlePageChange(event, currentPage + 1)}
+                />
+              </Pagination.Item>
+            ) : null}
+          </Pagination.List>
+        </Pagination.Root>
+      </div>
+    </section>
+  );
+}
+
+export function FilterBarSection({
+  projectQuery,
+  onProjectQueryChange,
+  onStatusMessageChange,
+}: FilterBarSectionProps) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    onStatusMessageChange(
+      projectQuery ? `“${projectQuery}” 프로젝트를 검색합니다.` : "전체 프로젝트를 표시합니다.",
+    );
+  }
+
+  function handleReset() {
+    onProjectQueryChange("");
+    onStatusMessageChange("프로젝트 필터를 초기화했습니다.");
+  }
+
+  return (
+    <section aria-labelledby="filter-bar-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Form layout</p>
+          <h2 id="filter-bar-title">FilterBar</h2>
+        </div>
+      </div>
+      <FilterBar.Root aria-label="프로젝트 필터" onSubmit={handleSubmit}>
+        <FilterBar.Controls>
+          <Field.Root className="filterField">
+            <Field.Label htmlFor="project-query">프로젝트 검색</Field.Label>
+            <Input
+              id="project-query"
+              name="query"
+              placeholder="프로젝트 이름을 입력하세요"
+              value={projectQuery}
+              onChange={(event) => onProjectQueryChange(event.target.value)}
+            />
+          </Field.Root>
+        </FilterBar.Controls>
+        <FilterBar.Actions>
+          <Button type="submit">검색</Button>
+          <Button type="button" tone="neutral" variant="outline" onClick={handleReset}>
+            초기화
+          </Button>
+        </FilterBar.Actions>
+      </FilterBar.Root>
+    </section>
+  );
+}
+
+export function ProjectTableSection() {
+  return (
+    <section aria-labelledby="table-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Data display</p>
+          <h2 id="table-title">Table</h2>
+        </div>
+      </div>
+      <Table.Container>
+        <Table.Root>
+          <Table.Caption>최근 프로젝트</Table.Caption>
+          <Table.Header>
+            <Table.Row>
+              <Table.Head scope="col">프로젝트</Table.Head>
+              <Table.Head scope="col">공개 범위</Table.Head>
+              <Table.Head scope="col">상태</Table.Head>
+              <Table.Head scope="col">최근 변경</Table.Head>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>디자인 시스템</Table.Cell>
+              <Table.Cell>팀 전용</Table.Cell>
+              <Table.Cell>
+                <Badge tone="success">진행 중</Badge>
+              </Table.Cell>
+              <Table.Cell>방금 전</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>마케팅 캠페인</Table.Cell>
+              <Table.Cell>공개</Table.Cell>
+              <Table.Cell>
+                <Badge tone="warning">검토 중</Badge>
+              </Table.Cell>
+              <Table.Cell>2시간 전</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table.Root>
+      </Table.Container>
+    </section>
+  );
+}
+
+export function EmptyStateSection({ onStatusMessageChange }: EmptyStateSectionProps) {
+  return (
+    <section aria-labelledby="empty-state-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Feedback</p>
+          <h2 id="empty-state-title">EmptyState</h2>
+        </div>
+      </div>
+      <EmptyState.Root>
+        <EmptyState.Icon>□</EmptyState.Icon>
+        <EmptyState.Title>필터 조건에 맞는 프로젝트가 없습니다</EmptyState.Title>
+        <EmptyState.Description>
+          필터를 초기화하거나 새 프로젝트를 만들어 작업을 시작하세요.
+        </EmptyState.Description>
+        <EmptyState.Actions>
+          <Button onClick={() => onStatusMessageChange("필터를 초기화했습니다.")}>
+            필터 초기화
+          </Button>
+          <Button
+            tone="neutral"
+            variant="outline"
+            onClick={() => onStatusMessageChange("새 프로젝트 만들기를 시작합니다.")}
+          >
+            새 프로젝트 만들기
+          </Button>
+        </EmptyState.Actions>
+      </EmptyState.Root>
     </section>
   );
 }

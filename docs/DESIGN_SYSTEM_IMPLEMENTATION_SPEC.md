@@ -1805,15 +1805,261 @@ export interface SkeletonProps
 - content preview, dark theme, Storybook docs
 - 일반 React와 Tailwind 예제 앱에서 package root import로 사용
 
+## CMP-021 — Select
+
+여러 옵션 중 하나를 선택하는 form value를 Radix Select Primitive로 제공한다. 검색, 다중 선택, 새 값 생성은 초기 공개 범위에 포함하지 않는다.
+
+### 공개 API
+
+```ts
+export type SelectRootProps = SelectPrimitive.SelectProps;
+export type SelectTriggerProps = SelectPrimitive.SelectTriggerProps;
+export type SelectValueProps = Omit<SelectPrimitive.SelectValueProps, "asChild" | "children">;
+export type SelectIconProps = SelectPrimitive.SelectIconProps;
+export type SelectPortalProps = SelectPrimitive.SelectPortalProps;
+export type SelectContentProps = SelectPrimitive.SelectContentProps;
+export type SelectViewportProps = SelectPrimitive.SelectViewportProps;
+export type SelectGroupProps = SelectPrimitive.SelectGroupProps;
+export type SelectLabelProps = SelectPrimitive.SelectLabelProps;
+export type SelectItemProps = SelectPrimitive.SelectItemProps;
+export type SelectSeparatorProps = SelectPrimitive.SelectSeparatorProps;
+```
+
+```tsx
+<Select.Root defaultValue="product" name="template">
+  <Select.Trigger id="project-template">
+    <Select.Value placeholder="템플릿을 선택하세요" />
+    <Select.Icon />
+  </Select.Trigger>
+  <Select.Portal>
+    <Select.Content>
+      <Select.Viewport>
+        <Select.Item value="product">제품 개발</Select.Item>
+      </Select.Viewport>
+    </Select.Content>
+  </Select.Portal>
+</Select.Root>
+```
+
+### 요구사항
+
+- `Root`, `Trigger`, `Value`, `Icon`, `Portal`, `Content`, `Viewport`, `Group`, `Label`, `Item`, `Separator`의 named compound API를 제공한다.
+- Root는 controlled/uncontrolled value, `name`, `required`, `disabled`, `form`을 Radix 계약대로 지원한다. form 안에서는 Radix의 native select bridge로 값을 전송한다.
+- Trigger는 기본 `type="button"`을 사용하며 외부 native `<label htmlFor>` 또는 aria label로 접근 가능한 이름을 제공한다.
+- Item은 consumer children을 `ItemText`로 연결하고 선택된 Item에 check indicator를 자동으로 표시한다. Item은 disabled를 지원한다.
+- Content는 Portal에서 사용하며 `position="popper"`, `sideOffset=8`, `collisionPadding=16`을 기본으로 제공한다. trigger 폭과 available viewport height를 Radix CSS custom property로 따른다.
+- listbox role, item selection, Space/Enter/Arrow key, Escape close와 trigger focus 복귀는 Radix에 위임한다.
+- Trigger/Value/Icon/Content/Viewport/Group/Label/Item/Separator는 native props, `className`, ref를 실제 DOM 요소로 전달한다. Root와 Portal은 state/portal primitive이므로 DOM ref를 제공하지 않는다.
+- Trigger, content surface, highlighted/selected item은 `--dds-select-bg`, `--dds-select-text`, `--dds-select-placeholder`, `--dds-select-border-*`, `--dds-select-content-*`, `--dds-select-item-*` component token을 사용하고 reduced motion을 존중한다.
+- component rule은 `@layer components` 안에 두고 semantic/component token만 사용한다. 초기 공개 API에는 search input, multiple, creatable/freeform variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- label과 combobox/listbox/option role, portal rendering, pointer와 Arrow/Enter keyboard selection, Escape focus restore, disabled state
+- controlled/uncontrolled value, form name/required/value, 모든 DOM subcomponent의 ref/native props/className 전달
+- grouped items, disabled, controlled, form, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-022 — Pagination
+
+일반 React와 Tailwind 예제 앱 모두의 최근 활동 목록이 여러 페이지 이동을 필요로 하므로, URL이나 라우터 구현을 강제하지 않는 semantic pagination navigation을 제공한다.
+
+### 공개 API
+
+```ts
+export type PaginationRootProps = React.HTMLAttributes<HTMLElement>;
+export type PaginationListProps = React.OlHTMLAttributes<HTMLOListElement>;
+export type PaginationItemProps = React.LiHTMLAttributes<HTMLLIElement>;
+
+export interface PaginationLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+}
+
+export type PaginationPreviousProps = PaginationLinkProps;
+export type PaginationNextProps = PaginationLinkProps;
+export type PaginationEllipsisProps = Omit<
+  React.LiHTMLAttributes<HTMLLIElement>,
+  "aria-hidden" | "children"
+>;
+```
+
+```tsx
+<Pagination.Root aria-label="프로젝트 목록 페이지">
+  <Pagination.List>
+    <Pagination.Item>
+      <Pagination.Previous href="?page=1" />
+    </Pagination.Item>
+    <Pagination.Item>
+      <Pagination.Link aria-current="page" aria-label="2페이지" href="?page=2">
+        2
+      </Pagination.Link>
+    </Pagination.Item>
+    <Pagination.Item>
+      <Pagination.Next href="?page=3" />
+    </Pagination.Item>
+  </Pagination.List>
+</Pagination.Root>
+```
+
+### 요구사항
+
+- `Root`, `List`, `Item`, `Link`, `Previous`, `Next`, `Ellipsis`의 named compound API를 제공한다.
+- Root는 `nav`, List는 `ol`, Item은 `li`, Link/Previous/Next는 native anchor를 렌더링한다. Root 기본 accessible name은 `페이지 탐색`이며 consumer가 페이지 맥락에 맞게 override할 수 있다.
+- Link/Previous/Next는 `href`를 필수로 하며 route 변경, query parameter, data fetching, 현재 페이지 state는 consumer가 담당한다.
+- 현재 페이지 Link에는 `aria-current="page"`를 지정하고, 각 Link에는 대상 페이지를 알 수 있는 accessible name을 제공한다.
+- Previous와 Next는 기본 visible label 및 `이전 페이지`/`다음 페이지` accessible name을 제공하며 consumer가 locale과 목적지를 override할 수 있다.
+- Ellipsis는 List의 direct child인 visual-only `li`로 항상 `aria-hidden="true"`를 사용한다.
+- 모든 subcomponent는 native props와 `className`을 전달하고 실제 DOM 요소로 ref를 전달한다.
+- 좁은 영역에서 List가 자연스럽게 wrap되고, focus-visible indicator와 reduced motion을 지원한다.
+- page link, hover, current page 상태는 `--dds-pagination-*` component token을 사용한다. 초기 API에는 route adapter, loading state, disabled link variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- navigation/list/link semantics, default/custom accessible name, `aria-current`, visual-only Ellipsis, native link click
+- Root/List/Item/Link/Previous/Next/Ellipsis native props, ref, className 전달
+- current page, first page, dark theme, Storybook interaction
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-023 — Table
+
+일반 React와 Tailwind 예제 앱 모두에서 프로젝트 상태를 여러 열로 비교하는 목록이 필요하므로, 정렬이나 selection 같은 data behavior를 강제하지 않는 native table primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type TableContainerProps = React.HTMLAttributes<HTMLDivElement>;
+export type TableRootProps = React.TableHTMLAttributes<HTMLTableElement>;
+export type TableCaptionProps = React.HTMLAttributes<HTMLTableCaptionElement>;
+export type TableHeaderProps = React.HTMLAttributes<HTMLTableSectionElement>;
+export type TableBodyProps = React.HTMLAttributes<HTMLTableSectionElement>;
+export type TableFooterProps = React.HTMLAttributes<HTMLTableSectionElement>;
+export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>;
+export type TableHeadProps = React.ThHTMLAttributes<HTMLTableCellElement>;
+export type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement>;
+```
+
+```tsx
+<Table.Container>
+  <Table.Root>
+    <Table.Caption>프로젝트 목록</Table.Caption>
+    <Table.Header>
+      <Table.Row>
+        <Table.Head scope="col">프로젝트</Table.Head>
+        <Table.Head scope="col">상태</Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>디자인 시스템</Table.Cell>
+        <Table.Cell>진행 중</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table.Root>
+</Table.Container>
+```
+
+### 요구사항
+
+- `Container`, `Root`, `Caption`, `Header`, `Body`, `Footer`, `Row`, `Head`, `Cell`의 named compound API를 제공한다.
+- Container는 horizontal overflow wrapper인 `div`, Root는 `table`, Caption은 `caption`, Header/Body/Footer는 각각 `thead`/`tbody`/`tfoot`, Row는 `tr`, Head/Cell은 `th`/`td`를 렌더링한다.
+- Caption으로 table의 accessible name을 제공하고, Head에는 `scope`를 명시하도록 문서화한다. `colSpan`, `rowSpan`, `headers` 등 native table attribute를 그대로 전달한다.
+- Container는 좁은 영역에서 Root의 가로 scroll을 제공한다. Root는 비교 가능한 column layout을 유지하며 consumer는 className으로 column width/alignment를 조정할 수 있다.
+- 모든 subcomponent는 native props와 `className`을 전달하고 실제 DOM 요소로 ref를 전달한다.
+- table surface, caption, header, row hover는 `--dds-table-*` component token을 사용한다. 초기 API에는 sorting, selection, filtering, pagination, virtualization, DataGrid behavior를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- table/caption/column header/cell semantics, `scope`, `colSpan`, `rowSpan` native behavior
+- Container/Root/Caption/Header/Body/Footer/Row/Head/Cell native props, ref, className 전달
+- footer, narrow long-content container, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-024 — EmptyState
+
+일반 React와 Tailwind 예제 앱 모두에서 빈 프로젝트 또는 검색 결과에 다음 action을 안내할 필요가 있으므로, data state를 직접 관리하지 않는 empty-state presentation primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type EmptyStateRootProps = React.HTMLAttributes<HTMLDivElement>;
+export type EmptyStateIconProps = Omit<React.HTMLAttributes<HTMLSpanElement>, "aria-hidden">;
+export type EmptyStateTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
+export type EmptyStateDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;
+export type EmptyStateActionsProps = React.HTMLAttributes<HTMLDivElement>;
+```
+
+```tsx
+<EmptyState.Root>
+  <EmptyState.Icon>□</EmptyState.Icon>
+  <EmptyState.Title>프로젝트가 없습니다</EmptyState.Title>
+  <EmptyState.Description>새 프로젝트를 만들어 작업을 시작하세요.</EmptyState.Description>
+  <EmptyState.Actions>
+    <Button>새 프로젝트 만들기</Button>
+  </EmptyState.Actions>
+</EmptyState.Root>
+```
+
+### 요구사항
+
+- `Root`, `Icon`, `Title`, `Description`, `Actions`의 named compound API를 제공한다.
+- Root는 layout `div`, Icon은 visual-only `span`, Title은 `h2`, Description은 `p`, Actions는 layout `div`를 렌더링한다.
+- Icon은 항상 `aria-hidden="true"`를 사용한다. 의미 있는 이미지나 오류 원인은 consumer가 Title/Description 또는 별도 semantic content로 제공한다.
+- Actions는 optional이며 Button, link 등 다음 action을 consumer가 명시적으로 조합한다. EmptyState 자체는 데이터 fetch, filter reset, create action, loading/error state를 내장하지 않는다.
+- 모든 subcomponent는 native props와 `className`을 전달하고 실제 DOM 요소로 ref를 전달한다.
+- surface, icon, text는 `--dds-empty-state-*` component token을 사용한다. 초기 API에는 size, alignment, illustration asset, product-specific action variant를 추가하지 않는다.
+
+### 필수 tests/stories
+
+- title/description semantics, visual-only Icon, consumer action click
+- Root/Icon/Title/Description/Actions native props, ref, className 전달
+- action 없음, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-025 — FilterBar
+
+일반 React와 Tailwind 예제 앱 모두에서 프로젝트 목록을 검색하거나 filter control을 조합하는 form layout이 필요하므로, 데이터·URL·debounce 동작을 강제하지 않는 FilterBar compound primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type FilterBarRootProps = Omit<React.FormHTMLAttributes<HTMLFormElement>, "role">;
+export type FilterBarControlsProps = React.HTMLAttributes<HTMLDivElement>;
+export type FilterBarActionsProps = React.HTMLAttributes<HTMLDivElement>;
+```
+
+```tsx
+<FilterBar.Root aria-label="프로젝트 필터" onSubmit={handleSubmit}>
+  <FilterBar.Controls>
+    <Field.Root>
+      <Field.Label htmlFor="project-query">프로젝트 검색</Field.Label>
+      <Input id="project-query" name="query" />
+    </Field.Root>
+  </FilterBar.Controls>
+  <FilterBar.Actions>
+    <Button type="submit">검색</Button>
+  </FilterBar.Actions>
+</FilterBar.Root>
+```
+
+### 요구사항
+
+- `Root`, `Controls`, `Actions`의 named compound API를 제공한다.
+- Root는 항상 이름 있는 `search` landmark `form`을 렌더링하고, Controls와 Actions는 layout `div`를 렌더링한다.
+- 검색어, filter value, submit, reset, URL 동기화, data fetching, debounce, 결과 상태는 consumer가 관리한다.
+- Controls에는 Field, Input, Select 등 consumer가 필요한 control을 조합하고, Actions에는 submit/reset Button 또는 link를 명시적으로 조합한다.
+- 모든 subcomponent는 native props와 `className`을 전달하고 실제 DOM 요소로 ref를 전달한다.
+- surface와 layout container는 `--dds-filter-bar-*` component token을 사용한다. 초기 API에는 column 수, loading, result count, product-specific filter prop을 추가하지 않는다.
+
+### 필수 tests/stories
+
+- named search landmark, consumer submit handler, native form behavior
+- Root/Controls/Actions native props, ref, className 전달
+- responsive layout, dark theme, Storybook interaction과 docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
-
-- Select
-- Pagination
-- Table
-- EmptyState
-- FilterBar
 
 ---
 
@@ -2674,6 +2920,106 @@ npm run check
 - `text`, `circle`, `rect` shape와 reduced motion, dark theme를 검증한다.
 - 두 예제 앱이 `Skeleton`을 package root에서 import한다.
 - package tarball에 Skeleton declaration이 포함된다.
+
+## Phase 17 — v0.4 Select
+
+### 범위
+
+- [ ] `CMP-021` Radix 기반 Select
+- [ ] Select tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 single value form 사례 통합
+- [ ] Radix runtime dependency, public named export, declaration, token, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- label과 combobox/listbox/option role, pointer와 Arrow/Enter key, Escape focus restore, controlled/uncontrolled value, disabled item을 테스트한다.
+- Trigger/Value/Icon/Content/Viewport/Group/Label/Item/Separator의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Select`를 package root에서 import한다.
+- package tarball에 Select declaration이 포함된다.
+
+## Phase 18 — v0.5 Pagination
+
+### 범위
+
+- [ ] `CMP-022` semantic Pagination compound API
+- [ ] Pagination tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 paged activity 사례 통합
+- [ ] public named export, declaration, token, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- navigation/list/link semantic, current page `aria-current`, visual-only Ellipsis, native link click을 테스트한다.
+- Root/List/Item/Link/Previous/Next/Ellipsis의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Pagination`을 package root에서 import한다.
+- package tarball에 Pagination declaration이 포함된다.
+
+## Phase 19 — v0.5 Table
+
+### 범위
+
+- [ ] `CMP-023` native semantic Table compound API
+- [ ] Table tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 project status table 사례 통합
+- [ ] public named export, declaration, token, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- table/caption/header/cell semantic과 `scope`, `colSpan`, `rowSpan` native prop 전달을 테스트한다.
+- Container/Root/Caption/Header/Body/Footer/Row/Head/Cell의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Table`을 package root에서 import한다.
+- package tarball에 Table declaration이 포함된다.
+
+## Phase 20 — v0.5 EmptyState
+
+### 범위
+
+- [ ] `CMP-024` EmptyState compound API
+- [ ] EmptyState tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 empty project/search result 사례 통합
+- [ ] public named export, declaration, token, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- title/description semantics, visual-only Icon, consumer action click을 테스트한다.
+- Root/Icon/Title/Description/Actions의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `EmptyState`를 package root에서 import한다.
+- package tarball에 EmptyState declaration이 포함된다.
+
+## Phase 21 — v0.5 FilterBar
+
+### 범위
+
+- [ ] `CMP-025` semantic FilterBar compound API
+- [ ] FilterBar tests, stories, docs
+- [ ] 일반 React와 Tailwind 예제 앱의 project search/filter 사례 통합
+- [ ] public named export, declaration, token, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- named search landmark와 consumer submit handler를 테스트한다.
+- Root/Controls/Actions의 ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `FilterBar`를 package root에서 import한다.
+- package tarball에 FilterBar declaration이 포함된다.
 
 ---
 

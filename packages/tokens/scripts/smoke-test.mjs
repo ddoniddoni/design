@@ -34,6 +34,45 @@ const requiredTokens = [
   "--dds-skeleton-bg",
   "--dds-skeleton-highlight",
   "--dds-skeleton-radius",
+  "--dds-select-bg",
+  "--dds-select-text",
+  "--dds-select-placeholder",
+  "--dds-select-border",
+  "--dds-select-border-hover",
+  "--dds-select-border-focus",
+  "--dds-select-disabled-bg",
+  "--dds-select-disabled-text",
+  "--dds-select-content-bg",
+  "--dds-select-content-border",
+  "--dds-select-content-radius",
+  "--dds-select-content-shadow",
+  "--dds-select-item-highlight-bg",
+  "--dds-select-item-selected-text",
+  "--dds-pagination-bg",
+  "--dds-pagination-text",
+  "--dds-pagination-border",
+  "--dds-pagination-hover-bg",
+  "--dds-pagination-current-bg",
+  "--dds-pagination-current-text",
+  "--dds-pagination-current-border",
+  "--dds-table-bg",
+  "--dds-table-text",
+  "--dds-table-border",
+  "--dds-table-caption-text",
+  "--dds-table-header-bg",
+  "--dds-table-header-text",
+  "--dds-table-row-hover-bg",
+  "--dds-empty-state-bg",
+  "--dds-empty-state-text",
+  "--dds-empty-state-description-text",
+  "--dds-empty-state-border",
+  "--dds-empty-state-radius",
+  "--dds-empty-state-icon-bg",
+  "--dds-empty-state-icon-text",
+  "--dds-filter-bar-bg",
+  "--dds-filter-bar-text",
+  "--dds-filter-bar-border",
+  "--dds-filter-bar-radius",
 ];
 
 const expectedBrandPalette = new Map([
@@ -103,6 +142,7 @@ const contrastChecks = [
   ["primary hover foreground", "--dds-color-neutral-0", "--dds-color-brand-500", 4.5],
   ["dark hover control", "--dds-color-brand-500", "--dds-color-neutral-900", 3],
   ["dark focus ring", "--dds-color-brand-400", "--dds-color-neutral-900", 3],
+  ["dark accent foreground", "--dds-color-brand-300", "--dds-color-neutral-800", 4.5],
 ];
 
 for (const [label, foregroundToken, backgroundToken, minimumRatio] of contrastChecks) {
@@ -117,6 +157,33 @@ const darkThemeBlock = tokensCss.match(/\[data-dds-theme=(?:"dark"|dark)\]\{([^}
 
 if (!darkThemeBlock?.includes("--dds-color-action-primary-text:var(--dds-color-neutral-0)")) {
   throw new Error("Dark primary foreground must use the white neutral token.");
+}
+
+if (!darkThemeBlock.includes("--dds-color-text-link:var(--dds-color-brand-300)")) {
+  throw new Error("Dark accent foreground must use the high-contrast link text token.");
+}
+
+if (
+  !darkThemeBlock.includes("--dds-accordion-trigger-open-bg:var(--dds-color-bg-surface-elevated)")
+) {
+  throw new Error("Dark theme must redefine Accordion open background component tokens.");
+}
+
+for (const token of [
+  "--dds-button-primary-bg",
+  "--dds-input-bg",
+  "--dds-tabs-active-text",
+  "--dds-select-item-selected-text",
+  "--dds-dialog-bg",
+  "--dds-tooltip-bg",
+  "--dds-pagination-bg",
+  "--dds-table-bg",
+  "--dds-empty-state-bg",
+  "--dds-filter-bar-bg",
+]) {
+  if (!darkThemeBlock.includes(token)) {
+    throw new Error(`Dark theme must redefine component token: ${token}`);
+  }
 }
 
 for (const token of [

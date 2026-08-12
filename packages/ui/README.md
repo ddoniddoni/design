@@ -32,12 +32,12 @@ export function ProfileForm() {
 ## 공개 컴포넌트
 
 - Button, IconButton
-- Spinner, Skeleton, Badge, Toast
-- Field, Input, Textarea, Checkbox, RadioGroup, Switch
-- Card, PageHeader, Tabs, Accordion
+- Spinner, Skeleton, EmptyState, Badge, Toast
+- Field, FilterBar, Input, Textarea, Checkbox, RadioGroup, Select, Switch
+- Card, PageHeader, Pagination, Table, Tabs, Accordion
 - Dialog, Tooltip, Popover, DropdownMenu
 
-컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, Popover, DropdownMenu, Checkbox, RadioGroup, Switch, Tabs, Accordion의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
+컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, Popover, DropdownMenu, Checkbox, RadioGroup, Select, Switch, Tabs, Accordion의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
 
 Dark theme에서도 선택 표시가 선명하도록 Checkbox·RadioGroup indicator와 Switch thumb는 기본적으로 흰색 component token을 사용합니다.
 
@@ -94,6 +94,112 @@ RadioGroup은 여러 항목 중 하나를 선택하는 form 값에 사용합니�
   gap: var(--dds-space-2);
 }
 ```
+
+Select는 여러 옵션 중 하나를 compact한 trigger와 listbox로 선택할 때 사용합니다. 검색, 다중 선택, 새 값 생성이 필요하다면 전용 Combobox를 사용합니다.
+
+```tsx
+<Field.Root>
+  <Field.Label htmlFor="project-template">프로젝트 템플릿</Field.Label>
+  <Select.Root defaultValue="product" name="template">
+    <Select.Trigger id="project-template">
+      <Select.Value placeholder="템플릿을 선택하세요" />
+      <Select.Icon />
+    </Select.Trigger>
+    <Select.Portal>
+      <Select.Content>
+        <Select.Viewport>
+          <Select.Item value="product">제품 개발</Select.Item>
+          <Select.Item value="marketing">마케팅 캠페인</Select.Item>
+        </Select.Viewport>
+      </Select.Content>
+    </Select.Portal>
+  </Select.Root>
+</Field.Root>
+```
+
+`Root`의 `value`, `defaultValue`, `onValueChange`, `name`, `required`, `disabled`를 사용합니다. `Content`는 trigger 폭과 사용 가능한 viewport 높이를 따르며, `--dds-select-*` token으로 surface와 상태를 재정의합니다.
+
+FilterBar는 목록 검색과 filter control을 form landmark로 묶습니다. 검색 결과, URL 동기화, debounce, reset 동작은 consumer가 관리합니다.
+
+```tsx
+<FilterBar.Root aria-label="프로젝트 필터" onSubmit={handleSubmit}>
+  <FilterBar.Controls>
+    <Field.Root>
+      <Field.Label htmlFor="project-query">프로젝트 검색</Field.Label>
+      <Input id="project-query" name="query" />
+    </Field.Root>
+  </FilterBar.Controls>
+  <FilterBar.Actions>
+    <Button type="submit">검색</Button>
+    <Button type="reset" tone="neutral" variant="outline">
+      초기화
+    </Button>
+  </FilterBar.Actions>
+</FilterBar.Root>
+```
+
+Root는 이름 있는 `search` landmark를 렌더링하며, `--dds-filter-bar-*` token으로 surface를 재정의합니다.
+
+Pagination은 여러 페이지로 나뉜 목록의 위치와 이동 링크를 표시합니다. 실제 URL, 라우터 이동, 데이터 상태는 소비자가 관리합니다.
+
+```tsx
+<Pagination.Root aria-label="프로젝트 목록 페이지">
+  <Pagination.List>
+    <Pagination.Item>
+      <Pagination.Previous href="?page=1" />
+    </Pagination.Item>
+    <Pagination.Item>
+      <Pagination.Link aria-current="page" aria-label="2페이지" href="?page=2">
+        2
+      </Pagination.Link>
+    </Pagination.Item>
+    <Pagination.Item>
+      <Pagination.Next href="?page=3" />
+    </Pagination.Item>
+  </Pagination.List>
+</Pagination.Root>
+```
+
+현재 페이지에는 `aria-current="page"`를 지정하고, page link에는 목적지를 알 수 있는 accessible name을 제공합니다. `Ellipsis`는 시각 전용이며 `--dds-pagination-*` token으로 상태를 재정의합니다.
+
+Table은 열 간 비교가 필요한 구조화된 목록을 native table semantics로 표시합니다. 데이터 정렬, 선택, 가상화는 consumer가 구성하거나 DataGrid를 사용합니다.
+
+```tsx
+<Table.Container>
+  <Table.Root>
+    <Table.Caption>프로젝트 목록</Table.Caption>
+    <Table.Header>
+      <Table.Row>
+        <Table.Head scope="col">프로젝트</Table.Head>
+        <Table.Head scope="col">상태</Table.Head>
+      </Table.Row>
+    </Table.Header>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>디자인 시스템</Table.Cell>
+        <Table.Cell>진행 중</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table.Root>
+</Table.Container>
+```
+
+`Caption`으로 table의 이름을 제공하고, `Head`에는 적절한 `scope`를 설정합니다. `Container`는 좁은 화면의 가로 스크롤을 제공하며 `--dds-table-*` token으로 표현을 재정의합니다.
+
+EmptyState는 목록이나 검색 결과가 비어 있을 때 이유와 다음 action을 안내합니다. Icon은 장식 전용이며 action은 consumer가 `Actions`에 조합합니다.
+
+```tsx
+<EmptyState.Root>
+  <EmptyState.Icon>□</EmptyState.Icon>
+  <EmptyState.Title>프로젝트가 없습니다</EmptyState.Title>
+  <EmptyState.Description>새 프로젝트를 만들어 작업을 시작하세요.</EmptyState.Description>
+  <EmptyState.Actions>
+    <Button>새 프로젝트 만들기</Button>
+  </EmptyState.Actions>
+</EmptyState.Root>
+```
+
+제목은 `h2`로 렌더링되므로 페이지의 heading hierarchy에 맞게 사용합니다. `--dds-empty-state-*` token으로 표면과 icon 표현을 재정의합니다.
 
 Tabs는 연관된 콘텐츠 영역을 전환할 때 사용합니다. List에는 접근 가능한 이름을 제공합니다.
 

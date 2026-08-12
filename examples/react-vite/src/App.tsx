@@ -5,7 +5,11 @@ import {
   AccordionSection,
   ActionSection,
   AppHeader,
+  EmptyStateSection,
+  FilterBarSection,
   OverlayComponentsCard,
+  PaginationSection,
+  ProjectTableSection,
   ProjectSettingsCard,
   SkeletonSection,
   TabsSection,
@@ -19,7 +23,10 @@ export function App() {
   const [projectName, setProjectName] = useState("디자인 시스템 예제");
   const [description, setDescription] = useState("CSS 변수만 바꿔 브랜드를 적용합니다.");
   const [receivesDigest, setReceivesDigest] = useState(true);
+  const [projectTemplate, setProjectTemplate] = useState("product");
   const [projectVisibility, setProjectVisibility] = useState("team");
+  const [activityPage, setActivityPage] = useState(2);
+  const [projectQuery, setProjectQuery] = useState("");
   const [toastMessage, setToastMessage] = useState("");
   const [toastOpen, setToastOpen] = useState(false);
 
@@ -53,10 +60,12 @@ export function App() {
               <ProjectSettingsCard
                 description={description}
                 projectName={projectName}
+                projectTemplate={projectTemplate}
                 projectVisibility={projectVisibility}
                 receivesDigest={receivesDigest}
                 onDescriptionChange={setDescription}
                 onProjectNameChange={setProjectName}
+                onProjectTemplateChange={setProjectTemplate}
                 onProjectVisibilityChange={setProjectVisibility}
                 onReceivesDigestChange={setReceivesDigest}
                 onSubmit={handleSubmit}
@@ -64,6 +73,14 @@ export function App() {
               <OverlayComponentsCard onStatusMessageChange={showToast} />
             </div>
             <TabsSection />
+            <PaginationSection currentPage={activityPage} onPageChange={setActivityPage} />
+            <FilterBarSection
+              projectQuery={projectQuery}
+              onProjectQueryChange={setProjectQuery}
+              onStatusMessageChange={showToast}
+            />
+            <ProjectTableSection />
+            <EmptyStateSection onStatusMessageChange={showToast} />
             <AccordionSection />
             <SkeletonSection />
             <ThemeOverride />

@@ -1,0 +1,49 @@
+@layer components {
+  .root {
+    display: flex;
+    box-sizing: border-box;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--dds-space-3);
+    padding: var(--dds-space-4);
+    min-inline-size: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-filter-bar-text);
+    border: var(--dds-control-border-width) solid var(--dds-filter-bar-border);
+    border-radius: var(--dds-filter-bar-radius);
+    background-color: var(--dds-filter-bar-bg);
+  }
+
+  .controls {
+    display: flex;
+    box-sizing: border-box;
+    align-items: flex-end;
+    flex: 1 1 var(--dds-space-12);
+    flex-wrap: wrap;
+    gap: var(--dds-space-3);
+    min-inline-size: 0;
+  }
+
+  .actions {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: var(--dds-space-2);
+    min-inline-size: 0;
+  }
+
+  @media (width <= 640px) {
+    .root {
+      align-items: stretch;
+    }
+
+    .controls,
+    .actions {
+      flex-basis: 100%;
+    }
+  }
+}

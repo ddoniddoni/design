@@ -16,6 +16,14 @@ Object.defineProperty(globalThis, "ResizeObserver", {
   writable: true,
 });
 
+if (!Element.prototype.scrollIntoView) {
+  Object.defineProperty(Element.prototype, "scrollIntoView", {
+    configurable: true,
+    value() {},
+    writable: true,
+  });
+}
+
 if (!Element.prototype.hasPointerCapture) {
   const pointerCaptures = new WeakMap<Element, Set<number>>();
 

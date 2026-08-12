@@ -72,7 +72,7 @@
   }
 
   .root[data-variant="soft"][data-tone="primary"] {
-    color: var(--dds-button-primary-bg);
+    color: var(--dds-color-text-link);
     background-color: var(--dds-color-bg-surface-subtle);
   }
 
@@ -102,8 +102,8 @@
   }
 
   .root[data-variant="outline"][data-tone="primary"] {
-    color: var(--dds-button-primary-bg);
-    border-color: var(--dds-button-primary-bg);
+    color: var(--dds-color-text-link);
+    border-color: var(--dds-color-text-link);
   }
 
   .root[data-variant="outline"][data-tone="success"] {

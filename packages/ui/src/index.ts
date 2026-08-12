@@ -51,6 +51,14 @@ export type {
   DropdownMenuSubTriggerProps,
   DropdownMenuTriggerProps,
 } from "./components/DropdownMenu";
+export { EmptyState } from "./components/EmptyState";
+export type {
+  EmptyStateActionsProps,
+  EmptyStateDescriptionProps,
+  EmptyStateIconProps,
+  EmptyStateRootProps,
+  EmptyStateTitleProps,
+} from "./components/EmptyState";
 export { Field } from "./components/Field";
 export type {
   FieldDescriptionProps,
@@ -58,6 +66,12 @@ export type {
   FieldLabelProps,
   FieldRootProps,
 } from "./components/Field";
+export { FilterBar } from "./components/FilterBar";
+export type {
+  FilterBarActionsProps,
+  FilterBarControlsProps,
+  FilterBarRootProps,
+} from "./components/FilterBar";
 export { IconButton } from "./components/IconButton";
 export type { IconButtonProps } from "./components/IconButton";
 export { Input } from "./components/Input";
@@ -70,6 +84,16 @@ export type {
   PageHeaderRootProps,
   PageHeaderTitleProps,
 } from "./components/PageHeader";
+export { Pagination } from "./components/Pagination";
+export type {
+  PaginationEllipsisProps,
+  PaginationItemProps,
+  PaginationLinkProps,
+  PaginationListProps,
+  PaginationNextProps,
+  PaginationPreviousProps,
+  PaginationRootProps,
+} from "./components/Pagination";
 export { Popover } from "./components/Popover";
 export type {
   PopoverAnchorProps,
@@ -86,6 +110,20 @@ export { Spinner } from "./components/Spinner";
 export type { SpinnerProps, SpinnerSize } from "./components/Spinner";
 export { Skeleton } from "./components/Skeleton";
 export type { SkeletonProps, SkeletonShape } from "./components/Skeleton";
+export { Select } from "./components/Select";
+export type {
+  SelectContentProps,
+  SelectGroupProps,
+  SelectIconProps,
+  SelectItemProps,
+  SelectLabelProps,
+  SelectPortalProps,
+  SelectRootProps,
+  SelectSeparatorProps,
+  SelectTriggerProps,
+  SelectValueProps,
+  SelectViewportProps,
+} from "./components/Select";
 export { Switch } from "./components/Switch";
 export type { SwitchProps } from "./components/Switch";
 export { Tabs } from "./components/Tabs";
@@ -95,6 +133,18 @@ export type {
   TabsRootProps,
   TabsTriggerProps,
 } from "./components/Tabs";
+export { Table } from "./components/Table";
+export type {
+  TableBodyProps,
+  TableCaptionProps,
+  TableCellProps,
+  TableContainerProps,
+  TableFooterProps,
+  TableHeadProps,
+  TableHeaderProps,
+  TableRootProps,
+  TableRowProps,
+} from "./components/Table";
 export { Toast } from "./components/Toast";
 export type {
   ToastActionProps,
