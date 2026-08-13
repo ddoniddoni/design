@@ -13,12 +13,12 @@
 - [x] Day 4 — Actions와 Forms 문서 확장
 - [x] Day 5 — Layout, Navigation, Data Display 문서 확장
 - [x] Day 6 — Feedback과 Overlays 문서 확장
-- [ ] Day 7~8 — 품질 검토와 배포 준비
+- [x] Day 7~8 — 품질 검토와 배포 준비
   - [x] Day 7 — 29개 문서의 정적 계약, 공개 export, sidebar 순서 자동 검증
   - [x] Day 7 — `agent-browser`로 local Storybook 수동 시각·키보드 점검
   - [x] Day 8 — 통합 정적 검증과 릴리즈 영향 범위 정리
   - [x] Day 8 — GitHub Pages hosting workflow 구성 및 첫 배포 성공
-  - [ ] Day 8 — 배포된 Storybook 수동 확인 (첫 배포 후 확인)
+  - [x] Day 8 — `agent-browser`로 배포된 Storybook Docs 수동 확인
 
 ## 1. 목표와 범위
 

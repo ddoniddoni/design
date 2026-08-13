@@ -263,7 +263,7 @@
 - [x] `develop` push 기반 GitHub Pages Storybook 배포 workflow와 project base path 구성
 - [x] GitHub Pages 첫 배포 성공, HTTPS 공개 URL HTTP 200 응답 확인
 - [x] local Storybook의 light/dark/system 시각 대비와 keyboard 수동 점검 (`agent-browser`)
-- [ ] 배포된 Storybook의 수동 Docs 점검
+- [x] 배포된 GitHub Pages Storybook Docs 수동 점검 (`agent-browser`)
 
 ## 브랜드 및 dark theme 품질 개선
 
@@ -313,6 +313,7 @@
 | `npm run pack:check`                                | PASS      | tokens 3, ui 129, tailwind 3 files 계약 통과                              |
 | `npm run check`                                     | 환경 제한 | pack 단계만 npm cache 권한으로 중단, 별도 pack PASS                       |
 | `agent-browser` local Storybook 수동 점검           | PASS      | Gallery·Breadcrumb Docs light/dark/system, sidebar/Canvas/Dialog keyboard |
+| `agent-browser` 배포 Storybook 수동 점검            | PASS      | Breadcrumb Docs, dark theme 대비, Canvas Space 키 토글, console error 0건 |
 | `npx react-doctor@latest --verbose --scope changed` | PASS      | full scan 100/100, issue 없음                                             |
 
 ## 알려진 이슈
