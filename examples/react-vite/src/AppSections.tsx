@@ -2,7 +2,9 @@ import type { FormEvent, MouseEvent } from "react";
 import {
   Accordion,
   Alert,
+  Avatar,
   Badge,
+  Breadcrumb,
   Button,
   Card,
   Checkbox,
@@ -16,6 +18,7 @@ import {
   PageHeader,
   Pagination,
   Popover,
+  Progress,
   RadioGroup,
   Select,
   Skeleton,
@@ -78,32 +81,49 @@ interface FilterBarSectionProps {
 
 export function AppHeader({ theme, onThemeChange }: AppHeaderProps) {
   return (
-    <PageHeader.Root className="pageHeader">
-      <PageHeader.Content>
-        <Badge tone="primary">React Vite</Badge>
-        <PageHeader.Title>일반 CSS 소비자 예제</PageHeader.Title>
-        <PageHeader.Description>
-          토큰 CSS와 컴포넌트 CSS만 import해 light, dark, system 테마와 브랜드 커스터마이징을
-          확인합니다.
-        </PageHeader.Description>
-      </PageHeader.Content>
-      <PageHeader.Actions className="themeActions">
-        <label className="themeControl" htmlFor="theme-select">
-          <span>테마</span>
-          <select
-            id="theme-select"
-            value={theme}
-            onChange={(event) => onThemeChange(event.target.value as Theme)}
-          >
-            {themeOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </PageHeader.Actions>
-    </PageHeader.Root>
+    <div className="headerStack">
+      <Breadcrumb.Root aria-label="현재 위치">
+        <Breadcrumb.List>
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="#workspace">워크스페이스</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator />
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="#projects">프로젝트</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator />
+          <Breadcrumb.Item>
+            <Breadcrumb.CurrentPage>일반 CSS 소비자 예제</Breadcrumb.CurrentPage>
+          </Breadcrumb.Item>
+        </Breadcrumb.List>
+      </Breadcrumb.Root>
+      <PageHeader.Root className="pageHeader">
+        <PageHeader.Content>
+          <Badge tone="primary">React Vite</Badge>
+          <PageHeader.Title>일반 CSS 소비자 예제</PageHeader.Title>
+          <PageHeader.Description>
+            토큰 CSS와 컴포넌트 CSS만 import해 light, dark, system 테마와 브랜드 커스터마이징을
+            확인합니다.
+          </PageHeader.Description>
+        </PageHeader.Content>
+        <PageHeader.Actions className="themeActions">
+          <label className="themeControl" htmlFor="theme-select">
+            <span>테마</span>
+            <select
+              id="theme-select"
+              value={theme}
+              onChange={(event) => onThemeChange(event.target.value as Theme)}
+            >
+              {themeOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+        </PageHeader.Actions>
+      </PageHeader.Root>
+    </div>
   );
 }
 
@@ -581,6 +601,51 @@ export function AlertSection({ onStatusMessageChange }: AlertSectionProps) {
           </Button>
         </Alert.Actions>
       </Alert.Root>
+    </section>
+  );
+}
+
+export function AvatarSection() {
+  return (
+    <section aria-labelledby="avatar-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Data display</p>
+          <h2 id="avatar-title">Avatar</h2>
+        </div>
+      </div>
+      <div aria-label="프로젝트 멤버" className="avatarList">
+        <div className="avatarIdentity">
+          <Avatar alt="김도니" size="lg" />
+          <span>김도니</span>
+        </div>
+        <div className="avatarIdentity">
+          <Avatar alt="박유진" size="md" />
+          <span>박유진</span>
+        </div>
+        <div className="avatarIdentity">
+          <Avatar alt="이서준" size="sm" />
+          <span>이서준</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ProgressSection() {
+  return (
+    <section aria-labelledby="progress-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Feedback</p>
+          <h2 id="progress-title">Progress</h2>
+        </div>
+      </div>
+      <div className="progressSummary">
+        <span>프로젝트 설정 완성도</span>
+        <strong>64%</strong>
+      </div>
+      <Progress aria-label="프로젝트 설정 완성도" aria-valuetext="설정 단계 3/5 완료" value={64} />
     </section>
   );
 }

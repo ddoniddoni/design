@@ -1,0 +1,73 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-breadcrumb-text);
+  }
+
+  .list {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--dds-space-2);
+    margin: 0;
+    padding: 0;
+    min-inline-size: 0;
+    list-style: none;
+  }
+
+  .item,
+  .separator {
+    display: flex;
+    min-inline-size: 0;
+  }
+
+  .link,
+  .current-page,
+  .separator {
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-font-size-sm);
+    line-height: var(--dds-line-height-normal);
+  }
+
+  .link {
+    font-weight: var(--dds-font-weight-medium);
+    color: var(--dds-breadcrumb-link);
+    text-decoration: none;
+
+    @include styles.control-transition;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: var(--dds-control-border-width);
+      text-underline-offset: var(--dds-space-1);
+    }
+
+    &:focus-visible {
+      @include styles.focus-ring;
+    }
+  }
+
+  .current-page {
+    font-weight: var(--dds-font-weight-semibold);
+    color: var(--dds-breadcrumb-current);
+  }
+
+  .separator {
+    align-items: center;
+    justify-content: center;
+    color: var(--dds-breadcrumb-separator);
+  }
+
+  @include styles.reduced-motion {
+    .link {
+      transition: none;
+    }
+  }
+}

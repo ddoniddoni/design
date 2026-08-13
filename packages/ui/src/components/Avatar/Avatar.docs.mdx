@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as AvatarStories from "./Avatar.stories";
+
+<Meta of={AvatarStories} name="문서" />
+
+# Avatar
+
+사용자, 담당자처럼 사람 또는 계정의 identity를 사진이나 이니셜로 compact하게 표시하는 data display 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트 소유자, 작성자, 멤버 목록처럼 identity를 text와 함께 빠르게 구분할 때 사용합니다.
+- 사진을 아직 준비하지 못했거나 로드에 실패해도 이름에서 만든 이니셜 fallback을 유지해야 할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- Avatar 자체를 메뉴, 삭제, 수정 action으로 만들지 않습니다. action이 필요하면 Avatar를 Button 또는 link로 감쌉니다.
+- 사진만으로 사용자를 구분하지 않습니다. 특히 여러 사용자가 있는 목록에서는 인접한 visible name도 제공합니다.
+
+<Canvas of={AvatarStories.Playground} sourceState="shown" />
+
+<h2 id="variants">size, image, fallback</h2>
+
+`size`는 `sm`, `md`, `lg`를 지원합니다. `src`가 있으면 image를 우선하고, 이미지가 없거나 로드에 실패하면 `fallback` 또는 `alt`에서 만든 이니셜을 표시합니다.
+
+<Canvas of={AvatarStories.Sizes} sourceState="shown" />
+
+<Canvas of={AvatarStories.ImageAndFallback} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`Avatar`는 native `span`을 렌더링합니다. `alt`는 필수이며 `src`, `fallback`, `size`와 함께 사용합니다. `className`, `title`, `data-*`, `aria-*`, ref도 root `span`으로 전달합니다.
+
+<Controls of={AvatarStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- image가 보일 때는 `img`의 `alt`로 identity를 전달합니다.
+- image가 없거나 로드에 실패하면 fallback이 같은 이름의 `role="img"`로 전환됩니다.
+- Avatar가 장식용이면 `alt=""`를 전달합니다. 중요한 identity에는 Avatar와 별도로 visible text를 함께 제공합니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+background, text, border, radius, size는 `--dds-avatar-*` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-avatar-bg: var(--dds-color-brand-100);
+  --dds-avatar-text: var(--dds-color-brand-800);
+  --dds-avatar-size-lg: 56px;
+}
+```

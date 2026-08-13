@@ -1,0 +1,54 @@
+@layer components {
+  .root {
+    overflow: hidden;
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    block-size: var(--dds-avatar-size);
+    inline-size: var(--dds-avatar-size);
+    font: inherit;
+    font-family: var(--dds-font-family-sans);
+    font-size: var(--dds-avatar-font-size);
+    font-weight: var(--dds-font-weight-semibold);
+    color: var(--dds-avatar-text);
+    line-height: var(--dds-line-height-tight);
+    border: var(--dds-avatar-border-width) solid var(--dds-avatar-border);
+    border-radius: var(--dds-avatar-radius);
+    background-color: var(--dds-avatar-bg);
+  }
+
+  .root[data-size="sm"] {
+    --dds-avatar-size: var(--dds-avatar-size-sm);
+    --dds-avatar-font-size: var(--dds-font-size-xs);
+  }
+
+  .root[data-size="md"] {
+    --dds-avatar-size: var(--dds-avatar-size-md);
+    --dds-avatar-font-size: var(--dds-font-size-sm);
+  }
+
+  .root[data-size="lg"] {
+    --dds-avatar-size: var(--dds-avatar-size-lg);
+    --dds-avatar-font-size: var(--dds-font-size-md);
+  }
+
+  .fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    block-size: 100%;
+    inline-size: 100%;
+  }
+
+  .image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    block-size: 100%;
+    inline-size: 100%;
+    object-fit: cover;
+  }
+}

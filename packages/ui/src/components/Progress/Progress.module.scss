@@ -1,0 +1,57 @@
+@use "../../styles" as styles;
+
+@layer components {
+  .root {
+    overflow: hidden;
+    display: block;
+    box-sizing: border-box;
+    inline-size: 100%;
+    border-radius: var(--dds-progress-radius);
+    background-color: var(--dds-progress-track);
+  }
+
+  .root[data-size="sm"] {
+    block-size: var(--dds-progress-height-sm);
+  }
+
+  .root[data-size="md"] {
+    block-size: var(--dds-progress-height-md);
+  }
+
+  .indicator {
+    display: block;
+    block-size: 100%;
+    inline-size: var(--dds-progress-value);
+    border-radius: inherit;
+    background-color: var(--dds-progress-indicator);
+
+    @include styles.control-transition;
+  }
+
+  .root[data-state="indeterminate"] .indicator {
+    inline-size: 40%;
+    animation: progress-indeterminate var(--dds-motion-duration-slow)
+      var(--dds-motion-ease-standard) infinite;
+  }
+
+  @keyframes progress-indeterminate {
+    from {
+      transform: translateX(-125%);
+    }
+
+    to {
+      transform: translateX(250%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .indicator {
+      transition: none;
+    }
+
+    .root[data-state="indeterminate"] .indicator {
+      transform: translateX(0);
+      animation: none;
+    }
+  }
+}

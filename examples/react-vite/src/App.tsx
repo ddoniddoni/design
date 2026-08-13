@@ -5,6 +5,7 @@ import {
   AccordionSection,
   ActionSection,
   AlertSection,
+  AvatarSection,
   AppHeader,
   EmptyStateSection,
   FilterBarSection,
@@ -12,6 +13,7 @@ import {
   PaginationSection,
   ProjectTableSection,
   ProjectSettingsCard,
+  ProgressSection,
   SkeletonSection,
   TabsSection,
   ThemeOverride,
@@ -81,6 +83,8 @@ export function App() {
               onStatusMessageChange={showToast}
             />
             <ProjectTableSection />
+            <AvatarSection />
+            <ProgressSection />
             <AlertSection onStatusMessageChange={showToast} />
             <EmptyStateSection onStatusMessageChange={showToast} />
             <AccordionSection />

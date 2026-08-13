@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as BreadcrumbStories from "./Breadcrumb.stories";
+
+<Meta of={BreadcrumbStories} name="문서" />
+
+# Breadcrumb
+
+현재 페이지가 속한 상위 경로를 semantic navigation으로 표시하는 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 프로젝트 설정, 멤버 상세처럼 상위 화면으로 돌아갈 수 있는 계층형 경로를 표시할 때 사용합니다.
+- 각 상위 경로가 실제 URL 또는 라우터 이동 링크로 연결될 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 같은 화면 안의 동등한 콘텐츠 전환에는 Tabs를 사용합니다.
+- 목록 페이지 간 이동에는 Pagination을 사용합니다.
+
+<Canvas of={BreadcrumbStories.Playground} sourceState="shown" />
+
+<h2 id="states">계층 경로</h2>
+
+`Item` 안에는 이동 가능한 상위 경로의 `Link` 또는 현재 위치의 `CurrentPage`를 배치합니다. 항목 사이에는 시각 전용 `Separator`를 둡니다.
+
+<Canvas of={BreadcrumbStories.LongPath} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`는 이름 있는 `nav`, `List`는 `ol`, `Item`과 `Separator`는 `li`를 렌더링합니다. `CurrentPage`는 항상 `aria-current="page"`를 제공하며, `Link`에는 목적지 `href`가 필요합니다. 모든 영역은 native prop, `className`, ref를 해당 DOM 요소에 전달합니다.
+
+<Controls of={BreadcrumbStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- `Root`는 기본 이름으로 `경로 탐색`을 제공하며, 화면 맥락에 맞게 `aria-label`을 바꿀 수 있습니다.
+- 현재 위치는 링크가 아닌 `CurrentPage`로 표시해 중복 이동을 피하고 `aria-current="page"`를 제공합니다.
+- `Separator`는 `aria-hidden="true"`이므로 보조 기술에 불필요한 구분 기호를 반복하지 않습니다.
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+텍스트, 링크, 현재 위치, 구분 기호는 `--dds-breadcrumb-*` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-breadcrumb-link: var(--dds-color-brand-700);
+  --dds-breadcrumb-current: var(--dds-color-text-primary);
+}
+```

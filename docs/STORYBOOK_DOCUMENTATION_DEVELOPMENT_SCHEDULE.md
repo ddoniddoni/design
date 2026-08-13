@@ -14,8 +14,8 @@
 - [x] Day 5 — Layout, Navigation, Data Display 문서 확장
 - [x] Day 6 — Feedback과 Overlays 문서 확장
 - [ ] Day 7~8 — 품질 검토와 배포 준비
-  - [x] Day 7 — 26개 문서의 정적 계약, 공개 export, sidebar 순서 자동 검증
-  - [ ] Day 7 — 브라우저 수동 시각·키보드 점검 (현재 세션에 연결 가능한 브라우저 없음)
+  - [x] Day 7 — 29개 문서의 정적 계약, 공개 export, sidebar 순서 자동 검증
+  - [x] Day 7 — `agent-browser`로 local Storybook 수동 시각·키보드 점검
   - [x] Day 8 — 통합 정적 검증과 릴리즈 영향 범위 정리
   - [x] Day 8 — GitHub Pages hosting workflow 구성 및 첫 배포 성공
   - [ ] Day 8 — 배포된 Storybook 수동 확인 (첫 배포 후 확인)
@@ -38,7 +38,7 @@
 
 - Storybook 좌측 sidebar의 DDoni 브랜딩과 고정된 navigation 순서
 - Docs 페이지의 공통 3열 레이아웃과 우측 목차
-- 26개 공개 컴포넌트의 상세 문서
+- 29개 공개 컴포넌트의 상세 문서
 - 라이브 Story, 코드, 주요 Props, 접근성, `--dds-*` 토큰 안내
 - `light`, `dark`, `system` theme toolbar에서의 문서 렌더링 확인
 - 정적 Storybook build 검증
@@ -68,7 +68,7 @@
 - Desktop에서 좌측 sidebar, 본문, 우측 목차가 함께 보인다.
 - 우측 목차는 본문의 `h2` 섹션을 따라 이동하며, tablet/mobile에서는 레이아웃을 방해하지 않는다.
 - Button 문서에는 `variant`, `tone`, `size`, icon, loading, disabled 예제와 접근성 안내가 포함된다.
-- 나머지 24개 컴포넌트도 공통 문서 계약을 충족한다.
+- 나머지 27개 컴포넌트도 공통 문서 계약을 충족한다.
 - `light`, `dark`, `system`에서 문서 텍스트, 표, 코드, Canvas 대비가 유지된다.
 - `npm run check`와 `npm run build-storybook`이 통과한다.
 
@@ -90,7 +90,7 @@
 
 - 문서 파일 배치 결정
 - dependency 추가가 필요할 때의 변경 목록
-- 26개 컴포넌트 문서 inventory
+- 29개 컴포넌트 문서 inventory
 
 #### 완료 기준
 
@@ -113,9 +113,9 @@ Components
   Actions: Button, IconButton
   Forms: Field, Input, Textarea, Checkbox, RadioGroup, Select, Switch, FilterBar
   Layout: Card, PageHeader
-  Navigation: Accordion, Tabs, Pagination
-  Data Display: Badge, Table
-  Feedback: Alert, EmptyState, Skeleton, Spinner, Toast
+  Navigation: Breadcrumb, Accordion, Tabs, Pagination
+  Data Display: Avatar, Badge, Table
+  Feedback: Alert, Progress, EmptyState, Skeleton, Spinner, Toast
   Overlays: Dialog, DropdownMenu, Popover, Tooltip
 ```
 
@@ -206,8 +206,8 @@ Components
 #### 대상
 
 - Layout: `Card`, `PageHeader`
-- Navigation: `Accordion`, `Tabs`, `Pagination`
-- Data Display: `Badge`, `Table`
+- Navigation: `Breadcrumb`, `Accordion`, `Tabs`, `Pagination`
+- Data Display: `Avatar`, `Badge`, `Table`
 
 #### 작업
 
@@ -221,14 +221,14 @@ Components
 
 #### 완료 기준
 
-- 대상 7개가 공통 문서 template을 충족한다.
+- 대상 9개가 공통 문서 template을 충족한다.
 - long-content와 dark theme story에서 문서의 예제가 정상 렌더링된다.
 
 ### Day 6 — Feedback과 Overlays 문서 확장 (1일)
 
 #### 대상
 
-- Feedback: `Alert`, `EmptyState`, `Skeleton`, `Spinner`, `Toast`
+- Feedback: `Alert`, `Progress`, `EmptyState`, `Skeleton`, `Spinner`, `Toast`
 - Overlays: `Dialog`, `DropdownMenu`, `Popover`, `Tooltip`
 
 #### 작업
@@ -248,7 +248,7 @@ Components
 
 #### 작업
 
-- 26개 문서의 제목, section ID, tone, code snippet, token 이름을 일괄 점검한다.
+- 29개 문서의 제목, section ID, tone, code snippet, token 이름을 일괄 점검한다.
 - 좌측 메뉴 순서와 component naming을 API export 이름과 대조한다.
 - light/dark/system에서 다음을 수동 시각 검증한다.
   - sidebar 선택 상태
@@ -286,7 +286,7 @@ npm run pack:check
 #### 완료 기준
 
 - `npm run check` 통과
-- 정적 Storybook build에서 26개 Docs 페이지를 탐색할 수 있음
+- 정적 Storybook build에서 29개 Docs 페이지를 탐색할 수 있음
 - 배포 작업은 별도 승인 항목으로 분리됨
 
 ## 5. 마일스톤과 의사결정 지점
@@ -295,10 +295,10 @@ npm run pack:check
 | ---------- | ----------------------------- | -------------------------------------------- |
 | Day 1 종료 | Docs entry와 좌측 메뉴 완성   | docs가 현재 Storybook 내에서 충분한지 확인   |
 | Day 3 종료 | Button 파일럿 완성            | typography, 목차, 예제 밀도를 승인한 뒤 확장 |
-| Day 6 종료 | 26개 component 문서 초안 완성 | 문서 내용의 제품/디자인 검토                 |
+| Day 6 종료 | 29개 component 문서 초안 완성 | 문서 내용의 제품/디자인 검토                 |
 | Day 8 종료 | 정적 build 검증 완료          | hosting과 배포 시점 결정                     |
 
-Button 파일럿이 승인되기 전에는 24개 컴포넌트로 대량 확장하지 않는다. 레이아웃과 문서 tone을 먼저 고정해 재작업을 줄인다.
+Button 파일럿이 승인되기 전에는 27개 컴포넌트로 대량 확장하지 않는다. 레이아웃과 문서 tone을 먼저 고정해 재작업을 줄인다.
 
 ## 6. 예상 파일 변경 범위
 
@@ -320,7 +320,7 @@ Button 파일럿이 승인되기 전에는 24개 컴포넌트로 대량 확장�
 | -------------------------------------------------- | --------------------------- | ----------------------------------------------------------------- |
 | Docs addon과 Storybook 버전 불일치                 | build 실패 또는 Docs 미노출 | 현재 Storybook과 동일한 stable version 사용, 설치 직후 build 확인 |
 | Docs layout이 manager sidebar까지 직접 제어하려 함 | Storybook UI와 충돌         | 좌측은 manager config, 본문/목차는 Docs Container로 책임 분리     |
-| 26개 문서를 개별 MDX로 즉시 작성                   | 중복과 내용 불일치          | Button 파일럿 후 공통 template·metadata를 우선 확정               |
+| 29개 문서를 개별 MDX로 즉시 작성                   | 중복과 내용 불일치          | Button 파일럿 후 공통 template·metadata를 우선 확정               |
 | 다크 모드에서 prose/코드 대비 저하                 | 문서 가독성 저하            | theme toolbar별 시각 검증을 Day 7 완료 기준에 포함                |
 | Docs 예제와 실제 API 불일치                        | 사용자 신뢰 저하            | 정적 코드 대신 기존 Story와 Source block 재사용                   |
 | 문서 작업이 API 변경으로 번짐                      | 범위 확대                   | API 변경은 별도 issue/phase로 분리                                |

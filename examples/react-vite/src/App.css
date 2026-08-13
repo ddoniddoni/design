@@ -12,6 +12,8 @@
 }
 
 .sectionHeading,
+.avatarList,
+.avatarIdentity,
 .buttonRow,
 .checkboxRow,
 .radioRow,
@@ -25,6 +27,11 @@
 .pageHeader {
   padding-block-end: 32px;
   border-block-end: 1px solid var(--dds-color-border-default);
+}
+
+.headerStack {
+  display: grid;
+  gap: var(--dds-space-4);
 }
 
 .section h2,
@@ -89,6 +96,33 @@
 .buttonRow {
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.avatarList {
+  flex-wrap: wrap;
+  gap: var(--dds-space-5);
+}
+
+.avatarIdentity {
+  gap: var(--dds-space-2);
+  color: var(--dds-color-text-secondary);
+  font-size: var(--dds-font-size-sm);
+  font-weight: var(--dds-font-weight-medium);
+}
+
+.progressSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dds-space-3);
+  margin-block-end: var(--dds-space-3);
+  color: var(--dds-color-text-secondary);
+  font-size: var(--dds-font-size-sm);
+}
+
+.progressSummary strong {
+  color: var(--dds-color-text-primary);
+  font-weight: var(--dds-font-weight-semibold);
 }
 
 .contentGrid {

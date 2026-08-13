@@ -3,7 +3,9 @@ import type { MouseEvent } from "react";
 import {
   Accordion,
   Alert,
+  Avatar,
   Badge,
+  Breadcrumb,
   Button,
   Card,
   EmptyState,
@@ -13,6 +15,7 @@ import {
   PageHeader,
   Pagination,
   Popover,
+  Progress,
   RadioGroup,
   Select,
   Skeleton,
@@ -66,6 +69,57 @@ function AlertPreview() {
           <Button size="sm">공유 설정 보기</Button>
         </Alert.Actions>
       </Alert.Root>
+    </section>
+  );
+}
+
+function AvatarPreview() {
+  return (
+    <section
+      aria-labelledby="avatar-preview-title"
+      className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface p-dds-6"
+    >
+      <div>
+        <p className="text-dds-sm text-dds-text-muted">Data display primitive</p>
+        <h2 id="avatar-preview-title" className="text-dds-lg font-semibold">
+          Avatar와 Tailwind layout utility
+        </h2>
+      </div>
+      <div aria-label="프로젝트 멤버" className="flex flex-wrap items-center gap-dds-5">
+        <div className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
+          <Avatar alt="김도니" size="lg" />
+          <span>김도니</span>
+        </div>
+        <div className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
+          <Avatar alt="박유진" size="md" />
+          <span>박유진</span>
+        </div>
+        <div className="flex items-center gap-dds-2 text-dds-sm text-dds-text-muted">
+          <Avatar alt="이서준" size="sm" />
+          <span>이서준</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProgressPreview() {
+  return (
+    <section
+      aria-labelledby="progress-preview-title"
+      className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface p-dds-6"
+    >
+      <div>
+        <p className="text-dds-sm text-dds-text-muted">Feedback primitive</p>
+        <h2 id="progress-preview-title" className="text-dds-lg font-semibold">
+          Progress와 Tailwind layout utility
+        </h2>
+      </div>
+      <div className="flex items-center justify-between gap-dds-3 text-dds-sm text-dds-text-muted">
+        <span>프로젝트 설정 완성도</span>
+        <strong className="font-semibold text-dds-text">64%</strong>
+      </div>
+      <Progress aria-label="프로젝트 설정 완성도" aria-valuetext="설정 단계 3/5 완료" value={64} />
     </section>
   );
 }
@@ -233,6 +287,21 @@ export function App() {
     <Tooltip.Provider delayDuration={250}>
       <main className="min-h-[100%] bg-dds-canvas p-dds-6 text-dds-text">
         <div className="mx-auto grid max-w-[1080px] gap-dds-6">
+          <Breadcrumb.Root aria-label="현재 위치">
+            <Breadcrumb.List className="gap-dds-2">
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="#workspace">워크스페이스</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="#projects">프로젝트</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item>
+                <Breadcrumb.CurrentPage>Tailwind 소비자 예제</Breadcrumb.CurrentPage>
+              </Breadcrumb.Item>
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
           <PageHeader.Root className="grid gap-dds-3">
             <PageHeader.Content className="items-start gap-dds-3">
               <Badge tone="primary">Tailwind CSS v4</Badge>
@@ -447,6 +516,8 @@ export function App() {
 
           <PaginationPreview />
           <TablePreview />
+          <AvatarPreview />
+          <ProgressPreview />
           <AlertPreview />
           <EmptyStatePreview />
           <SkeletonPreview />

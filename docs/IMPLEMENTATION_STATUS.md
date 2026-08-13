@@ -1,7 +1,7 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-13
-- 현재 Phase: Phase 22 — Alert 완료
+- 현재 Phase: Phase 25 — Breadcrumb 완료
 - 전체 상태: Storybook GitHub Pages 배포 완료, v0.5 패키지 릴리즈 승인 대기
 
 ## Phase 0
@@ -229,16 +229,40 @@
 - [x] 일반 React와 Tailwind 예제 앱의 inline feedback 사례 통합
 - [x] public named export, declaration, package tarball 검증
 
+## Phase 23
+
+- [x] CMP-027 image와 initials fallback Avatar API
+- [x] `--dds-avatar-*` component token, fallback accessibility, source 변경 재시도 테스트
+- [x] Avatar Storybook states, Docs, dark theme 예시
+- [x] 일반 React와 Tailwind 예제 앱의 member identity 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
+## Phase 24
+
+- [x] CMP-028 determinate/indeterminate Progress API
+- [x] `--dds-progress-*` component token, ARIA range, reduced motion 테스트
+- [x] Progress Storybook states, Docs, dark theme 예시
+- [x] 일반 React와 Tailwind 예제 앱의 setting completion 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
+## Phase 25
+
+- [x] CMP-029 semantic Breadcrumb compound API
+- [x] `--dds-breadcrumb-*` component token과 navigation/list/current-page semantics 테스트
+- [x] Breadcrumb Storybook states, Docs, dark theme 예시
+- [x] 일반 React와 Tailwind 예제 앱의 현재 경로 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
 ## Storybook 문서 사이트
 
-- [x] SB-001, SB-003 26개 공개 컴포넌트를 카테고리별 단일 Canvas 페이지에서 훑어보는 `Overview/Component Gallery` 추가
-- [x] SB-007 26개 공개 component 상세 MDX Docs와 공통 3열 Docs 레이아웃
+- [x] SB-001, SB-003 29개 공개 컴포넌트를 카테고리별 단일 Canvas 페이지에서 훑어보는 `Overview/Component Gallery` 추가
+- [x] SB-007 29개 공개 component 상세 MDX Docs와 공통 3열 Docs 레이아웃
 - [x] Docs·public export·sidebar 순서·Story 연결·public token 정적 계약 검사
 - [x] `npm run check`에 `npm run check:storybook-docs` 통합
 - [x] static Storybook build와 package tarball 검증
 - [x] `develop` push 기반 GitHub Pages Storybook 배포 workflow와 project base path 구성
 - [x] GitHub Pages 첫 배포 성공, HTTPS 공개 URL HTTP 200 응답 확인
-- [ ] light/dark/system 시각 대비와 keyboard 수동 점검 (현재 세션에 연결 가능한 브라우저 없음)
+- [x] local Storybook의 light/dark/system 시각 대비와 keyboard 수동 점검 (`agent-browser`)
 - [ ] 배포된 Storybook의 수동 Docs 점검
 
 ## 브랜드 및 dark theme 품질 개선
@@ -269,26 +293,27 @@
 
 ## 검증 결과
 
-| 명령                                                | 결과      | 비고                                                |
-| --------------------------------------------------- | --------- | --------------------------------------------------- |
-| `npm ci`                                            | PASS      | clean install로 641 packages 설치                   |
-| `npm run format:check`                              | PASS      | 모든 대상 파일이 Prettier 형식 준수                 |
-| `npm run lint`                                      | PASS      | ESLint warning/error 0건                            |
-| `npm run stylelint`                                 | PASS      | SCSS/CSS 선언 순서와 논리 속성 규칙 준수            |
-| `npm run typecheck`                                 | PASS      | 루트 설정 및 UI workspace strict 검사 통과          |
-| `npm run test`                                      | PASS      | 26개 파일, 76개 component test 통과                 |
-| `npm run test:tailwind`                             | PASS      | Tailwind v4 utility CSS smoke test 통과             |
-| `npm run build:examples`                            | PASS      | React Vite와 Tailwind Vite consumer build 통과      |
-| `npm run build-storybook`                           | PASS      | Phase 2~22 component/foundation story 포함          |
-| `npm run check:storybook-docs`                      | PASS      | 26개 Docs, export, sidebar, Story, token 계약       |
-| `npm run build -w @ddoni-ds/tokens`                 | PASS      | `dist/tokens.css` 생성                              |
-| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS      | 필수 토큰, theme selector, brand 대비 확인          |
-| `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS      | README, package.json, compiled CSS만 포함           |
-| `npm run build -w @ddoni-ds/ui`                     | PASS      | ESM, CJS, CSS, declaration 생성                     |
-| `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS      | README, build output, type declaration만 포함       |
-| `npm run pack:check`                                | PASS      | tokens 3, ui 117, tailwind 3 files 계약 통과        |
-| `npm run check`                                     | 환경 제한 | pack 단계만 npm cache 권한으로 중단, 별도 pack PASS |
-| `npx react-doctor@latest --verbose --scope changed` | PASS      | full scan 100/100, issue 없음                       |
+| 명령                                                | 결과      | 비고                                                                      |
+| --------------------------------------------------- | --------- | ------------------------------------------------------------------------- |
+| `npm ci`                                            | PASS      | clean install로 641 packages 설치                                         |
+| `npm run format:check`                              | PASS      | 모든 대상 파일이 Prettier 형식 준수                                       |
+| `npm run lint`                                      | PASS      | ESLint warning/error 0건                                                  |
+| `npm run stylelint`                                 | PASS      | SCSS/CSS 선언 순서와 논리 속성 규칙 준수                                  |
+| `npm run typecheck`                                 | PASS      | 루트 설정 및 UI workspace strict 검사 통과                                |
+| `npm run test`                                      | PASS      | 29개 파일, 88개 component test 통과                                       |
+| `npm run test:tailwind`                             | PASS      | Tailwind v4 utility CSS smoke test 통과                                   |
+| `npm run build:examples`                            | PASS      | React Vite와 Tailwind Vite consumer build 통과                            |
+| `npm run build-storybook`                           | PASS      | Phase 2~25 component/foundation story 포함                                |
+| `npm run check:storybook-docs`                      | PASS      | 29개 Docs, export, sidebar, Story, token 계약                             |
+| `npm run build -w @ddoni-ds/tokens`                 | PASS      | `dist/tokens.css` 생성                                                    |
+| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS      | 필수 토큰, theme selector, brand 대비 확인                                |
+| `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS      | README, package.json, compiled CSS만 포함                                 |
+| `npm run build -w @ddoni-ds/ui`                     | PASS      | ESM, CJS, CSS, declaration 생성                                           |
+| `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS      | README, build output, type declaration만 포함                             |
+| `npm run pack:check`                                | PASS      | tokens 3, ui 129, tailwind 3 files 계약 통과                              |
+| `npm run check`                                     | 환경 제한 | pack 단계만 npm cache 권한으로 중단, 별도 pack PASS                       |
+| `agent-browser` local Storybook 수동 점검           | PASS      | Gallery·Breadcrumb Docs light/dark/system, sidebar/Canvas/Dialog keyboard |
+| `npx react-doctor@latest --verbose --scope changed` | PASS      | full scan 100/100, issue 없음                                             |
 
 ## 알려진 이슈
 

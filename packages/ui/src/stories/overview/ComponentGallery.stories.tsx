@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Accordion } from "../../components/Accordion/Accordion";
 import { Alert } from "../../components/Alert/Alert";
+import { Avatar } from "../../components/Avatar/Avatar";
 import { Badge } from "../../components/Badge/Badge";
+import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
@@ -17,6 +19,7 @@ import { Input } from "../../components/Input/Input";
 import { PageHeader } from "../../components/PageHeader/PageHeader";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { Popover } from "../../components/Popover/Popover";
+import { Progress } from "../../components/Progress/Progress";
 import { RadioGroup } from "../../components/RadioGroup/RadioGroup";
 import { Select } from "../../components/Select/Select";
 import { Skeleton } from "../../components/Skeleton/Skeleton";
@@ -85,11 +88,11 @@ function ComponentGallery() {
             <p className={styles.eyebrow}>DDoni Design System</p>
             <h1>컴포넌트 둘러보기</h1>
             <p className={styles["hero-description"]}>
-              26개 공개 컴포넌트의 기본 표현과 상호작용을 한 페이지에서 빠르게 비교할 수 있습니다.
+              29개 공개 컴포넌트의 기본 표현과 상호작용을 한 페이지에서 빠르게 비교할 수 있습니다.
             </p>
           </div>
           <div aria-label="갤러리 요약" className={styles.summary}>
-            <Badge tone="primary">26 components</Badge>
+            <Badge tone="primary">29 components</Badge>
             <Badge tone="neutral" variant="outline">
               6 categories
             </Badge>
@@ -296,6 +299,27 @@ function ComponentGallery() {
           </div>
           <div className={styles.grid}>
             <ComponentCard
+              description="현재 위치와 상위 화면으로 돌아가는 경로를 semantic navigation으로 표시합니다."
+              href="?path=/story/components-navigation-breadcrumb--playground"
+              title="Breadcrumb"
+            >
+              <Breadcrumb.Root aria-label="갤러리 현재 경로">
+                <Breadcrumb.List>
+                  <Breadcrumb.Item>
+                    <Breadcrumb.Link href="#gallery-workspace">워크스페이스</Breadcrumb.Link>
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Separator />
+                  <Breadcrumb.Item>
+                    <Breadcrumb.Link href="#gallery-projects">프로젝트</Breadcrumb.Link>
+                  </Breadcrumb.Item>
+                  <Breadcrumb.Separator />
+                  <Breadcrumb.Item>
+                    <Breadcrumb.CurrentPage>디자인 시스템</Breadcrumb.CurrentPage>
+                  </Breadcrumb.Item>
+                </Breadcrumb.List>
+              </Breadcrumb.Root>
+            </ComponentCard>
+            <ComponentCard
               description="필요할 때만 보조 콘텐츠를 펼쳐 보여줍니다."
               href="?path=/story/components-navigation-accordion--playground"
               title="Accordion"
@@ -359,6 +383,17 @@ function ComponentGallery() {
             <h2 id="gallery-data-display">상태와 데이터</h2>
           </div>
           <div className={styles.grid}>
+            <ComponentCard
+              description="사진 또는 이니셜 fallback으로 사람과 계정 identity를 compact하게 표시합니다."
+              href="?path=/story/components-data-display-avatar--playground"
+              title="Avatar"
+            >
+              <div className={styles["inline-group"]}>
+                <Avatar alt="김도니" size="sm" />
+                <Avatar alt="DDoni" size="md" />
+                <Avatar alt="김도니" size="lg" />
+              </div>
+            </ComponentCard>
             <ComponentCard
               description="짧은 상태나 분류 정보를 텍스트와 함께 표시합니다."
               href="?path=/story/components-data-display-badge--playground"
@@ -428,6 +463,13 @@ function ComponentGallery() {
                   <Button size="sm">저장하기</Button>
                 </Alert.Actions>
               </Alert.Root>
+            </ComponentCard>
+            <ComponentCard
+              description="업로드와 설정처럼 시간이 걸리는 작업의 현재 완료 상태를 명확히 표시합니다."
+              href="?path=/story/components-feedback-progress--playground"
+              title="Progress"
+            >
+              <Progress aria-label="프로젝트 설정 64% 완료" value={64} />
             </ComponentCard>
             <ComponentCard
               description="다음 행동을 안내하는 비어 있는 상태 표현입니다."

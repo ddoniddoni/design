@@ -32,9 +32,9 @@ export function ProfileForm() {
 ## 공개 컴포넌트
 
 - Button, IconButton
-- Alert, Spinner, Skeleton, EmptyState, Badge, Toast
+- Alert, Progress, Spinner, Skeleton, EmptyState, Avatar, Badge, Toast
 - Field, FilterBar, Input, Textarea, Checkbox, RadioGroup, Select, Switch
-- Card, PageHeader, Pagination, Table, Tabs, Accordion
+- Card, PageHeader, Breadcrumb, Pagination, Table, Tabs, Accordion
 - Dialog, Tooltip, Popover, DropdownMenu
 
 컴포넌트는 native prop과 `className`을 전달하며, 해당하는 DOM 요소로 ref를 전달합니다. Dialog, Tooltip, Popover, DropdownMenu, Checkbox, RadioGroup, Select, Switch, Tabs, Accordion의 복합 접근성 동작은 Radix Primitives를 기반으로 합니다.
@@ -62,6 +62,34 @@ Alert는 폼 오류, 권한 변경처럼 화면 안에 계속 남아야 하는 i
     <Button size="sm">저장하기</Button>
   </Alert.Actions>
 </Alert.Root>
+```
+
+Avatar는 사용자와 담당자 identity를 사진 또는 이니셜 fallback으로 compact하게 표시합니다. `alt`는 항상 제공하고, 이미지가 없거나 실패해도 이름 기반 fallback이 유지됩니다.
+
+```tsx
+<Avatar alt="김도니" src="/profiles/ddoni.png" size="md" />
+```
+
+Progress는 업로드나 설정처럼 완료 비율을 알 수 있는 작업을 표시합니다. `value`를 생략하면 indeterminate 상태를 표현합니다.
+
+```tsx
+<Progress aria-label="파일 업로드 진행률" value={64} />
+```
+
+Breadcrumb은 현재 페이지가 속한 상위 경로를 semantic navigation으로 표시합니다. URL과 라우터 이동은 consumer가 관리하고, 현재 위치에는 `CurrentPage`를 사용합니다.
+
+```tsx
+<Breadcrumb.Root aria-label="프로젝트 경로">
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="/projects">프로젝트</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.CurrentPage>설정</Breadcrumb.CurrentPage>
+    </Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
 ```
 
 정적인 안내에는 live region을 기본으로 설정하지 않습니다. 새 오류를 즉시 알려야 하는 경우에만 `role="alert"`를 Root에 명시하고, `--dds-alert-*` token으로 tone, border, radius를 조정합니다.

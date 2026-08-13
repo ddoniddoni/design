@@ -1,0 +1,57 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as ProgressStories from "./Progress.stories";
+
+<Meta of={ProgressStories} name="문서" />
+
+# Progress
+
+파일 업로드, 설정 완료도처럼 시간이 걸리는 작업의 현재 진행 상태를 표시하는 feedback 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 진행 단계를 숫자로 알 수 있는 업로드, 배포, 온보딩, 설정 흐름에 사용합니다.
+- 작업 중임은 알지만 완료 비율을 알 수 없는 경우 `value` 없이 indeterminate 상태로 사용합니다.
+
+### 사용하지 않을 때
+
+- 짧게 기다리는 버튼이나 화면 단위 loading에는 Spinner 또는 Skeleton을 사용합니다.
+- 작업이 끝난 뒤 잠시 알리기만 하면 되는 결과에는 Toast를 사용합니다.
+
+<Canvas of={ProgressStories.Playground} sourceState="shown" />
+
+<h2 id="states">value, size, indeterminate</h2>
+
+`value`는 0부터 `max`까지 정규화됩니다. 기본 `max`는 100이며, value를 생략하면 완료 비율을 알 수 없는 indeterminate 상태가 됩니다.
+
+<Canvas of={ProgressStories.Values} sourceState="shown" />
+
+<Canvas of={ProgressStories.Sizes} sourceState="shown" />
+
+<Canvas of={ProgressStories.Indeterminate} sourceState="shown" />
+
+<h2 id="props">주요 props와 native props</h2>
+
+`Progress`는 `role="progressbar"`를 가진 `div`를 렌더링합니다. `value`, `max`, `size` 외에 `className`, `data-*`, `aria-*`, ref를 root에 전달합니다. `aria-valuetext`로 퍼센트보다 유용한 작업 단계를 표현할 수 있습니다.
+
+<Controls of={ProgressStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- `aria-label` 또는 `aria-labelledby`로 progressbar의 목적을 항상 제공합니다.
+- determinate 상태에는 `aria-valuemin`, `aria-valuemax`, `aria-valuenow`가 제공됩니다.
+- indeterminate 상태에는 현재 값을 알 수 없으므로 `aria-valuenow`를 설정하지 않습니다.
+
+<Canvas of={ProgressStories.ValueText} sourceState="shown" />
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+track, indicator, radius, height는 `--dds-progress-*` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-progress-indicator: var(--dds-color-brand-600);
+  --dds-progress-height-md: 10px;
+}
+```

@@ -2100,6 +2100,144 @@ export type AlertActionsProps = React.HTMLAttributes<HTMLDivElement>;
 - all tones, action, assertive announcement, dark theme, Storybook docs
 - 일반 React와 Tailwind 예제 앱에서 package root import로 사용
 
+## CMP-027 — Avatar
+
+일반 React와 Tailwind 예제 앱 모두에서 프로젝트 멤버와 소유자 identity를 compact하게 표시하는 사례가 확인되어, image와 fallback을 소비자가 제어하는 Avatar presentation primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type AvatarSize = "sm" | "md" | "lg";
+
+export interface AvatarProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, "children"> {
+  alt: string;
+  fallback?: React.ReactNode;
+  size?: AvatarSize;
+  src?: string;
+}
+```
+
+```tsx
+<Avatar alt="김도니" fallback="도니" size="md" src="/profiles/ddoni.png" />
+```
+
+### 요구사항
+
+- Avatar는 layout `span`을 렌더링하고, `size`로 `sm`, `md`, `lg` 크기를 제공한다.
+- `src`가 있으면 native `img`의 `alt`로 identity를 전달한다. image가 없거나 load error가 나면 `fallback`을, fallback이 없으면 `alt`에서 만든 이니셜을 표시한다.
+- fallback은 image와 동일한 accessible name의 `role="img"`를 제공한다. 장식 Avatar는 `alt=""`로 표시한다.
+- Avatar는 image loading, 재시도, profile fetch, presence/status badge, click action을 내장하지 않는다. image source 변경 뒤에는 새 source를 다시 표시할 수 있어야 한다.
+- native props, `className`, ref는 실제 root `span`으로 전달한다.
+- background, text, border, radius, size는 `--dds-avatar-*` component token을 사용하고, component rule은 `@layer components` 안에 둔다.
+
+### 필수 tests/stories
+
+- initials fallback, image alternative text, load error fallback, 새 image source 재시도
+- native props, ref, className 전달
+- size, image와 custom fallback, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-028 — Progress
+
+일반 React와 Tailwind 예제 앱 모두에서 프로젝트 설정과 비동기 작업의 완료 상태를 전달하는 사례가 확인되어, 작업 자체를 관리하지 않는 accessible Progress primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type ProgressSize = "sm" | "md";
+
+export interface ProgressProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "role"> {
+  max?: number;
+  size?: ProgressSize;
+  value?: number;
+}
+```
+
+```tsx
+<Progress aria-label="파일 업로드 진행률" aria-valuetext="파일 3/5개 업로드" value={60} />
+```
+
+### 요구사항
+
+- Progress는 항상 `role="progressbar"`를 가진 `div`를 렌더링하고 `sm`, `md` size를 제공한다.
+- `value`와 `max`가 주어지면 0부터 max 범위로 정규화하고 `aria-valuemin`, `aria-valuemax`, `aria-valuenow`를 제공한다. 기본 max는 100이다.
+- `value`를 생략하면 indeterminate 상태이며 `aria-valuenow`를 제공하지 않는다. consumer는 `aria-valuetext`로 작업 단계를 보완할 수 있다.
+- Progress는 upload, timer, polling, cancellation, completion message, label layout을 내장하지 않는다. 해당 상태와 visible label은 consumer가 관리한다.
+- native props, `className`, ref는 실제 root `div`으로 전달한다.
+- track, indicator, radius, height는 `--dds-progress-*` component token을 사용하고, reduced motion에서 indeterminate animation을 멈춘다.
+
+### 필수 tests/stories
+
+- determinate ARIA value, range normalize, indeterminate state, `aria-valuetext`
+- native props, ref, className 전달
+- value, size, indeterminate, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
+## CMP-029 — Breadcrumb
+
+프로젝트 설정과 소비자 예제의 현재 위치처럼 상위 페이지로 돌아가는 계층형 경로가 반복되어, 라우터와 데이터 상태를 소유하지 않는 semantic Breadcrumb primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type BreadcrumbRootProps = React.HTMLAttributes<HTMLElement>;
+export type BreadcrumbListProps = React.OlHTMLAttributes<HTMLOListElement>;
+export type BreadcrumbItemProps = React.LiHTMLAttributes<HTMLLIElement>;
+
+export interface BreadcrumbLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+}
+
+export type BreadcrumbCurrentPageProps = Omit<
+  React.HTMLAttributes<HTMLSpanElement>,
+  "aria-current"
+>;
+export type BreadcrumbSeparatorProps = Omit<
+  React.LiHTMLAttributes<HTMLLIElement>,
+  "aria-hidden" | "children"
+>;
+
+export const Breadcrumb: {
+  Root: React.ForwardRefExoticComponent<BreadcrumbRootProps>;
+  List: React.ForwardRefExoticComponent<BreadcrumbListProps>;
+  Item: React.ForwardRefExoticComponent<BreadcrumbItemProps>;
+  Link: React.ForwardRefExoticComponent<BreadcrumbLinkProps>;
+  CurrentPage: React.ForwardRefExoticComponent<BreadcrumbCurrentPageProps>;
+  Separator: React.ForwardRefExoticComponent<BreadcrumbSeparatorProps>;
+};
+```
+
+```tsx
+<Breadcrumb.Root aria-label="프로젝트 경로">
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="/projects">프로젝트</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.CurrentPage>설정</Breadcrumb.CurrentPage>
+    </Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
+```
+
+### 요구사항
+
+- `Root`는 기본 이름이 `경로 탐색`인 `nav`, `List`는 `ol`, `Item`과 `Separator`는 `li`를 렌더링한다.
+- `Link`는 `href`가 필수인 native anchor이며, `CurrentPage`는 `span`에 `aria-current="page"`를 항상 제공한다.
+- `Separator`는 기본 `›` glyph를 렌더링하고 `aria-hidden="true"`로 보조 기술에서 숨긴다.
+- Breadcrumb은 router integration, URL 생성, current item 자동 판별, max item 수, collapse/elision, data fetching을 내장하지 않는다. item 배열과 이동 동작은 consumer가 관리한다.
+- 모든 영역은 native props, `className`, ref를 실제 DOM 요소로 전달한다.
+- text, link, current page, separator는 `--dds-breadcrumb-*` component token을 사용하고, link focus-visible 상태는 공통 focus ring을 사용한다.
+
+### 필수 tests/stories
+
+- nav/list/link/current page/separator semantic과 기본 accessible name
+- consumer navigation name, link click handler, native props, ref, className 전달
+- 기본 경로, long path, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
@@ -2247,7 +2385,10 @@ Components/
   Actions/Button
   Actions/IconButton
   Feedback/Alert
+  Feedback/Progress
   Feedback/Spinner
+  Navigation/Breadcrumb
+  Data Display/Avatar
   Data Display/Badge
   Data Display/Card
   Layout/PageHeader
@@ -3069,10 +3210,10 @@ npm run check
 
 ### 범위
 
-- [ ] `CMP-026` inline feedback Alert compound API
-- [ ] Alert tests, stories, Docs, component token
-- [ ] 일반 React와 Tailwind 예제 앱 통합
-- [ ] public named export, declaration, package tarball 검증
+- [x] `CMP-026` inline feedback Alert compound API
+- [x] Alert tests, stories, Docs, component token
+- [x] 일반 React와 Tailwind 예제 앱 통합
+- [x] public named export, declaration, package tarball 검증
 
 ### 인수 조건
 
@@ -3083,6 +3224,68 @@ npm run check
 - 정적인 안내에는 live region이 강제되지 않고, consumer가 `role="alert"` 또는 `aria-live`를 전달할 수 있어야 한다.
 - 두 예제 앱이 `Alert`를 package root에서 import한다.
 - package tarball에 Alert declaration과 component CSS가 포함된다.
+
+## Phase 23 — Avatar
+
+### 범위
+
+- [x] `CMP-027` image와 initials fallback Avatar API
+- [x] Avatar tests, stories, Docs, component token
+- [x] 일반 React와 Tailwind 예제 앱의 member identity 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- `src`의 image alternative text와 no-source/load error fallback의 동일한 accessible name을 테스트한다.
+- 새 `src`로 바꾸면 이전 실패 상태와 무관하게 image를 다시 시도한다.
+- 두 예제 앱이 `Avatar`를 package root에서 import한다.
+- package tarball에 Avatar declaration과 component CSS가 포함된다.
+
+## Phase 24 — Progress
+
+### 범위
+
+- [x] `CMP-028` determinate/indeterminate Progress API
+- [x] Progress tests, stories, Docs, component token
+- [x] 일반 React와 Tailwind 예제 앱의 setting completion 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- determinate 상태의 progressbar role과 min/max/current value, indeterminate 상태의 no-current-value를 테스트한다.
+- `aria-valuetext`, ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Progress`를 package root에서 import한다.
+- package tarball에 Progress declaration과 component CSS가 포함된다.
+
+---
+
+## Phase 25 — Breadcrumb
+
+### 범위
+
+- [x] `CMP-029` semantic Breadcrumb compound API
+- [x] Breadcrumb tests, stories, Docs, component token
+- [x] 일반 React와 Tailwind 예제 앱의 현재 경로 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- `nav`, ordered list, link, current page, visual-only separator semantics를 테스트한다.
+- consumer `aria-label`, link click handler, ref, native props, className 전달을 테스트한다.
+- 두 예제 앱이 `Breadcrumb`를 package root에서 import한다.
+- package tarball에 Breadcrumb declaration과 component CSS가 포함된다.
 
 ---
 

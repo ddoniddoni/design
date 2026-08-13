@@ -1,5 +1,16 @@
+export { Avatar } from "./components/Avatar";
+export type { AvatarProps, AvatarSize } from "./components/Avatar";
 export { Badge } from "./components/Badge";
 export type { BadgeProps, BadgeSize, BadgeTone, BadgeVariant } from "./components/Badge";
+export { Breadcrumb } from "./components/Breadcrumb";
+export type {
+  BreadcrumbCurrentPageProps,
+  BreadcrumbItemProps,
+  BreadcrumbLinkProps,
+  BreadcrumbListProps,
+  BreadcrumbRootProps,
+  BreadcrumbSeparatorProps,
+} from "./components/Breadcrumb";
 export { Alert } from "./components/Alert";
 export type {
   AlertActionsProps,
@@ -112,6 +123,8 @@ export type {
   PopoverRootProps,
   PopoverTriggerProps,
 } from "./components/Popover";
+export { Progress } from "./components/Progress";
+export type { ProgressProps, ProgressSize } from "./components/Progress";
 export { RadioGroup } from "./components/RadioGroup";
 export type { RadioGroupItemProps, RadioGroupRootProps } from "./components/RadioGroup";
 export { Spinner } from "./components/Spinner";
