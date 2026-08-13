@@ -1,5 +1,13 @@
 export { Badge } from "./components/Badge";
 export type { BadgeProps, BadgeSize, BadgeTone, BadgeVariant } from "./components/Badge";
+export { Alert } from "./components/Alert";
+export type {
+  AlertActionsProps,
+  AlertDescriptionProps,
+  AlertRootProps,
+  AlertTitleProps,
+  AlertTone,
+} from "./components/Alert";
 export { Accordion } from "./components/Accordion";
 export type {
   AccordionContentProps,

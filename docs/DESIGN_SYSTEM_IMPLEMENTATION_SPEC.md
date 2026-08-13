@@ -2057,6 +2057,49 @@ export type FilterBarActionsProps = React.HTMLAttributes<HTMLDivElement>;
 - responsive layout, dark theme, Storybook interaction과 docs
 - 일반 React와 Tailwind 예제 앱에서 package root import로 사용
 
+## CMP-026 — Alert
+
+일반 React와 Tailwind 예제 앱에서 권한 변경과 저장 전 안내처럼 화면 안에 계속 남아야 하는 상태를 전달하는 사례가 확인되어, Toast와 역할을 분리한 inline feedback primitive를 제공한다.
+
+### 공개 API
+
+```ts
+export type AlertTone = "info" | "success" | "warning" | "danger";
+export interface AlertRootProps extends React.HTMLAttributes<HTMLDivElement> {
+  tone?: AlertTone;
+}
+export type AlertTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
+export type AlertDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>;
+export type AlertActionsProps = React.HTMLAttributes<HTMLDivElement>;
+```
+
+```tsx
+<Alert.Root tone="warning">
+  <Alert.Title>저장하지 않은 변경사항이 있습니다</Alert.Title>
+  <Alert.Description>페이지를 나가기 전에 변경사항을 저장하세요.</Alert.Description>
+  <Alert.Actions>
+    <Button size="sm">저장하기</Button>
+  </Alert.Actions>
+</Alert.Root>
+```
+
+### 요구사항
+
+- `Root`, `Title`, `Description`, `Actions`의 named compound API를 제공한다.
+- Root는 `div`, Title은 `h2`, Description은 `p`, Actions는 layout `div`를 렌더링한다.
+- `info`, `success`, `warning`, `danger` tone을 제공하고, tone과 무관하게 Title과 Description text로 상태를 전달한다.
+- 정적인 Alert는 live region을 기본으로 강제하지 않는다. 동적으로 즉시 알려야 하는 경우 consumer가 Root에 `role="alert"` 또는 적절한 `aria-live`를 명시한다.
+- 모든 public subcomponent는 native props, `className`, ref를 실제 DOM 요소로 전달한다.
+- Alert는 상태 저장, dismiss, retry, navigation을 내장하지 않는다. 필요한 action은 consumer가 Actions에 Button 또는 link로 조합한다.
+- surface, text, border, accent, radius, shadow는 `--dds-alert-*` component token을 사용하고, component rule은 `@layer components` 안에 둔다.
+
+### 필수 tests/stories
+
+- title/description semantics, tone, consumer action, live announcement prop 전달
+- Root/Title/Description/Actions native props, ref, className 전달
+- all tones, action, assertive announcement, dark theme, Storybook docs
+- 일반 React와 Tailwind 예제 앱에서 package root import로 사용
+
 ## 나머지 후보
 
 아래는 실제 프로젝트 사용 사례가 최소 2개 이상 생긴 뒤 공개 API를 설계한다.
@@ -2203,6 +2246,7 @@ Foundations/
 Components/
   Actions/Button
   Actions/IconButton
+  Feedback/Alert
   Feedback/Spinner
   Data Display/Badge
   Data Display/Card
@@ -3020,6 +3064,25 @@ npm run check
 - Root/Controls/Actions의 ref, native props, className 전달을 테스트한다.
 - 두 예제 앱이 `FilterBar`를 package root에서 import한다.
 - package tarball에 FilterBar declaration이 포함된다.
+
+## Phase 22 — Alert
+
+### 범위
+
+- [ ] `CMP-026` inline feedback Alert compound API
+- [ ] Alert tests, stories, Docs, component token
+- [ ] 일반 React와 Tailwind 예제 앱 통합
+- [ ] public named export, declaration, package tarball 검증
+
+### 인수 조건
+
+```bash
+npm run check
+```
+
+- 정적인 안내에는 live region이 강제되지 않고, consumer가 `role="alert"` 또는 `aria-live`를 전달할 수 있어야 한다.
+- 두 예제 앱이 `Alert`를 package root에서 import한다.
+- package tarball에 Alert declaration과 component CSS가 포함된다.
 
 ---
 

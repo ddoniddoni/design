@@ -1,0 +1,55 @@
+import { Canvas, Controls, Meta } from "@storybook/addon-docs/blocks";
+import * as AlertStories from "./Alert.stories";
+
+<Meta of={AlertStories} name="문서" />
+
+# Alert
+
+화면 안에 계속 남아야 하는 안내, 성공, 주의, 오류 상태를 명확하게 전달하는 inline feedback 컴포넌트입니다.
+
+<h2 id="usage">사용 기준과 기본 예제</h2>
+
+### 사용할 때
+
+- 폼 오류, 권한 변경, 설정 안내처럼 사용자가 다음 행동을 결정할 때까지 상태를 보여야 할 때 사용합니다.
+- Title과 Description, 선택적인 action을 함께 제공해 상태의 원인과 다음 행동을 설명할 때 사용합니다.
+
+### 사용하지 않을 때
+
+- 저장 완료처럼 잠시만 확인하면 되는 피드백에는 `Toast`를 사용합니다.
+- 삭제처럼 현재 작업을 중단하고 확인받아야 하는 경우에는 `Dialog`를 사용합니다.
+
+<Canvas of={AlertStories.Playground} sourceState="shown" />
+
+<h2 id="states">tone과 action</h2>
+
+`info`, `success`, `warning`, `danger` tone은 상태를 보조합니다. 색상만으로 의미를 전달하지 않도록 Title과 Description의 text를 항상 함께 제공합니다. 복구나 상세 보기처럼 다음 행동이 있을 때만 `Actions`를 조합합니다.
+
+<Canvas of={AlertStories.AllTones} sourceState="shown" />
+
+<Canvas of={AlertStories.WithAction} sourceState="shown" />
+
+<h2 id="props">주요 API와 native props</h2>
+
+`Root`, `Title`, `Description`, `Actions`를 조합합니다. Root는 `div`, Title은 `h2`, Description은 `p`, Actions는 `div`를 렌더링하며, 모든 public subcomponent는 native props, `className`, ref를 실제 DOM 요소로 전달합니다.
+
+<Controls of={AlertStories.Playground} />
+
+<h2 id="accessibility">접근성</h2>
+
+- 상태 의미는 tone뿐 아니라 Title과 Description의 text로도 전달합니다.
+- 정적인 안내에는 live region을 기본으로 설정하지 않습니다. 새 오류를 즉시 알려야 하는 경우에만 Root에 `role="alert"`를 명시합니다.
+- Title은 semantic `h2`이며, action에는 목적을 설명하는 native Button 또는 link를 사용합니다.
+
+<Canvas of={AlertStories.AssertiveAnnouncement} sourceState="shown" />
+
+<h2 id="tokens">토큰 커스터마이징</h2>
+
+surface, text, border, accent, radius, shadow는 `--dds-alert-*` token을 사용합니다.
+
+```css
+[data-dds-brand="project"] {
+  --dds-alert-info-accent: var(--dds-color-brand-600);
+  --dds-alert-radius: var(--dds-radius-lg);
+}
+```

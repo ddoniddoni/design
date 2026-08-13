@@ -4,6 +4,7 @@ import { Toast, Tooltip } from "@ddoni-ds/ui";
 import {
   AccordionSection,
   ActionSection,
+  AlertSection,
   AppHeader,
   EmptyStateSection,
   FilterBarSection,
@@ -80,6 +81,7 @@ export function App() {
               onStatusMessageChange={showToast}
             />
             <ProjectTableSection />
+            <AlertSection onStatusMessageChange={showToast} />
             <EmptyStateSection onStatusMessageChange={showToast} />
             <AccordionSection />
             <SkeletonSection />

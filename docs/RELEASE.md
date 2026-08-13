@@ -20,7 +20,7 @@ git log -1 --oneline
 
 ## Storybook 문서 사전 점검
 
-`npm run check`는 정적 Storybook build와 25개 공개 component 문서의 계약 검사를 함께 실행합니다. publish 또는 문서 hosting을 승인하기 전에는 build 결과에서 다음을 수동으로 확인합니다.
+`npm run check`는 정적 Storybook build와 26개 공개 component 문서의 계약 검사를 함께 실행합니다. publish 또는 문서 hosting을 승인하기 전에는 build 결과에서 다음을 수동으로 확인합니다.
 
 - light, dark, system theme의 Docs 본문·표·코드·Canvas 대비
 - sidebar에서 각 Docs 진입점과 우측 목차 anchor 이동

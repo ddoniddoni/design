@@ -1,6 +1,7 @@
 import type { FormEvent, MouseEvent } from "react";
 import {
   Accordion,
+  Alert,
   Badge,
   Button,
   Card,
@@ -62,6 +63,10 @@ interface PaginationSectionProps {
 }
 
 interface EmptyStateSectionProps {
+  onStatusMessageChange: (message: string) => void;
+}
+
+interface AlertSectionProps {
   onStatusMessageChange: (message: string) => void;
 }
 
@@ -549,6 +554,33 @@ export function EmptyStateSection({ onStatusMessageChange }: EmptyStateSectionPr
           </Button>
         </EmptyState.Actions>
       </EmptyState.Root>
+    </section>
+  );
+}
+
+export function AlertSection({ onStatusMessageChange }: AlertSectionProps) {
+  return (
+    <section aria-labelledby="alert-title" className="section">
+      <div className="sectionHeading">
+        <div>
+          <p className="eyebrow">Feedback</p>
+          <h2 id="alert-title">Alert</h2>
+        </div>
+      </div>
+      <Alert.Root tone="warning">
+        <Alert.Title>저장하지 않은 변경사항이 있습니다</Alert.Title>
+        <Alert.Description>
+          페이지를 나가기 전에 변경사항을 저장하거나, 변경 이력을 확인하세요.
+        </Alert.Description>
+        <Alert.Actions>
+          <Button onClick={() => onStatusMessageChange("변경 이력을 열었습니다.")} size="sm">
+            변경 이력 보기
+          </Button>
+          <Button size="sm" tone="neutral" variant="outline">
+            저장하기
+          </Button>
+        </Alert.Actions>
+      </Alert.Root>
     </section>
   );
 }

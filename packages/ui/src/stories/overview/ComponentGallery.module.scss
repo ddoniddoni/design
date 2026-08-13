@@ -1,0 +1,194 @@
+@layer components {
+  .gallery {
+    padding: var(--dds-space-12) var(--dds-space-6) var(--dds-space-24);
+    min-block-size: 100%;
+    font-family: var(--dds-font-family-sans);
+    color: var(--dds-color-text-primary);
+    background-color: var(--dds-color-bg-canvas);
+  }
+
+  .container {
+    margin-inline: auto;
+    max-inline-size: 1440px;
+  }
+
+  .hero {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--dds-space-6);
+    padding-block-end: var(--dds-space-10);
+    border-block-end: var(--dds-control-border-width) solid var(--dds-color-border-default);
+  }
+
+  .eyebrow,
+  .category-header > p {
+    margin: 0;
+    font-size: var(--dds-font-size-sm);
+    font-weight: var(--dds-font-weight-semibold);
+    color: var(--dds-color-text-link);
+    letter-spacing: var(--dds-letter-spacing-wide);
+    line-height: var(--dds-line-height-normal);
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    margin: var(--dds-space-2) 0 0;
+    font-size: var(--dds-font-size-3xl);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-tight);
+  }
+
+  .hero-description {
+    margin: var(--dds-space-3) 0 0;
+    max-inline-size: 672px;
+    font-size: var(--dds-font-size-lg);
+    color: var(--dds-color-text-secondary);
+    line-height: var(--dds-line-height-relaxed);
+  }
+
+  .summary,
+  .inline-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--dds-space-2);
+  }
+
+  .category {
+    margin-block-start: var(--dds-space-12);
+  }
+
+  .category-header {
+    margin-block-end: var(--dds-space-4);
+  }
+
+  .category-header h2 {
+    margin: var(--dds-space-1) 0 0;
+    font-size: var(--dds-font-size-2xl);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-tight);
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--dds-space-4);
+  }
+
+  .card {
+    display: grid;
+    flex: 1 1 320px;
+    gap: var(--dds-space-5);
+    padding: var(--dds-space-5);
+    min-inline-size: 0;
+    border: var(--dds-control-border-width) solid var(--dds-color-border-default);
+    border-radius: var(--dds-radius-lg);
+    background-color: var(--dds-color-bg-surface);
+    box-shadow: var(--dds-shadow-xs);
+  }
+
+  .card[data-wide] {
+    flex-basis: 656px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--dds-space-4);
+  }
+
+  .card-header h3,
+  .card-header p {
+    margin: 0;
+  }
+
+  .card-header h3 {
+    font-size: var(--dds-font-size-lg);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-tight);
+  }
+
+  .card-header p {
+    margin-block-start: var(--dds-space-1);
+    font-size: var(--dds-font-size-sm);
+    color: var(--dds-color-text-secondary);
+    line-height: var(--dds-line-height-relaxed);
+  }
+
+  .card-header a {
+    flex: 0 0 auto;
+    font-size: var(--dds-font-size-sm);
+    font-weight: var(--dds-font-weight-medium);
+    color: var(--dds-color-text-link);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .card-header a:focus-visible {
+    border-radius: var(--dds-radius-sm);
+    outline: var(--dds-focus-ring-width) solid var(--dds-color-border-focus);
+    outline-offset: var(--dds-focus-ring-offset);
+  }
+
+  .preview {
+    display: grid;
+    align-content: start;
+    gap: var(--dds-space-3);
+    min-block-size: 120px;
+    min-inline-size: 0;
+  }
+
+  .control-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--dds-space-2);
+    font-size: var(--dds-font-size-sm);
+    color: var(--dds-color-text-primary);
+    line-height: var(--dds-line-height-normal);
+  }
+
+  .option-list {
+    display: grid;
+    gap: var(--dds-space-2);
+  }
+
+  .skeleton-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--dds-space-3);
+  }
+
+  .skeleton-preview > div {
+    display: grid;
+    flex: 1;
+    gap: var(--dds-space-2);
+  }
+
+  @media (width <= 768px) {
+    .gallery {
+      padding: var(--dds-space-8) var(--dds-space-4) var(--dds-space-16);
+    }
+
+    .hero h1 {
+      font-size: var(--dds-font-size-2xl);
+    }
+
+    .hero-description {
+      font-size: var(--dds-font-size-md);
+    }
+
+    .card[data-wide] {
+      flex-basis: 320px;
+    }
+  }
+
+  @media (width <= 448px) {
+    .card-header {
+      flex-direction: column;
+    }
+  }
+}

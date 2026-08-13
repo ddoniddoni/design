@@ -1,7 +1,7 @@
 # 구현 상태
 
 - 마지막 갱신: 2026-08-13
-- 현재 Phase: Storybook 문서 사이트 Day 7~8 정적 품질 검토와 배포 준비 완료
+- 현재 Phase: Phase 22 — Alert 완료
 - 전체 상태: Storybook GitHub Pages 배포 완료, v0.5 패키지 릴리즈 승인 대기
 
 ## Phase 0
@@ -220,9 +220,19 @@
 - [x] 일반 React와 Tailwind 예제 앱의 project search/filter 사례 통합
 - [x] public named export, declaration, token, package tarball 검증
 
+## Phase 22
+
+- [x] CMP-026 inline feedback Alert compound API
+- [x] info/success/warning/danger tone과 `--dds-alert-*` component token
+- [x] Root/Title/Description/Actions native props, ref, action, live announcement contract 테스트
+- [x] Alert Storybook states, docs, dark theme, assertive announcement 예시
+- [x] 일반 React와 Tailwind 예제 앱의 inline feedback 사례 통합
+- [x] public named export, declaration, package tarball 검증
+
 ## Storybook 문서 사이트
 
-- [x] SB-007 25개 공개 component 상세 MDX Docs와 공통 3열 Docs 레이아웃
+- [x] SB-001, SB-003 26개 공개 컴포넌트를 카테고리별 단일 Canvas 페이지에서 훑어보는 `Overview/Component Gallery` 추가
+- [x] SB-007 26개 공개 component 상세 MDX Docs와 공통 3열 Docs 레이아웃
 - [x] Docs·public export·sidebar 순서·Story 연결·public token 정적 계약 검사
 - [x] `npm run check`에 `npm run check:storybook-docs` 통합
 - [x] static Storybook build와 package tarball 검증
@@ -259,27 +269,27 @@
 
 ## 검증 결과
 
-| 명령                                                | 결과 | 비고                                           |
-| --------------------------------------------------- | ---- | ---------------------------------------------- |
-| `npm ci`                                            | PASS | clean install로 641 packages 설치              |
-| `npm run format:check`                              | PASS | 모든 대상 파일이 Prettier 형식 준수            |
-| `npm run lint`                                      | PASS | ESLint warning/error 0건                       |
-| `npm run stylelint`                                 | PASS | SCSS/CSS 선언 순서와 논리 속성 규칙 준수       |
-| `npm run typecheck`                                 | PASS | 루트 설정 및 UI workspace strict 검사 통과     |
-| `npm run test`                                      | PASS | 25개 파일, 72개 component test 통과            |
-| `npm run test:tailwind`                             | PASS | Tailwind v4 utility CSS smoke test 통과        |
-| `npm run build:examples`                            | PASS | React Vite와 Tailwind Vite consumer build 통과 |
-| `npm run build-storybook`                           | PASS | Phase 2~21 component/foundation story 포함     |
-| `npm run check:storybook-docs`                      | PASS | 25개 Docs, export, sidebar, Story, token 계약  |
-| `npm run build -w @ddoni-ds/tokens`                 | PASS | `dist/tokens.css` 생성                         |
-| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS | 필수 토큰, theme selector, brand 대비 확인     |
-| `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS | README, package.json, compiled CSS만 포함      |
-| `npm run build -w @ddoni-ds/ui`                     | PASS | ESM, CJS, CSS, declaration 생성                |
-| `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS | README, build output, type declaration만 포함  |
-| `npm run pack:check`                                | PASS | tokens 3, ui 113, tailwind 3 files 계약 통과   |
-| `npm run check`                                     | PASS | Phase 0~21 전체 quality gate 통과              |
-| `npx react-doctor@latest --verbose --scope changed` | PASS | full scan 100/100, issue 없음                  |
+| 명령                                                | 결과      | 비고                                                |
+| --------------------------------------------------- | --------- | --------------------------------------------------- |
+| `npm ci`                                            | PASS      | clean install로 641 packages 설치                   |
+| `npm run format:check`                              | PASS      | 모든 대상 파일이 Prettier 형식 준수                 |
+| `npm run lint`                                      | PASS      | ESLint warning/error 0건                            |
+| `npm run stylelint`                                 | PASS      | SCSS/CSS 선언 순서와 논리 속성 규칙 준수            |
+| `npm run typecheck`                                 | PASS      | 루트 설정 및 UI workspace strict 검사 통과          |
+| `npm run test`                                      | PASS      | 26개 파일, 76개 component test 통과                 |
+| `npm run test:tailwind`                             | PASS      | Tailwind v4 utility CSS smoke test 통과             |
+| `npm run build:examples`                            | PASS      | React Vite와 Tailwind Vite consumer build 통과      |
+| `npm run build-storybook`                           | PASS      | Phase 2~22 component/foundation story 포함          |
+| `npm run check:storybook-docs`                      | PASS      | 26개 Docs, export, sidebar, Story, token 계약       |
+| `npm run build -w @ddoni-ds/tokens`                 | PASS      | `dist/tokens.css` 생성                              |
+| `npm run test:smoke -w @ddoni-ds/tokens`            | PASS      | 필수 토큰, theme selector, brand 대비 확인          |
+| `npm pack --dry-run --json -w @ddoni-ds/tokens`     | PASS      | README, package.json, compiled CSS만 포함           |
+| `npm run build -w @ddoni-ds/ui`                     | PASS      | ESM, CJS, CSS, declaration 생성                     |
+| `npm pack --dry-run --json -w @ddoni-ds/ui`         | PASS      | README, build output, type declaration만 포함       |
+| `npm run pack:check`                                | PASS      | tokens 3, ui 117, tailwind 3 files 계약 통과        |
+| `npm run check`                                     | 환경 제한 | pack 단계만 npm cache 권한으로 중단, 별도 pack PASS |
+| `npx react-doctor@latest --verbose --scope changed` | PASS      | full scan 100/100, issue 없음                       |
 
 ## 알려진 이슈
 
-- 없음
+- sandbox의 npm cache 쓰기 권한 때문에 `npm run check` 마지막 `pack:check` 단계가 중단될 수 있다. 같은 검사는 권한 있는 환경에서 `npm run pack:check`로 통과했다.

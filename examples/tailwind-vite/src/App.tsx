@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import {
   Accordion,
+  Alert,
   Badge,
   Button,
   Card,
@@ -43,6 +44,29 @@ function ToastFeedback() {
       </Toast.Root>
       <Toast.Viewport label="Tailwind 예제 알림 ({hotkey})" />
     </Toast.Provider>
+  );
+}
+
+function AlertPreview() {
+  return (
+    <section
+      aria-labelledby="alert-preview-title"
+      className="grid gap-dds-4 rounded-dds-control border border-dds-border bg-dds-surface p-dds-6"
+    >
+      <div>
+        <p className="text-dds-sm text-dds-text-muted">Inline feedback primitive</p>
+        <h2 id="alert-preview-title" className="text-dds-lg font-semibold">
+          Alert와 Tailwind layout utility
+        </h2>
+      </div>
+      <Alert.Root tone="info">
+        <Alert.Title>프로젝트 공개 범위가 변경되었습니다</Alert.Title>
+        <Alert.Description>이제 링크를 아는 사용자가 프로젝트를 볼 수 있습니다.</Alert.Description>
+        <Alert.Actions>
+          <Button size="sm">공유 설정 보기</Button>
+        </Alert.Actions>
+      </Alert.Root>
+    </section>
   );
 }
 
@@ -423,6 +447,7 @@ export function App() {
 
           <PaginationPreview />
           <TablePreview />
+          <AlertPreview />
           <EmptyStatePreview />
           <SkeletonPreview />
           <ToastFeedback />

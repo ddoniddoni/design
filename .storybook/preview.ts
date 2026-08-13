@@ -54,6 +54,7 @@ const preview: Preview = {
       storySort: {
         method: "alphabetical",
         order: [
+          "Overview",
           "Foundations",
           ["Colors", "Typography", "Spacing", "Radius", "Shadows", "Motion"],
           "Components",
@@ -78,7 +79,7 @@ const preview: Preview = {
             "Data Display",
             ["Badge", "Table"],
             "Feedback",
-            ["EmptyState", "Skeleton", "Spinner", "Toast"],
+            ["Alert", "EmptyState", "Skeleton", "Spinner", "Toast"],
             "Overlays",
             ["Dialog", "DropdownMenu", "Popover", "Tooltip"],
           ],

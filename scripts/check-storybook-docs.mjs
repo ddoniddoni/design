@@ -25,6 +25,7 @@ const componentContracts = [
   ["Navigation", "Pagination"],
   ["Data Display", "Badge"],
   ["Data Display", "Table"],
+  ["Feedback", "Alert"],
   ["Feedback", "EmptyState"],
   ["Feedback", "Skeleton"],
   ["Feedback", "Spinner"],

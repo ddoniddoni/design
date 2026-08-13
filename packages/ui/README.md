@@ -32,7 +32,7 @@ export function ProfileForm() {
 ## 공개 컴포넌트
 
 - Button, IconButton
-- Spinner, Skeleton, EmptyState, Badge, Toast
+- Alert, Spinner, Skeleton, EmptyState, Badge, Toast
 - Field, FilterBar, Input, Textarea, Checkbox, RadioGroup, Select, Switch
 - Card, PageHeader, Pagination, Table, Tabs, Accordion
 - Dialog, Tooltip, Popover, DropdownMenu
@@ -51,6 +51,20 @@ Skeleton은 카드나 목록의 구조를 유지하며 데이터를 불러올 �
 ```
 
 `shape`는 `text`, `circle`, `rect`를 지원하며, 크기와 배치는 native `style` 또는 `className`으로 조정합니다. 표현은 `--dds-skeleton-bg`, `--dds-skeleton-highlight`, `--dds-skeleton-radius` token으로 재정의합니다.
+
+Alert는 폼 오류, 권한 변경처럼 화면 안에 계속 남아야 하는 inline feedback에 사용합니다. 일시적인 작업 결과에는 Toast를 사용합니다.
+
+```tsx
+<Alert.Root tone="warning">
+  <Alert.Title>저장하지 않은 변경사항이 있습니다</Alert.Title>
+  <Alert.Description>페이지를 나가기 전에 변경사항을 저장하세요.</Alert.Description>
+  <Alert.Actions>
+    <Button size="sm">저장하기</Button>
+  </Alert.Actions>
+</Alert.Root>
+```
+
+정적인 안내에는 live region을 기본으로 설정하지 않습니다. 새 오류를 즉시 알려야 하는 경우에만 `role="alert"`를 Root에 명시하고, `--dds-alert-*` token으로 tone, border, radius를 조정합니다.
 
 Checkbox와 label은 control 자체에 margin을 넣지 않고, 소비자 layout에서 중앙 정렬과 token gap을 함께 적용합니다.
 
