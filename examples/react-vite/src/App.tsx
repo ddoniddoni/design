@@ -89,7 +89,7 @@ export function App() {
             <EmptyStateSection onStatusMessageChange={showToast} />
             <AccordionSection />
             <SkeletonSection />
-            <ThemeOverride />
+            <ThemeOverride theme={theme} />
           </div>
         </main>
         <Toast.Root open={toastOpen} onOpenChange={setToastOpen} tone="success" type="background">

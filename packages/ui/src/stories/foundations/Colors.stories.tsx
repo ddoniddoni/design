@@ -112,7 +112,11 @@ export const NestedThemeScope: Story = {
       <ColorsFoundation theme={String(context.globals.theme ?? "light")} />
       <div
         data-dds-theme="dark"
-        style={{ backgroundColor: "var(--dds-color-bg-canvas)", padding: "var(--dds-space-4)" }}
+        style={{
+          color: "var(--dds-color-text-primary)",
+          backgroundColor: "var(--dds-color-bg-canvas)",
+          padding: "var(--dds-space-4)",
+        }}
       >
         <ColorGroup
           items={semanticColors.slice(0, 4)}

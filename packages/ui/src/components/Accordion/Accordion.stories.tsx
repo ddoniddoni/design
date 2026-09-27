@@ -78,7 +78,7 @@ export const Interaction: Story = {
 
     await userEvent.click(accessibility);
     await expect(accessibility).toHaveAttribute("aria-expanded", "true");
-    await expect(canvas.getByText("Trigger와 Content의 관계")).toBeVisible();
+    await expect(canvas.getByText(/Trigger와 Content의 관계/)).toBeVisible();
     await expect(args.onValueChange).toHaveBeenCalledWith("accessibility");
   },
 };

@@ -27,6 +27,28 @@ function DialogFixture() {
 }
 
 describe("Dialog", () => {
+  it("preserves an explicit portal container and forceMount", async () => {
+    const target = document.createElement("div");
+    document.body.append(target);
+    try {
+      render(
+        <Dialog.Root>
+          <Dialog.Portal container={target} forceMount>
+            <Dialog.Content>
+              <Dialog.Title>명시적 컨테이너</Dialog.Title>
+              <Dialog.Description>소비자 테마 영역</Dialog.Description>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>,
+      );
+      expect(target).toContainElement(
+        await screen.findByRole("dialog", { name: "명시적 컨테이너" }),
+      );
+    } finally {
+      target.remove();
+    }
+  });
+
   it("opens in a portal and connects its title and description", async () => {
     const user = userEvent.setup();
     const { container } = render(<DialogFixture />);

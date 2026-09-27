@@ -1,6 +1,6 @@
 # 구현 상태
 
-- 마지막 갱신: 2026-08-13
+- 마지막 갱신: 2026-09-28
 - 현재 Phase: Phase 25 — Breadcrumb 완료
 - 전체 상태: Storybook GitHub Pages 배포 완료, v0.5 패키지 릴리즈 승인 대기
 
@@ -319,3 +319,16 @@
 ## 알려진 이슈
 
 - sandbox의 npm cache 쓰기 권한 때문에 `npm run check` 마지막 `pack:check` 단계가 중단될 수 있다. 같은 검사는 권한 있는 환경에서 `npm run pack:check`로 통과했다.
+
+## 전체 검토 후 수정 — 2026-09-28
+
+- [x] `STYLE-003`, `STYLE-004`, `ARCH-030`: React 예제의 브랜드 영역에서 현재 테마를 다시 선언하고 전체 소비자 문서에 토큰 재계산 경계 안내
+- [x] `TOK-004`, `CMP-009`, `CMP-021`: dropdown 레이어를 modal보다 높게 조정, Dialog 안 Select/Popover/DropdownMenu hit target 회귀 검사
+- [x] `CMP-009`, `CMP-010`, `CMP-011`, `CMP-018`, `CMP-021`: 기본 Portal의 로컬 토큰·색상 모드 유지와 열린 상태의 테마 변경, 명시적 container/forceMount 호환
+- [x] `SB-002`, `QA-001`, `QA-011`: 공식 Storybook Vitest 어댑터 및 Chromium 설치, light/dark 두 프로젝트에서 play·a11y 실행, check에 token smoke/browser test 포함
+- [x] `CMP-012`, `CMP-020`, `CMP-023`, `QA-005`: disabled Field 대비, Skeleton 예제 semantics, Table 키보드 스크롤과 focus ring 보완
+- [x] 기존 Accordion 텍스트 matcher와 Toast animation 완료 대기 수정, dark scope 예제 foreground와 브라우저 테스트의 preview 배경 보완
+- [x] 수정 전 layer/portal/brand 동작을 각각 임시 복원했을 때 새 회귀 검사가 해당 오류로 실패하는 것을 확인하고 수정 상태로 복원
+- [x] 최종 `npm_config_cache=/tmp/dds-review-npm-cache npm run check` 전체 통과
+
+최종 검증 결과: format, lint, stylelint, typecheck, unit 90개, light/dark browser 316개, token smoke, package/example build, Storybook build, 29개 Docs 계약, tarball(tokens 3/ui 131/tailwind 3 files) 전체 통과. React Doctor 83/100 유지, 기존 예제 JSX 중복 3개와 smoke-test 문자열 검색 경고 1개 외 새 진단 없음.

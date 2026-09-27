@@ -27,12 +27,15 @@
     "format:check": "prettier --check .",
     "pack:check": "node scripts/check-packages.mjs",
     "check:storybook-docs": "node scripts/check-storybook-docs.mjs",
-    "check": "npm run format:check && npm run lint && npm run stylelint && npm run typecheck && npm run test && npm run build && npm run build-storybook && npm run check:storybook-docs && npm run pack:check"
+    "check": "npm run format:check && npm run lint && npm run stylelint && npm run typecheck && npm run test && npm run build && npm run test:tokens && npm run test:storybook && npm run build-storybook && npm run check:storybook-docs && npm run pack:check",
+    "test:storybook": "vitest run --config vitest.storybook.config.ts",
+    "test:tokens": "npm run test:smoke -w @ddoni-ds/tokens"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
     "@storybook/addon-a11y": "10.5.7",
     "@storybook/addon-docs": "10.5.7",
+    "@storybook/addon-vitest": "10.5.7",
     "@storybook/react-vite": "10.5.7",
     "@tailwindcss/cli": "4.3.3",
     "@testing-library/jest-dom": "7.0.0",
@@ -42,6 +45,7 @@
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
     "@vitejs/plugin-react": "6.0.5",
+    "@vitest/browser-playwright": "4.1.10",
     "eslint": "9.39.5",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jsx-a11y": "6.10.2",
@@ -49,6 +53,7 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "17.9.0",
     "jsdom": "30.0.1",
+    "playwright": "1.63.0",
     "prettier": "3.9.6",
     "react": "19.2.8",
     "react-dom": "19.2.8",

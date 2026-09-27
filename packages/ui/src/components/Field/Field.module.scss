@@ -43,6 +43,6 @@
   .root[data-disabled="true"] .label,
   .root[data-disabled="true"] .description,
   .root[data-disabled="true"] .error {
-    color: var(--dds-color-text-disabled);
+    color: var(--dds-color-text-secondary);
   }
 }

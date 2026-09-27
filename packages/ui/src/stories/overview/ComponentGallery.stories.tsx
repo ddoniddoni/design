@@ -491,6 +491,7 @@ function ComponentGallery() {
               title="Skeleton"
             >
               <div
+                role="group"
                 aria-busy="true"
                 aria-label="프로필 정보를 불러오는 중"
                 className={styles["skeleton-preview"]}

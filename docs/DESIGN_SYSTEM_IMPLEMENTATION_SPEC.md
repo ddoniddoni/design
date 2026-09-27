@@ -515,7 +515,7 @@ ease-emphasized=cubic-bezier(0.2, 0, 0, 1.2)
 
 ```text
 base=0
-dropdown=1000
+dropdown=1350
 sticky=1100
 overlay=1200
 modal=1300
@@ -753,7 +753,7 @@ $tokens: (
 }
 ```
 
-위 코드만으로 `Button`, `Input`, `Dialog`의 브랜드 표현이 일관되게 변경되어야 한다.
+위 CSS를 적용하는 하위 브랜드 요소에는 `data-dds-theme="light|dark|system"`도 함께 지정한다. semantic/component 토큰을 해당 경계에서 재계산해 `Button`, `Input`, `Dialog`의 브랜드 표현을 일관되게 변경한다.
 
 ## STYLE-005 — UI component CSS layer
 
@@ -3549,3 +3549,13 @@ Codex는 API가 변경되었을 가능성이 있을 때 아래 공식 문서의 
 
 - ...
 ```
+
+## 검토 후 보완 계약 — 2026-09-28
+
+- `STYLE-003`, `STYLE-004`: 하위 브랜드 영역은 현재 테마의 `data-dds-theme` 경계를 함께 지정한다. primitive만 자식에서 재정의하면 상위에서 계산된 semantic/component 값은 변경되지 않는다.
+- `CMP-009`, `CMP-010`, `CMP-011`, `CMP-018`, `CMP-021`: 기본 Portal은 body 배치를 유지하며 원래 위치의 `--dds-*`와 color-scheme을 전달한다. 조상의 class/style/data-dds-theme/data-dds-brand 및 OS 색상 모드 변경을 추적한다. 명시적 container에는 Radix의 원래 CSS 상속 계약을 유지한다.
+- `TOK-004`: dropdown 레이어는 1350으로 modal(1300)보다 위, toast(1400)보다 아래다. Dialog 안 Select/Popover/DropdownMenu의 실제 hit target을 브라우저에서 검증한다.
+- `CMP-023`: Table.Container는 기본 tabIndex=0과 focus-visible 표시로 가로 스크롤 키보드 접근을 제공한다. 소비자 tabIndex는 우선한다.
+- `CMP-012`, `QA-005`: disabled Field의 설명도 읽을 수 있는 secondary text 대비를 유지한다.
+- `CMP-020`: 이름을 제공하는 로딩 컨테이너에는 section 또는 role=group 등 이름을 허용하는 semantics를 사용한다.
+- `QA-001`, `QA-011`, `SB-002`: npm run check에서 토큰 smoke test 및 공식 Storybook Vitest/Chromium 검사를 실행한다. 모든 story의 a11y는 error로 설정하고 play와 접근성 실패가 CI를 실패시킨다. CI는 Chromium과 시스템 의존성을 설치한다.

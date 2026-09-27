@@ -1,8 +1,24 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { forwardRef } from "react";
 import type { HTMLAttributes } from "react";
+import { ThemedPortal } from "../../internal/ThemedPortal";
 import { classNames } from "../../internal/classNames";
 import styles from "./Dialog.module.scss";
+
+function DialogPortal({ children, container, ...props }: DialogPortalProps) {
+  return (
+    <ThemedPortal
+      container={container}
+      render={(content) => (
+        <DialogPrimitive.Portal {...props} container={container}>
+          {content}
+        </DialogPrimitive.Portal>
+      )}
+    >
+      {children}
+    </ThemedPortal>
+  );
+}
 
 export type DialogRootProps = DialogPrimitive.DialogProps;
 export type DialogTriggerProps = DialogPrimitive.DialogTriggerProps;
@@ -86,7 +102,7 @@ DialogFooter.displayName = "Dialog.Footer";
 export const Dialog = {
   Root: DialogPrimitive.Root,
   Trigger: DialogPrimitive.Trigger,
-  Portal: DialogPrimitive.Portal,
+  Portal: DialogPortal,
   Overlay: DialogOverlay,
   Content: DialogContent,
   Header: DialogHeader,

@@ -1,8 +1,24 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { forwardRef } from "react";
+import { ThemedPortal } from "../../internal/ThemedPortal";
 import { classNames } from "../../internal/classNames";
 import { CheckIcon } from "../../internal/icons/CheckIcon";
 import styles from "./Select.module.scss";
+
+function SelectPortal({ children, container, ...props }: SelectPortalProps) {
+  return (
+    <ThemedPortal
+      container={container}
+      render={(content) => (
+        <SelectPrimitive.Portal {...props} container={container}>
+          {content}
+        </SelectPrimitive.Portal>
+      )}
+    >
+      {children}
+    </ThemedPortal>
+  );
+}
 
 export type SelectRootProps = SelectPrimitive.SelectProps;
 export type SelectTriggerProps = SelectPrimitive.SelectTriggerProps;
@@ -141,7 +157,7 @@ export const Select = {
   Trigger: SelectTrigger,
   Value: SelectValue,
   Icon: SelectIcon,
-  Portal: SelectPrimitive.Portal,
+  Portal: SelectPortal,
   Content: SelectContent,
   Viewport: SelectViewport,
   Group: SelectGroup,

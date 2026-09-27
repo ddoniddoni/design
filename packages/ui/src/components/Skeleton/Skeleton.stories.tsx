@@ -4,6 +4,7 @@ import { Skeleton } from "./Skeleton";
 function ProfilePreview() {
   return (
     <div
+      role="group"
       aria-busy="true"
       aria-label="프로필 정보를 불러오는 중"
       style={{ display: "grid", gap: "var(--dds-space-4)", maxInlineSize: "360px" }}

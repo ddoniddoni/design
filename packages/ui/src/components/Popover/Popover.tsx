@@ -1,7 +1,23 @@
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { forwardRef } from "react";
+import { ThemedPortal } from "../../internal/ThemedPortal";
 import { classNames } from "../../internal/classNames";
 import styles from "./Popover.module.scss";
+
+function PopoverPortal({ children, container, ...props }: PopoverPortalProps) {
+  return (
+    <ThemedPortal
+      container={container}
+      render={(content) => (
+        <PopoverPrimitive.Portal {...props} container={container}>
+          {content}
+        </PopoverPrimitive.Portal>
+      )}
+    >
+      {children}
+    </ThemedPortal>
+  );
+}
 
 export type PopoverRootProps = PopoverPrimitive.PopoverProps;
 export type PopoverAnchorProps = PopoverPrimitive.PopoverAnchorProps;
@@ -42,7 +58,7 @@ export const Popover = {
   Root: PopoverPrimitive.Root,
   Anchor: PopoverPrimitive.Anchor,
   Trigger: PopoverPrimitive.Trigger,
-  Portal: PopoverPrimitive.Portal,
+  Portal: PopoverPortal,
   Content: PopoverContent,
   Close: PopoverPrimitive.Close,
   Arrow: PopoverArrow,

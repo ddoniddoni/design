@@ -136,7 +136,12 @@ function SkeletonPreview() {
           Skeleton과 Tailwind layout utility
         </h2>
       </div>
-      <div aria-busy="true" aria-label="프로젝트 정보를 불러오는 중" className="grid gap-dds-4">
+      <div
+        role="group"
+        aria-busy="true"
+        aria-label="프로젝트 정보를 불러오는 중"
+        className="grid gap-dds-4"
+      >
         <div className="flex items-center gap-dds-3">
           <Skeleton shape="circle" className="size-10" />
           <div className="grid flex-1 gap-dds-2">

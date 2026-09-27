@@ -1,5 +1,6 @@
 import { createRef } from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Table } from "./Table";
 
 function ProjectTable() {
@@ -25,6 +26,19 @@ function ProjectTable() {
 }
 
 describe("Table", () => {
+  it("allows keyboard focus on the scroll container and honors consumer tabIndex", async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(
+      <Table.Container aria-label="표 스크롤" role="region">
+        <ProjectTable />
+      </Table.Container>,
+    );
+    await user.tab();
+    expect(screen.getByRole("region", { name: "표 스크롤" })).toHaveFocus();
+    rerender(<Table.Container aria-label="표 스크롤" role="region" tabIndex={-1} />);
+    expect(screen.getByRole("region", { name: "표 스크롤" })).toHaveAttribute("tabindex", "-1");
+  });
+
   it("renders native table semantics with a caption and column headers", () => {
     render(<ProjectTable />);
 

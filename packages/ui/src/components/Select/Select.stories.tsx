@@ -103,7 +103,11 @@ export const DarkTheme: Story = {
   render: () => (
     <div
       data-dds-theme="dark"
-      style={{ backgroundColor: "var(--dds-color-bg-canvas)", padding: "var(--dds-space-4)" }}
+      style={{
+        color: "var(--dds-color-text-primary)",
+        backgroundColor: "var(--dds-color-bg-canvas)",
+        padding: "var(--dds-space-4)",
+      }}
     >
       <ProjectScopeSelect defaultValue="team" />
     </div>

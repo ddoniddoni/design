@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, within } from "storybook/test";
+import { expect, waitFor, within } from "storybook/test";
 import { Button } from "../Button/Button";
 import { Toast } from "./Toast";
 
@@ -66,14 +66,16 @@ export const Interaction: Story = {
     await userEvent.click(canvas.getByRole("button", { name: "Toast 표시" }));
 
     const toast = await within(document.body).findByText("프로젝트 설정을 저장했습니다.");
-    await expect(toast).toBeVisible();
+    await waitFor(() => expect(toast).toBeVisible());
 
     await userEvent.click(
       within(document.body).getByRole("button", { name: "프로젝트 알림 닫기" }),
     );
-    await expect(
-      within(document.body).queryByText("프로젝트 설정을 저장했습니다."),
-    ).not.toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        within(document.body).queryByText("프로젝트 설정을 저장했습니다."),
+      ).not.toBeInTheDocument(),
+    );
   },
 };
 

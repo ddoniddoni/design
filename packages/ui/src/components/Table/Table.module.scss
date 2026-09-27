@@ -1,9 +1,15 @@
+@use "../../styles" as styles;
+
 @layer components {
   .container {
     overflow-x: auto;
     box-sizing: border-box;
     max-inline-size: 100%;
     min-inline-size: 0;
+
+    &:focus-visible {
+      @include styles.focus-ring;
+    }
   }
 
   .root {
