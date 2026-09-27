@@ -19,10 +19,17 @@ export type TableHeadProps = ThHTMLAttributes<HTMLTableCellElement>;
 export type TableCellProps = TdHTMLAttributes<HTMLTableCellElement>;
 
 const TableContainer = forwardRef<HTMLDivElement, TableContainerProps>(function TableContainer(
-  { className, ...props },
+  { className, tabIndex = 0, ...props },
   ref,
 ) {
-  return <div {...props} ref={ref} className={classNames(styles.container, className)} />;
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={classNames(styles.container, className)}
+      tabIndex={tabIndex}
+    />
+  );
 });
 
 const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(function TableRoot(

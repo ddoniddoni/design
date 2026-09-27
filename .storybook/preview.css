@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 
-html[data-dds-theme] body.sb-show-main {
+html[data-dds-theme] body {
   background-color: var(--dds-color-bg-canvas);
   color: var(--dds-color-text-primary);
 }

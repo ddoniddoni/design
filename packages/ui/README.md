@@ -335,3 +335,15 @@ PageHeader는 페이지의 주 제목과 설명, 대표 action을 semantic heade
 ```
 
 Tailwind CSS v4 프로젝트에서는 선택형 `@ddoni-ds/tailwind` 패키지를 추가할 수 있습니다. UI 패키지 자체는 Tailwind에 의존하지 않습니다.
+
+## 하위 브랜드 영역과 Portal
+
+브랜드 변수를 하위 영역에서 재정의할 때는 같은 요소에 `data-dds-theme="light"`, `"dark"` 또는 `"system"`을 함께 지정합니다. 테마 선택을 앱에서 관리하면 현재 선택값을 전달합니다. semantic/component 토큰은 이 경계에서 재계산됩니다. `data-dds-brand`만 지정하면 상위에서 계산된 색상이 상속됩니다.
+
+```tsx
+<section data-dds-brand="teal" data-dds-theme="system">
+  {/* 브랜드 CSS와 컴포넌트 */}
+</section>
+```
+
+Dialog, Select, Popover, DropdownMenu, Tooltip의 기본 Portal은 `body`에 렌더링하면서 원래 위치의 `--dds-*` 토큰과 색상 모드를 유지합니다. 조상 요소의 테마·브랜드 속성, class, inline style 및 시스템 색상 모드 변경을 반영합니다. 명시적인 `container`를 전달하면 해당 컨테이너의 CSS 상속을 사용합니다.

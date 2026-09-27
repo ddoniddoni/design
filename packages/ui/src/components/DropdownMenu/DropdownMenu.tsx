@@ -1,9 +1,25 @@
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 import type { ReactNode } from "react";
+import { ThemedPortal } from "../../internal/ThemedPortal";
 import { classNames } from "../../internal/classNames";
 import { CheckIcon } from "../../internal/icons/CheckIcon";
 import styles from "./DropdownMenu.module.scss";
+
+function DropdownMenuPortal({ children, container, ...props }: DropdownMenuPortalProps) {
+  return (
+    <ThemedPortal
+      container={container}
+      render={(content) => (
+        <DropdownMenuPrimitive.Portal {...props} container={container}>
+          {content}
+        </DropdownMenuPrimitive.Portal>
+      )}
+    >
+      {children}
+    </ThemedPortal>
+  );
+}
 
 export type DropdownMenuRootProps = DropdownMenuPrimitive.DropdownMenuProps;
 export type DropdownMenuTriggerProps = DropdownMenuPrimitive.DropdownMenuTriggerProps;
@@ -189,7 +205,7 @@ DropdownMenuSubContent.displayName = "DropdownMenu.SubContent";
 export const DropdownMenu = {
   Root: DropdownMenuPrimitive.Root,
   Trigger: DropdownMenuPrimitive.Trigger,
-  Portal: DropdownMenuPrimitive.Portal,
+  Portal: DropdownMenuPortal,
   Content: DropdownMenuContent,
   Item: DropdownMenuItem,
   CheckboxItem: DropdownMenuCheckboxItem,

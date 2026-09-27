@@ -8,6 +8,7 @@
     "eslint.config.mjs",
     "prettier.config.mjs",
     "vitest.config.ts",
-    "vitest.setup.ts"
+    "vitest.setup.ts",
+    "vitest.storybook.config.ts"
   ]
 }

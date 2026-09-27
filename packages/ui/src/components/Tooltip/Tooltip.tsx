@@ -1,9 +1,25 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { forwardRef } from "react";
+import { ThemedPortal } from "../../internal/ThemedPortal";
 import { classNames } from "../../internal/classNames";
 import styles from "./Tooltip.module.scss";
 
 export type TooltipProviderProps = TooltipPrimitive.TooltipProviderProps;
+function TooltipPortal({ children, container, ...props }: TooltipPortalProps) {
+  return (
+    <ThemedPortal
+      container={container}
+      render={(content) => (
+        <TooltipPrimitive.Portal {...props} container={container}>
+          {content}
+        </TooltipPrimitive.Portal>
+      )}
+    >
+      {children}
+    </ThemedPortal>
+  );
+}
+
 export type TooltipRootProps = TooltipPrimitive.TooltipProps;
 export type TooltipTriggerProps = TooltipPrimitive.TooltipTriggerProps;
 export type TooltipPortalProps = TooltipPrimitive.TooltipPortalProps;
@@ -40,7 +56,7 @@ export const Tooltip = {
   Provider: TooltipPrimitive.Provider,
   Root: TooltipPrimitive.Root,
   Trigger: TooltipPrimitive.Trigger,
-  Portal: TooltipPrimitive.Portal,
+  Portal: TooltipPortal,
   Content: TooltipContent,
   Arrow: TooltipArrow,
 };

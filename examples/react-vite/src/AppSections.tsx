@@ -691,6 +691,7 @@ export function SkeletonSection() {
         </div>
       </div>
       <div
+        role="group"
         aria-busy="true"
         aria-label="최근 프로젝트 활동을 불러오는 중"
         className="skeletonPreview"
@@ -708,9 +709,9 @@ export function SkeletonSection() {
   );
 }
 
-export function ThemeOverride() {
+export function ThemeOverride({ theme }: { theme: "light" | "dark" | "system" }) {
   return (
-    <section aria-labelledby="override-title" className="overrideTheme">
+    <section aria-labelledby="override-title" className="overrideTheme" data-dds-theme={theme}>
       <div>
         <p className="eyebrow">Theme override</p>
         <h2 id="override-title">CSS 변수로 브랜드 교체</h2>
